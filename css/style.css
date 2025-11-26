@@ -1,0 +1,2853 @@
+﻿/* __________________ ESTILO GERAIS _____________________ */
+:root {
+  --fundo_formulario: #d9d9d9;
+  --fundo_mensagem: #d45853; 
+  --cor_cabecario: #741c19;
+  --cor_botao_verde: #006400;
+}
+ 
+* {
+  font-family: "Montserrat";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  background: url(../img/doacao_sangue_HD.png);
+  background-size: cover;
+  background-repeat: repeat;
+  min-height: 100vh; /*altura total da viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.fundo-imagem::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* Aplica opacidade ao fundo da imagem */
+  z-index: -1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: inherit;
+    color: #363636;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+.modal .modal-header {
+  background-color: #D3D3D3;
+}
+
+.modal .modal-footer {
+  justify-content: center; /* Centraliza os itens no rodapé */
+}
+
+
+/* __________________ ESTILO PARA TEXTO _____________________ */
+#texto {
+  text-align: center;
+  padding: 20px; /* Adicione algum espaçamento para melhor legibilidade */
+}
+
+#texto h2 {
+  font-size: 24px;
+  color: #333; /* Cor do título */
+}
+
+#texto p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555; /* Cor do texto */
+}
+
+/* __________________ HEADER _____________________ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background: var(--cor_cabecario);
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo {
+  align-items: center;
+  margin-left: 20px;
+}
+
+.logo img {
+  max-width: 200px;
+  margin-right: 20px;
+}
+
+.navbar {
+  margin-right: 20px;
+}
+
+.navbar a {
+  position: relative;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500px;
+  text-decoration: none;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.dropdown .dropdown-menu a {
+  color: #000000;
+  width: 192px;
+}
+
+.dropdown .dropdown-menu a:hover {
+  background-color: #FFE4E1;
+}
+
+.navbar a::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.navbar a:hover::before {
+  transform: scaleX(1);
+}
+
+/* __________________ FOOTER _____________________ */
+/* Estilos para o footer */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #D9D9D9;
+  color: #fff;
+  text-align: center;
+  transition: bottom 0.3s; /* Adiciona uma transição suave para a animação */
+  z-index: 100;
+  padding: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer a {
+  color: #000000;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  opacity: 0.6;
+}
+
+.footer p {
+  margin: 0;
+  color: #000000;
+}
+
+.footer p a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer p a:hover {
+  color: #fff; /* Alterei a cor quando o mouse está sobre o link */
+}
+
+.footer .footer-links {
+  margin-top: 20px;
+}
+
+.footer .footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer .footer-links a:hover {
+  color: #fff;
+}
+
+.footer .footer-social {
+  margin-top: 20px;
+}
+
+.footer .footer-social a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer .footer-social a:hover {
+  color: #fff;
+}
+
+.footer ul.list-inline {
+  margin-bottom: 0;
+}
+
+.nav-down {
+  bottom: -50px;
+}
+
+/* modais footer */
+.modal-content {
+  background-color: #f8f9fa;
+}
+
+.modal-header {
+  background-color: #d6ecef;
+  color: #000000;
+}
+
+.modal-body {
+  color: #333333;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+/* ------------------------------ Media query para larguras até 1280px --------------------------- */
+@media (max-width: 1280px) {
+  .footer {
+    padding: 2px 0; /* Reduz padding para economizar espaço */
+  }
+
+  .footer p, .footer a {
+    font-size: 12px; /* Reduz tamanho da fonte */
+  }
+
+  .footer .footer-links, .footer .footer-social {
+    margin-top: 2px; /* Reduz margens entre links e ícones sociais */
+  }
+
+  .footer .footer-links a, .footer .footer-social a {
+    margin: 0 2px; /* Reduz espaçamento horizontal entre links e ícones sociais */
+  }
+}
+
+/* --------------------------   Media query para dispositivos móveis até 768px -------------------- */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 2px 0;
+  }
+
+  .footer p, .footer a {
+    font-size: 11px;
+  }
+
+  .footer .footer-links a, .footer .footer-social a {
+    margin: 0 1px;
+  }
+}
+
+/* ---------------------------- Media query para dispositivos móveis até 576px ------------------ */
+@media (max-width: 576px) {
+  .footer {
+    padding: 40px 0; /* Aumenta o padding no footer */
+  }
+
+  .footer p, .footer a {
+    font-size: 12px;
+  }
+
+  .footer .footer-links, .footer .footer-social {
+    margin-top: 3px;
+  }
+
+  .footer .footer-links a, .footer .footer-social a {
+    margin: 0 3px;
+  }
+
+  .footer ul.list-inline {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  .footer ul.list-inline li {
+    display: inline-block;
+    margin: 0 2px;
+  }
+}
+
+/* __________________ INDEX _____________________ */
+.container-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px; /* Arredonda as bordas da imagem */
+  overflow: hidden; /* Garante que a imagem não ultrapasse os limites do canto arredondado */
+}
+
+.imagem-index img {
+  max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+  height: auto; /* Permite que a imagem mantenha a proporção original */
+}
+
+.borda-index {
+  width: 1285px;
+  height: 730px;
+  flex-shrink: 0;
+  margin: 0px 150px;
+  border-radius: 10px;
+  background: var(--fundo_formulario);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding-top: 0px;
+}
+
+.mensagem-borda-index {
+  margin-top: 40px; /* Ajuste o valor de acordo com suas necessidades */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #fff; /* Cor do texto da mensagem */
+  font-size: 30px; /* Tamanho da fonte da mensagem */
+  background-color: var(--fundo_mensagem); /* Cor de fundo da mensagem */
+}
+
+ /* Estilo do texto justificado */
+.texto-justificado {
+  text-align: justify;
+  line-height: 1.2; /* Ajuste a altura da linha conforme necessário */
+}
+
+  /* Estilo da linha de separação */
+.linha-separacao {
+    border: 0;
+    height: 2px;
+    background: #525151; /* Cor da linha */
+    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+}
+
+.section {
+    padding: 30px; /* Adiciona espaço ao redor das seções */
+    margin-top: -30;
+}
+
+.section h4 {
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Adiciona espaço abaixo do título */
+}
+
+.section p {
+  margin-bottom: 0; /* Remove a margem inferior do parágrafo */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 450px; /* Ajuste a altura conforme necessário */
+  object-fit: cover; /* Mantém a proporção da imagem */
+  }
+
+  .custom-position {
+  object-position: center 80%; /* Ajusta para que a imagem desça mais */
+  }
+
+  .linha-separacao {
+  border: 0;
+  height: 1px;
+  background: #000; /* Cor da linha */
+  margin: 12px 0; /* Espaçamento acima e abaixo da linha */
+  }
+
+/* __________________ CONSULTAS DE MÍDIA - INDEX _____________________ */
+
+/* Tela ocupando mais ou menos metade da tela */
+@media (max-width: 1280px) {
+  .container-index {
+    margin-top: 40px;
+  }
+
+  .borda-index {
+    width: 80%;
+    height: auto;
+    margin: 70px auto;
+    /* padding: 20px; */
+  }
+
+  .mensagem-borda-index {
+    font-size: 24px;
+    margin-top: 0; /* Remove a margem superior */
+  }
+
+  .imagem-index img {
+    max-width: 80%; /* Garante que a imagem não ultrapasse o container */
+    max-height: 70%;
+  }
+}
+
+/* Versão Mobile */
+@media (max-width: 768px) {
+  .container-index {
+    flex-direction: column;
+    /* padding: 10px; */
+  }
+
+  .borda-index {
+    width: 90%;
+    height: auto;
+    margin: 10px auto;
+    /* padding: 10px; */
+  }
+
+  .mensagem-borda-index {
+    font-size: 20px;
+    margin-top: 0; /* Remove a margem superior */
+  }
+
+  .imagem-index {
+    margin-top: 20px;
+  }
+}
+
+/* _______________ EFEITO CLICAVEL BOTAO __________________ */
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    position: absolute;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;   /* remoção da linha de transição*/
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+/* __________________ CADASTRO_PACIENTE _____________________ */
+.borda {
+  width: 1285px;
+  height: 82px;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mensagem-borda {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #fff; /* Cor do texto da mensagem */
+  font-size: 30px; /* Tamanho da fonte da mensagem */
+  background-color: var(--fundo_mensagem); /* Cor de fundo da mensagem */
+}
+
+#corpo {
+  width: 1085px;
+  height: 750px;
+  flex-shrink: 0;
+  margin: 50px 100px 20px 100px;
+  border-radius: 10px;
+  background: var(--fundo_formulario);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.container-cadastro-paciente {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top right bottom left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+  scrollbar-width: thin; /* Firefox */
+}
+
+.container-cadastro-paciente::-webkit-scrollbar {
+  width: 8px; /* WebKit */
+}
+
+.container-cadastro-paciente::-webkit-scrollbar-thumb {
+  background-color: #999999; /* Cor do "thumb" da barra de rolagem */
+  border-radius: 4px; /* Borda arredondada do "thumb" */
+}
+
+.container-cadastro-paciente::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Cor da trilha da barra de rolagem */
+  border-radius: 4px;
+}
+
+.container-cadastro-paciente .direita {
+  float: right;
+  width: 50%;
+}
+
+.container-cadastro-paciente .esquerda {
+  float: left;
+  width: 50%;
+}
+
+.container-cadastro-paciente label {
+  line-height: 30px;
+  text-align: left;
+  color: #363636;
+}
+
+.container-cadastro-paciente input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+.container-cadastro-paciente input[type="text"], textarea{
+  width: 390px;
+}
+
+.container-cadastro-paciente select {
+  cursor: pointer;
+}
+
+.container-cadastro-paciente .botoes-paciente {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-cadastro-paciente .botoes-paciente input{
+  margin: 0 10px;
+}
+
+.container-cadastro-paciente .botoes-paciente input:hover{
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-cadastro-paciente .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0; /* Remova a margem para centralizar os botões */
+}
+
+.container-cadastro-paciente .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0; /* Remova a margem para centralizar os botões */
+}
+
+#copy {
+  color: #363636;
+  text-align: center;
+  margin: 50px 150px;
+}
+
+/* ______________ RESP. CADASTRO PACIENTE _________________*/
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  .borda {
+    width: 90%;
+    height: auto;
+  }
+
+  .mensagem-borda {
+    font-size: 26px; /* Ajuste o tamanho da fonte conforme necessário */
+    padding: 15px;
+  }
+
+  #corpo {
+    width: 95%;
+    height: 760px;
+    margin: 120px auto; /* Centraliza horizontalmente */
+  }
+
+  .container-cadastro-paciente {
+    padding: 10px 30px; /* Ajuste o padding conforme necessário */
+    max-height: 660px; /* Ajuste conforme necessário */
+  }
+}
+
+/* Media query para dispositivos móveis até 768px */
+@media (max-width: 768px) {
+  .borda {
+    width: 100%;
+    height: auto;
+  }
+
+  .mensagem-borda {
+    font-size: 22px; /* Ajuste o tamanho da fonte conforme necessário */
+    padding: 10px;
+  }
+
+  #corpo {
+    width: 95%;
+    height: 750px;
+    margin: 120px auto 70px auto; /* Centraliza horizontalmente */
+  }
+
+  .container-cadastro-paciente {
+    padding: 10px 20px; /* Ajuste o padding conforme necessário */
+    max-height: 660px; /* Ajuste conforme necessário */
+  }
+}
+
+/* __________________ CADASTRAR_BOLSA _____________________*/
+.container-cadastrar-bolsa {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  scrollbar-width: thin; /* Firefox */
+  max-height: 630px;
+}
+
+.container-cadastrar-bolsa::-webkit-scrollbar {
+  width: 8px; /* WebKit */
+}
+
+.container-cadastrar-bolsa::-webkit-scrollbar-thumb {
+  background-color: #999999; /* Cor do "thumb" da barra de rolagem */
+  border-radius: 4px; /* Borda arredondada do "thumb" */
+}
+
+.container-cadastrar-bolsa::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Cor da trilha da barra de rolagem */
+  border-radius: 4px;
+}
+
+.container-cadastrar-bolsa .direita {
+  float: right;
+  width: 50%;
+}
+
+.container-cadastrar-bolsa .esquerda {
+  float: left;
+  width: 50%;
+}
+
+.container-cadastrar-bolsa label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-cadastrar-bolsa input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-cadastrar-bolsa select {
+  cursor: pointer;
+}
+
+.container-cadastrar-bolsa input[type="text"]{
+  width: 95%;
+}
+
+.container-cadastrar-bolsa textarea{
+  width: 73%;
+}
+
+.container-cadastrar-bolsa .botoes-bolsa {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-cadastrar-bolsa .botoes-bolsa input, button{
+  margin: 0 10px;
+}
+
+.container-cadastrar-bolsa .botoes-bolsa input:hover{
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-cadastrar-bolsa .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-cadastrar-bolsa .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-cadastrar-bolsa .botao-voltar {
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  border-radius: 8px;
+}
+
+.container-cadastrar-bolsa .botao-voltar:hover{
+  background-color: #15400e;
+  border: 3px solid #15400e;
+  color: white;
+}
+
+.container-cadastrar-bolsa .controle-devolver{
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #36499c;
+  color: #fff;
+  border: 1px solid #36499c;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.container-cadastrar-bolsa .controle-devolver:hover{
+  background-color: #0056b3;
+  border: 1px solid #0056b3;
+  color: white;
+}
+
+/* _____________ RESP. BOLSA _____________ */
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  #tabela_bolsa th, #tabela_bolsa td {
+    font-size: 10px;
+    /* padding: 8px; */
+  }
+
+  #tabela_bolsa th:nth-child(1),
+  #tabela_bolsa th:nth-child(2),
+  #tabela_bolsa th:nth-child(3),
+  #tabela_bolsa th:nth-child(4),
+  #tabela_bolsa th:nth-child(5),
+  #tabela_bolsa th:nth-child(6),
+  #tabela_bolsa th:nth-child(7),
+  #tabela_bolsa th:nth-child(8) {
+    width: 20px; /* Ajusta a largura das colunas */
+  }
+}
+
+
+/* Media query para dispositivos móveis até 768px */
+@media (max-width: 768px) {
+  #tabela_bolsa th, #tabela_bolsa td {
+    font-size: 8px;
+    /* padding: 6px; */
+  }
+
+  #tabela_bolsa th:nth-child(1),
+  #tabela_bolsa th:nth-child(2),
+  #tabela_bolsa th:nth-child(3),
+  #tabela_bolsa th:nth-child(4),
+  #tabela_bolsa th:nth-child(5),
+  #tabela_bolsa th:nth-child(6),
+  #tabela_bolsa th:nth-child(7),
+  #tabela_bolsa th:nth-child(8) {
+    width: 20px; /* Ajusta a largura das colunas */
+  }
+}
+
+/* __________________ BOLSAS_DEVOLVIDAS _____________________*/
+.container-devolver-bolsa {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top right bottom left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+}
+
+.container-devolver-bolsa .direita {
+  float: right;
+  width: 50%;
+}
+
+.container-devolver-bolsa .esquerda {
+  float: left;
+  width: 50%;
+}
+
+.container-devolver-bolsa label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-devolver-bolsa input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-devolver-bolsa select {
+  cursor: pointer;
+}
+
+.container-devolver-bolsa .botoes-bolsa {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-devolver-bolsa .botoes-bolsa input, button {
+  margin: 0 10px;
+}
+
+.container-devolver-bolsa .botoes-bolsa input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-devolver-bolsa .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-devolver-bolsa .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-devolver-bolsa .botao-voltar {
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  border-radius: 8px;
+}
+
+.container-devolver-bolsa .botao-voltar:hover{
+  background-color: #15400e;
+  border: 3px solid #15400e;
+  color: white;
+}
+
+/* _____________ RESP. BOLSA DEVOLVIDA _____________ */
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  #tabela_bolsa_devolvida th, #tabela_bolsa_devolvida td {
+    font-size: 10px;
+    /* padding: 8px; */
+  }
+
+  #tabela_bolsa_devolvida th:nth-child(1),
+  #tabela_bolsa_devolvida th:nth-child(2),
+  #tabela_bolsa_devolvida th:nth-child(3),
+  #tabela_bolsa_devolvida th:nth-child(4),
+  #tabela_bolsa_devolvida th:nth-child(5),
+  #tabela_bolsa_devolvida th:nth-child(6),
+  #tabela_bolsa_devolvida th:nth-child(7) {
+    width: 20px; /* Ajusta a largura das colunas */
+  }
+}
+
+
+/* Media query para dispositivos móveis até 768px */
+@media (max-width: 768px) {
+  #tabela_bolsa_devolvida th, #tabela_bolsa_devolvida td {
+    font-size: 8px;
+    /* padding: 6px; */
+  }
+
+  #tabela_bolsa_devolvida th:nth-child(1),
+  #tabela_bolsa_devolvida th:nth-child(2),
+  #tabela_bolsa_devolvida th:nth-child(3),
+  #tabela_bolsa_devolvida th:nth-child(4),
+  #tabela_bolsa_devolvida th:nth-child(5),
+  #tabela_bolsa_devolvida th:nth-child(6),
+  #tabela_bolsa_devolvida th:nth-child(7) {
+    width: 20px; /* Ajusta a largura das colunas */
+  }
+}
+
+/* __________________ PERFIL_PACIENTE _____________________ */
+.container-perfil-paciente {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top right bottom left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+  scrollbar-width: thin; /* Firefox */
+  /* Adicione os estilos restantes conforme necessário */
+}
+
+.container-perfil-paciente .direita {
+  float: right;
+  width: 50%;
+}
+
+.container-perfil-paciente .esquerda {
+  float: left;
+  width: 50%;
+}
+
+.container-perfil-paciente label {
+  line-height: 30px;
+  text-align: left;
+  color: #363636;
+}
+
+.container-perfil-paciente input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-perfil-paciente select {
+  cursor: pointer;
+}
+
+.container-perfil-paciente input[type="text"], textarea{
+  width: 390px;
+}
+
+.container-perfil-paciente .botoes-perfil {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-perfil-paciente .botoes-perfil input {
+  margin: 0 10px;
+}
+
+.container-perfil-paciente .botoes-perfil input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+/* Estilos para os botões */
+.container-perfil-paciente .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0; /* Remova a margem para centralizar os botões */
+}
+
+.container-perfil-paciente .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0; /* Remova a margem para centralizar os botões */
+}
+
+.container-perfil-paciente .botao-bolsa-reacao{
+  padding: 10px;
+  background-color: #A52A2A	;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  width: 300px;
+  text-align: left;
+}
+
+.container-perfil-paciente .botao-bolsa-reacao:hover{
+  background-color: var(--cor_cabecario);
+  color: white;
+}
+
+.container-perfil-paciente .botao-voltar {
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  border-radius: 8px;
+}
+
+.container-perfil-paciente .botao-voltar:hover{
+  background-color: #15400e;
+  border: 3px solid #15400e;
+  color: white;
+}
+
+/*________________REACOES TRANSFUSIONAIS____________________*/
+
+.container-reacao {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+}
+
+.container-reacao .direita {
+  float: right;
+  width: 50%;
+}
+
+.container-reacao .esquerda {
+  float: left;
+  width: 50%;
+}
+
+.container-reacao label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-reacao input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+  margin-bottom: 10px;
+}
+
+.container-reacao select {
+  cursor: pointer;
+}
+
+.container-reacao .botoes-reacao {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-reacao .botoes-reacao input, button {
+  margin: 0 10px;
+}
+
+.container-reacao .botoes-reacao input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-reacao .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-reacao .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-reacao .botao-voltar {
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  border-radius: 8px;
+}
+
+.container-reacao .botao-voltar:hover{
+  background-color: #15400e;
+  border: 3px solid #15400e;
+  color: white;
+}
+
+/* __________________ BUSCAR_PACIENTE _____________________ */
+#corpo-pacientes {
+  width: 1600px;
+  height: 1250px;
+  flex-shrink: 0;
+  margin: 110px 100px 80px 100px;
+  border-radius: 10px;
+  background: var(--fundo_formulario);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: height 0.5s; /* Transição suave ao expandir */
+}
+
+.campos-avancados {
+  display: none; /* Inicialmente oculto */
+}
+
+.campos-avancados.expanded {
+  display: block; /* Tornar visível quando expandido */
+}
+
+.avancada-button.expanded {
+  background-color: #ff5722; /* Cor diferente para indicar que está no modo avançado */
+  color: #fff;
+}
+
+.container-pacientes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.borda-pacientes {
+  width: 1085px;
+  height: 100px;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#consulta-pacientes {
+  max-height: 800px; /* Defina a altura máxima desejada para a lista */
+}
+
+.espace {
+  margin: 20px;
+}
+
+.cabecalho-tabela {
+  background-color: #fff; /* Cor de fundo para o cabeçalho da tabela */
+  border-radius: 10px 10px 10px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Estilizando a tabela */
+
+#tabela-pacientes {
+  font-size: 15px; /* Tamanho da fonte da tabela */
+}
+
+#tabela-pacientes th,
+#tabela-pacientes td {
+  font-size: 15px; /* Tamanho da fonte das células */
+}
+
+#tabela-pacientes th:nth-child(1) {
+  width: 50px; /* Largura da coluna Relatorio */
+}
+
+#tabela-pacientes th:nth-child(2) {
+  width: 200px; /* Largura da coluna Nome */
+}
+
+#tabela-pacientes th:nth-child(3) {
+  width: 200px; /* Largura da coluna Nome da Mãe */
+}
+
+#tabela-pacientes th:nth-child(4) {
+  width: 100px; /* Largura da coluna CPF */
+}
+
+#tabela-pacientes th:nth-child(5) {
+  width: 50px; /* Largura da coluna Data de Nascimento */
+}
+
+#tabela-pacientes th:nth-child(6) {
+  width: 20px; /* Largura da coluna Sexo */
+}
+
+#tabela-pacientes th:nth-child(7) {
+  width: 20px; /* Largura da coluna ABO */
+}
+
+#tabela-pacientes th:nth-child(8) {
+  width: 120px; /* Largura da coluna Setor */
+}
+
+#tabela-pacientes th:nth-child(9) {
+  width: 50px; /* Largura da coluna Data de Requisição */
+}
+
+#tabela-pacientes th:nth-child(10) {
+  width: 50px; /* Largura da coluna Alterar */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px 10px 0px 0px;
+  margin: 20px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  text-align: center; /* Centralize o texto horizontalmente */
+}
+
+th,
+td {
+  padding: 10px; /* Margem interna reduzida para espaçamento mais limpo */
+}
+
+th {
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #333; /* Cor do texto do cabeçalho */
+}
+
+tr:nth-child(even) {
+  background-color: #f5f5f5; /* Cor de fundo para linhas pares */
+}
+
+tr:hover {
+  background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
+}
+
+.legenda {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.legenda-avancados {
+  padding-top: 20px;
+  font-size: 10px;
+}
+
+.pesquisa {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1550px;
+  margin: 0 auto;
+}
+
+.pesquisa #formulario-pesquisa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} 
+
+.pesquisa input, select{
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+  margin-bottom: 10px;
+}
+
+.pesquisa input[type="text"],
+.pesquisa input[type="date"],
+.pesquisa select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 40px;
+  padding: 8px; /* Adicione padding para alinhar com os outros campos */
+}
+
+.button-pesquisa {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.pesquisa button[type="button"],
+.pesquisa input[type="submit"] {
+  margin: 0 auto;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pesquisa button[type="button"]:hover,
+.pesquisa input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.pesquisa #termo:focus {
+  border-color: #007bff;
+}
+
+.botoes-unificar {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.botoes-unificar input, button {
+  margin: 0 10px;
+}
+
+.botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botao-excluir {
+  margin-left: 20px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: 3px solid red;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botao-voltar {
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  border-radius: 8px;
+}
+
+.botao-voltar:hover{
+  background-color: #15400e;
+  border: 3px solid #15400e;
+  color: white;
+}
+
+.botao-verde:hover{
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  color: white;
+}
+
+.botao-excluir:hover{
+  background-color: var(--cor_cabecario);
+  border: 3px solid var(--cor_cabecario);
+  color: white;
+}
+
+/* _____________ RESP. BUSCAR _____________ */
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  #corpo-pacientes {
+    width: 95%;
+    height: 1400px;
+    margin: 120px auto; /* Ajusta a margem conforme necessário */
+  }
+
+  .borda-pacientes {
+    width: 95%;
+  }
+
+  .pesquisa {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  .pesquisa input, .pesquisa select {
+    padding: 7px;
+    font-size: 14px;
+  }
+
+  .pesquisa input[type="text"],
+  .pesquisa input[type="date"],
+  .pesquisa select {
+    margin-right: 20px;
+    padding: 6px; /* Ajusta padding para tamanhos menores */
+  }
+
+  .pesquisa button[type="button"],
+  .pesquisa input[type="submit"] {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  #tabela-pacientes th, #tabela-pacientes td {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  #tabela-pacientes th:nth-child(1),
+  #tabela-pacientes th:nth-child(4),
+  #tabela-pacientes th:nth-child(6),
+  #tabela-pacientes th:nth-child(7),
+  #tabela-pacientes th:nth-child(9),
+  #tabela-pacientes th:nth-child(10) {
+    width: 5px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-pacientes th:nth-child(2),
+  #tabela-pacientes th:nth-child(3),
+  #tabela-pacientes th:nth-child(8) {
+    width: 150px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-pacientes th:nth-child(5) {
+    width: 80px; /* Ajusta a largura da coluna Data de Nascimento */
+  }
+}
+
+
+/* Media query para dispositivos móveis até 768px */
+@media (max-width: 768px) {
+  #corpo-pacientes {
+    width: 95%;
+    height: auto;
+    margin: 60px auto; /* Ajusta a margem conforme necessário */
+  }
+
+  .borda-pacientes {
+    width: 95%;
+  }
+
+  .pesquisa {
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  .pesquisa input, select {
+    margin-right: 10px;
+    padding: 4px;
+  }
+
+  #tabela-pacientes th, #tabela-pacientes td {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  #tabela-pacientes th:nth-child(1),
+  #tabela-pacientes th:nth-child(4),
+  #tabela-pacientes th:nth-child(6),
+  #tabela-pacientes th:nth-child(7),
+  #tabela-pacientes th:nth-child(9),
+  #tabela-pacientes th:nth-child(10) {
+    width: 30px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-pacientes th:nth-child(2),
+  #tabela-pacientes th:nth-child(3),
+  #tabela-pacientes th:nth-child(8) {
+    width: 120px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-pacientes th:nth-child(5) {
+    width: 60px; /* Ajusta a largura da coluna Data de Nascimento */
+  }
+}
+
+
+/* _____________ PAGINAÇÃO _____________ */
+.container-rolagem {
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.pagination-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.pagination-item {
+  height: 40px;
+  margin: 0 3px;
+}
+
+.pagination-item a,
+.pagination-item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+  background-color: #007bff;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.pagination-item a:hover,
+.pagination-item span:hover {
+  background-color: #0056b3;
+}
+
+.pagination-item.active a,
+.pagination-item.active span {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  .pagination-container {
+    margin-top: 200px; /* Ajusta a posição para baixo */
+  }
+
+  .pagination-item {
+    height: 35px;
+    margin: 0 2px;
+  }
+
+  .pagination-item a,
+  .pagination-item span {
+    padding: 6px 10px;
+    font-size: 14px; /* Ajusta o tamanho da fonte para ser menor */
+  }
+}
+
+/* Media query para dispositivos móveis até 768px */
+@media (max-width: 768px) {
+  .pagination-item {
+    height: 30px;
+    margin: 0 1px;
+  }
+
+  .pagination-item a,
+  .pagination-item span {
+    padding: 4px 8px;
+    font-size: 12px; /* Ajusta o tamanho da fonte para ser menor */
+  }
+
+  .pagination {
+    flex-wrap: wrap; /* Permite a quebra de linha para itens de paginação */
+  }
+}
+
+/* _____________ FUNÇÃO DE PESQUISA & SELEÇÃO _____________ */
+
+/* select 2 css modificado*/
+/* Muda cor do select */
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+/* Muda cor do select quando abre opcoes */
+.select2-dropdown {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+/* altura do select */
+.select2-container--default
+.select2-selection--single
+.select2-selection__rendered {
+  color: #444;
+  line-height: 22px;
+}
+/* altura div select */
+.select2-container--default {
+  height: 42px;
+}
+/* cursor quando abre dropdown */
+.select2-results__option--selectable {
+  cursor: default;
+}
+/*atras do select*/
+.select2-container--default .select2-selection--single {
+  background-color: #e8efe4;
+  border: 0px #e8efe4;
+  border-radius: 4px;
+}
+/* posicao do triangulo */
+.select2-container--default
+.select2-selection--single
+.select2-selection__arrow {
+  height: 26px;
+  position: absolute;
+  top: 8px;
+  right: 1px;
+  left: 320px;
+  width: 20px;
+}
+/* faz triangulo e personaliza */
+.select2-container--default
+.select2-selection--single
+.select2-selection__arrow
+b {
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  height: 0;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -2px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+}
+/* cor do triangulo quando abre */
+.select2-container--default .select2-container--open
+.select2-selection--single{
+  border-color: transparent transparent black transparent;
+  border-width: 0 5px 6px 5px;
+}
+/* input de pesquisa */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border: 1px solid #aaa;
+  border-radius: 2px;
+}
+/* selecionado pelo mouse */
+.select2-container--default .select2-results__option--selected {
+  background-color: #e8efe4;
+}
+/* passa mouse */
+.select2-container--default
+.select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: #767676;
+  color: white;
+}
+/* espaço entre os resultados do select */
+.select2-results__option {
+  padding: 1px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* -- Fim da função -- */
+
+/* __________________ CONTROLE _____________________ */
+
+.container-controle-geral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Para centralizar verticalmente */
+}
+
+#corpo-controle {
+  /* max-width: 1385px; Limita a largura máxima */
+  width: 1600px; /* Ocupará 100% da largura do container pai */
+  height: 750px;
+  margin: 20px auto auto auto; /* Centraliza horizontalmente */
+  border-radius: 10px;
+  background: var(--fundo_formulario);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.container-controle {
+  display: flex; /* Usar flexbox */
+  flex-direction: column; /* Itens em coluna */
+  align-items: center; /* Centraliza horizontalmente */
+  padding: 10px 40px; /* Padding */
+  border-radius: 10px;
+  overflow-y: auto; /* Habilita rolagem vertical */
+  scrollbar-width: thin; /* Para Firefox */
+  max-height: 630px; /* Limita a altura para a rolagem */
+  width: 100%; /* Ocupará 100% da largura do pai */
+}
+
+.container-controle::-webkit-scrollbar {
+  width: 8px; /* WebKit */
+}
+
+.container-controle::-webkit-scrollbar-thumb {
+  background-color: #999999; /* Cor do "thumb" da barra de rolagem */
+  border-radius: 4px; /* Borda arredondada do "thumb" */
+}
+
+.container-controle::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Cor da trilha da barra de rolagem */
+  border-radius: 4px;
+}
+
+.container-controle input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-controle select {
+  cursor: pointer;
+}
+
+/*________ RESP. CONTROLE _______ */
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1600px) {
+  #corpo-controle {
+    width: 90%;
+    height: auto;
+    margin: 120px auto 90px auto;
+    /* padding: 20px; */
+    box-sizing: border-box;
+  }
+
+  /* .borda-controle {
+    width: 90%;
+    height: auto;
+  } */
+}
+
+/* Media query para larguras até 768px */
+@media (max-width: 768px) {
+  #corpo-controle {
+    width: 95%;
+    height: auto;
+    margin: 30px auto 20px auto;
+    /* padding: 15px; */
+    box-sizing: border-box;
+  }
+
+  /* .borda-controle {
+    width: 100%;
+    height: auto;
+  } */
+}
+
+/*___________estilos fildsets_____________*/
+
+.cabecalho-controle-paciente {
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width: 1550px;
+  margin: 0 auto;
+  border-radius: 4px;
+  padding-bottom: 5px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+}
+
+.cabecalho-controle-paciente input[type="date"], input[type="text"], select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px; /* Aumentei um pouco o espaço entre os campos */
+}
+
+/* Estilos para a estrutura da linha */
+.cabecalho-controle-paciente .row-column {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cabecalho-controle-bolsa {
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width: 1550px;
+  margin: 0 auto;
+  border-radius: 4px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+}
+
+/* Estilos para o fieldset 'cabecalho-controle-observacoes' */
+.cabecalho-controle-observacoes {
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width: 1550px;
+  margin: 0 auto;
+  border-radius: 4px;
+  /* padding-bottom: 5px; */
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+/* Estilos para o fieldset 'cabecalho-controle-checagem' */
+.cabecalho-controle-checagem {
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width: 1550px;
+  margin: 0 auto;
+  border-radius: 4px;
+  /* padding-bottom: 5px; */
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+/* Estilos para os títulos das legends */
+.cabecalho-controle legend {
+  font-weight: bold;
+}
+
+/* Estilos para a tabela */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: center;
+}
+
+/* Estilos para o fieldset 'cabecalho-controle-bolsa' */
+.cabecalho-controle-bolsa input[type="date"], input[type="text"], select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para o fieldset 'cabecalho-controle-checagem' */
+.cabecalho-controle-checagem input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Estilos para os botões */
+.container-controle .botoes-controle {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-controle .botoes-controle input, button {
+  margin: 0 10px;
+}
+
+.container-controle .botoes-controle input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-controle .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-controle .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-controle .botao-voltar {
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  border-radius: 8px;
+}
+
+.container-controle .botao-voltar:hover{
+  background-color: #15400e;
+  border: 3px solid #15400e;
+  color: white;
+}
+
+.container-controle .controle_registro{
+  margin: 0 auto;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container-controle .controle_registro:hover{
+  background-color: #0056b3;
+  color: white;
+}
+
+/* __________________ RELATORIO _____________________ */
+.container-relatorio {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top right bottom left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+}
+
+.container-relatorio .row {
+  margin-bottom: 15px; /* Ajuste esse valor conforme necessário */
+}
+
+.container-relatorio .direita {
+  float: right;
+  width: 50%;
+}
+
+.container-relatorio .esquerda {
+  float: left;
+  width: 50%;
+}
+
+.container-relatorio label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-relatorio input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-relatorio input[type="file"]{
+  padding: 9px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background: #cccccc;
+  color: #363636;
+}
+
+.container-relatorio select {
+  cursor: pointer;
+}
+
+.container-relatorio .botoes-relatorio {
+  text-align: center;
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-relatorio .botoes-relatorio input {
+  margin: 0 10px;
+}
+
+.container-relatorio .botoes-relatorio input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-relatorio .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-relatorio .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.relatorio_table{
+  border-collapse: collapse;
+  border: 1px solid #ededed;
+}
+
+/* Adicione este CSS ao seu arquivo de estilo (style.css) ou na seção de estilo do cabeçalho */
+
+.info-section {
+  text-align: justify;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-section p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.pdf-list {
+  margin-top: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.pdf-list p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.pdf-link {
+  text-decoration: none;
+  color: #0066cc;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.pdf-link:hover {
+  color: #e44d26; /* Vermelho - substitua pela cor desejada */
+}
+
+.pdf-link i {
+  margin-right: 10px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.text-index {
+  text-align: justify;
+}
+
+.pdf-link .fa-file-pdf {
+  color: red;
+}
+
+/* __________________ BOTÃO AJUDA _____________________ */
+
+.floating-button {
+  position: fixed;
+  bottom: 20px; /* Distância do fundo */
+  right: 20px; /* Distância da direita */
+  width: 50px;
+  height: 50px;
+  background-color: var(--fundo_mensagem); /* Cor de fundo dos botões */
+  border-radius: 50%; /* Forma de círculo */
+  text-align: center;
+  line-height: 50px; /* Centralizar ícone verticalmente */
+  color: #ffffff; /* Cor do ícone */
+  cursor: pointer;
+  z-index: 1000; /* Garante que os botões estejam acima de outros elementos */
+}
+
+/* Estilos para o ícone */
+.floating-button i {
+  font-size: 24px; /* Tamanho do ícone */
+}
+
+.fas.fa-question {
+  margin-top: 13px;
+}
+/* __________________ BOTÃO ALERTA _____________________ */
+
+/* Estilos para o alerta de CPF */
+.floating-alert {
+  position: fixed;
+  bottom: 80px; /* Distância do fundo */
+  right: 20px; /* Distância da esquerda */
+  width: 50px; /* Largura automática com base no conteúdo */
+  height: 50px; /* Largura máxima para evitar que o alerta ocupe toda a tela */
+  background-color: #fab941; /* Cor de fundo do alerta */
+  border-radius: 50%; /* Borda arredondada */
+  text-align: center;
+  line-height: 50px;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 1000; /* Garante que os botões estejam acima de outros elementos */
+}
+
+/* Estilos para o ícone */
+.floating-alert i {
+  font-size: 24px; /* Tamanho do ícone */
+}
+
+/* Estilos para garantir que os dados sejam exibidos em uma única linha */
+.modal-body-alert p {
+  white-space: nowrap; /* Impede que o texto seja quebrado em várias linhas */
+  overflow: hidden; /* Oculta qualquer texto que não caiba na largura do elemento */
+  text-overflow: ellipsis; /* Exibe reticências (...) quando o texto é cortado */
+}
+
+#cpfTableDisplay {
+  max-height: 300px; /* Defina a altura máxima desejada */
+  overflow-y: auto; /* Adicione uma barra de rolagem vertical quando necessário */
+}
+
+/* _________________ notificação sino ________________________ */
+.notificacao{
+  border: none;
+  border-radius: 50%;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: black;
+}
+
+.alerta{
+  background-color: #ffa500;
+}
+
+.sino{
+  color: white;
+}
+
+/* _____________ RESPOSTA OBRIGATÓRIA(*) _____________ */
+
+.required:after {
+  content: " *"; 
+  color: red;
+}
+
+/* _____________ INFORMAÇÕES _____________________ */
+.container-info-gerais {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.borda-info-gerais {
+  width: 1280px;
+  height: 740px;
+  flex-shrink: 0;
+  margin: 50px 100px 20px 100px;
+  border-radius: 10px;
+  background: var(--fundo_formulario);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding-top: 0px;
+}
+
+.text-info-gerais {
+  margin: 20px auto; /* Centraliza o contêiner horizontalmente e adiciona espaçamento superior e inferior */
+  padding: 20px 30px; /* Espaçamento interno: 20px no topo e embaixo, 30px nas laterais */
+  max-width: 1240px; /* Define a largura máxima do contêiner */
+  max-height: 280px;
+  background-color: #f9f9f9; /* Cor de fundo para contraste */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  border: 1px solid #ddd; /* Bordas suaves */
+  box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+.text-info-gerais p {
+  text-align: justify; /* Justifica o texto */
+  line-height: 1.6; /* Altura da linha para melhorar a legibilidade */
+  margin: 0; /* Remove a margem padrão */
+}
+
+.container-info {
+  text-align: left;
+  padding: 0px 50px 10px 50px; /* top right bottom left */
+  border-radius: 10px;
+  z-index: 1;
+  max-height: 370px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  .borda-info-gerais {
+    width: 90%;
+    height: auto;
+    margin: 80px auto;
+  }
+
+  .text-info-gerais {
+    max-width: 90%;
+    padding: 15px 25px;
+    max-height: none;
+  }
+
+  .container-info {
+    padding: 0px 30px 10px 30px;
+  }
+
+  /* Ajusta os ícones para serem menores */
+  .pdf-icon {
+    font-size: 12px;
+  }
+
+  .pdf-list a {
+    font-size: 12px;
+  }
+
+  .text-info-gerais p {
+    font-size: 12px;
+  }
+
+  .pagination-item a,
+  .pagination-item span {
+    padding: 5px 8px;
+    font-size: 12px; /* Ajusta o tamanho da fonte para ser menor */
+  }
+}
+
+/* Media query para larguras até 768px */
+@media (max-width: 768px) {
+  .borda-info-gerais {
+    width: 100%;
+    height: auto;
+    margin: 30px 10px;
+  }
+
+  .text-info-gerais {
+    max-width: 100%;
+    padding: 10px 15px;
+    max-height: none;
+  }
+
+  .container-info {
+    padding: 0px 15px 10px 15px;
+  }
+
+  /* Ajusta os ícones para serem menores */
+  .pdf-icon {
+    font-size: 10px;
+  }
+
+  .pdf-list a {
+    font-size: 10px;
+  }
+
+  .text-info-gerais p {
+    font-size: 10px;
+  }
+
+  .pagination-item a,
+  .pagination-item span {
+    padding: 3px 6px;
+    font-size: 10px; /* Ajusta o tamanho da fonte para ser menor */
+  }
+}
+
+/* __________ BOTAO SELECIONA SIM CHECAGENS CONTROLE _____________ */
+
+.toggle > input {
+  display: none;
+}
+
+.toggle > label {
+  position: relative;
+  display: block;
+  height: 20px;
+  width: 44px;
+  background: #898989;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.toggle > label:after {
+  position: absolute;
+  left: -2px;
+  top: -3px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+  content: '';
+  transition: all 0.3s ease;
+}
+.toggle > label:active:after {
+  transform: scale(1.15, 0.85);
+}
+.toggle > input:checked ~ label {
+  background: #6fbeb5;
+}
+.toggle > input:checked ~ label:after {
+  left: 20px;
+  background: #179588;
+}
+.toggle > input:disabled ~ label {
+  background: #d5d5d5;
+  pointer-events: none;
+}
+.toggle > input:disabled ~ label:after {
+  background: #bcbdbc;
+}
+
+/*_____________________ CADASTRAR SETORES ____________________*/
+
+.container-setor {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+}
+
+.container-setor label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-setor input, select, textarea{
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-setor select {
+  cursor: pointer;
+}
+
+.container-setor .botoes-setor {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-setor .botoes-setor input, button{
+  margin: 0 10px;
+}
+
+.container-setor .botoes-setor input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-setor .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-setor .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-setor .botao-editar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #007bff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-setor .botao-editar:hover{
+  background-color: #0056b3;
+  border: 3px solid #0056b3;
+  color: white;
+}
+
+.container-setor .botao-verde:hover{
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  color: white;
+}
+
+/*_____________________ CADASTRAR RESPONSÁVEL ____________________*/
+
+.container-responsavel {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+}
+
+.container-responsavel label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-responsavel input, select, textarea {
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-responsavel select {
+  cursor: pointer;
+}
+
+.container-responsavel .botoes-responsavel {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-responsavel .botoes-responsavel input {
+  margin: 0 10px;
+}
+
+.container-responsavel .botoes-responsavel input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-responsavel .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-responsavel .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-responsavel .botao-editar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #007bff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-responsavel .botao-editar:hover{
+  background-color: #0056b3;
+  border: 3px solid #0056b3;
+  color: white;
+}
+
+.container-responsavel .botao-verde:hover{
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  color: white;
+}
+
+/*_____________________ CADASTRAR NÃO CONFORMIDADE ____________________*/
+
+.container-nao-conformidade {
+  text-align: left;
+  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  border-radius: 10px;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 630px;
+}
+
+.container-nao-conformidade label {
+  text-align: left;
+  color: #363636;
+}
+
+.container-nao-conformidade input, select, textarea{
+  padding: 9px;
+  border: 1px solid #cccccc;
+  background: #e8efe4;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.container-nao-conformidade select {
+  cursor: pointer;
+}
+
+.container-nao-conformidade .botoes-nao-conformidade {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container-nao-conformidade .botoes-nao-conformidade input, button{
+  margin: 0 10px;
+}
+
+.container-nao-conformidade .botoes-nao-conformidade input:hover {
+  background-color: var(--cor_botao_verde);
+  color: white;
+  border: 3px solid var(--cor_botao_verde);
+}
+
+.container-nao-conformidade .botao-verde {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #4CAF50;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-nao-conformidade .botao-limpar {
+  background-color: #26874E;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #26874E;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-nao-conformidade .botao-editar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #007bff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.container-nao-conformidade .botao-editar:hover{
+  background-color: #0056b3;
+  border: 3px solid #0056b3;
+  color: white;
+}
+
+.container-nao-conformidade .botao-verde:hover{
+  background-color: var(--cor_botao_verde);
+  border: 3px solid var(--cor_botao_verde);
+  color: white;
+}
+
+/*_____________________ EXCLUSOES ____________________*/
+#corpo-pacientes {
+  width: 1600px;
+  height: 1250px;
+  flex-shrink: 0;
+  margin: 110px 100px 80px 100px;
+  border-radius: 10px;
+  background: var(--fundo_formulario);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: height 0.5s; /* Transição suave ao expandir */
+}
+
+.borda-exclusoes {
+  width: 1085px;
+  height: 100px;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.container-exclusoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilizando a tabela */
+
+#tabela-exclusoes {
+  font-size: 15px; /* Tamanho da fonte da tabela */
+}
+
+#tabela-exclusoes th,
+#tabela-exclusoes td {
+  font-size: 15px; /* Tamanho da fonte das células */
+}
+
+#tabela-exclusoes th:nth-child(1) {
+  width: 180px; /* Largura da coluna Nome */
+}
+
+#tabela-exclusoes th:nth-child(2) {
+  width: 100px; /* Largura da coluna Nome da Mãe */
+}
+
+#tabela-exclusoes th:nth-child(3) {
+  width: 450px; /* Largura da coluna CPF */
+}
+
+#tabela-exclusoes th:nth-child(4) {
+  width: 70px; /* Largura da coluna Data de Nascimento */
+}
+
+#tabela-exclusoes th:nth-child(5) {
+  width: 120px; /* Largura da coluna Sexo */
+}
+
+#tabela-exclusoes th:nth-child(6) {
+  width: 150px; /* Largura da coluna ABO */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px 10px 0px 0px;
+  margin: 20px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  text-align: center; /* Centralize o texto horizontalmente */
+}
+
+th,
+td {
+  padding: 10px; /* Margem interna reduzida para espaçamento mais limpo */
+}
+
+th {
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #333; /* Cor do texto do cabeçalho */
+}
+
+tr:nth-child(even) {
+  background-color: #f5f5f5; /* Cor de fundo para linhas pares */
+}
+
+tr:hover {
+  background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
+}
+
+/* _____________ RESP. EXCLUSOES _____________ */
+
+/* Media query para larguras até 1280px */
+@media (max-width: 1280px) {
+  #corpo-pacientes {
+    width: 95%;
+    height: 1300px;
+    margin: 120px auto; /* Ajusta a margem conforme necessário */
+  }
+
+  .borda-exclusoes {
+    width: 95%;
+  }
+
+  .container-pagination {
+    margin-bottom: 200px;
+  }
+
+  #tabela-exclusoes th, #tabela-exclusoes td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  #tabela-exclusoes th:nth-child(1),
+  #tabela-exclusoes th:nth-child(3),
+  #tabela-exclusoes th:nth-child(4),
+  #tabela-exclusoes th:nth-child(5) {
+    width: 40px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-exclusoes th:nth-child(2),
+  #tabela-exclusoes th:nth-child(6) {
+    width: 150px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-exclusoes th:nth-child(0) {
+    width: 80px; /* Ajusta a largura da coluna Data de Nascimento */
+  }
+}
+
+
+/* Media query para dispositivos móveis até 768px */
+@media (max-width: 768px) {
+  #corpo-pacientes {
+    width: 95%;
+    height: auto;
+    margin: 60px auto; /* Ajusta a margem conforme necessário */
+  }
+
+  .borda-exclusoes {
+    width: 95%;
+  }
+
+  .pesquisa {
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  .pesquisa input, select {
+    margin-right: 10px;
+    padding: 4px;
+  }
+
+  #tabela-exclusoes th, #tabela-exclusoes td {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  #tabela-exclusoes th:nth-child(1),
+  #tabela-exclusoes th:nth-child(3),
+  #tabela-exclusoes th:nth-child(4),
+  #tabela-exclusoes th:nth-child(5) {
+    width: 30px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-exclusoes th:nth-child(2),
+  #tabela-exclusoes th:nth-child(6) {
+    width: 120px; /* Ajusta a largura das colunas */
+  }
+
+  #tabela-exclusoes th:nth-child(0) {
+    width: 60px; /* Ajusta a largura da coluna Data de Nascimento */
+  }
+}

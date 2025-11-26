@@ -1,0 +1,26 @@
+# System
+.DS_Store
+Thumbs.db
+
+# IDEs / editors
+.vscode/
+.idea/
+
+# Dependencies / build
+vendor/
+node_modules/
+
+# Environment / secrets
+.env
+database.php
+
+# Logs / db / temp
+*.log
+*.sqlite
+*.db
+
+# PHP specific
+composer.lock
+
+# uploads / user content
+uploads/
