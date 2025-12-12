@@ -1021,13 +1021,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
             });
             
             // Verificar CPF
-            let validandoCPF = false; // Flag para evitar loop
             document.getElementById('cpf').addEventListener('blur', function() {
                 const valor = this.value;
-                if (valor && valor.trim() !== '' && !validandoCPF) {
+                if (valor && valor.trim() !== '') {
                     // PRIMEIRO: Validar se o CPF é válido
                     if (!validarCPF(valor)) {
-                        validandoCPF = true; // Ativar flag
                         Swal.fire({
                             icon: 'error',
                             title: 'CPF Inválido',
@@ -1035,12 +1033,9 @@ while ($row = pg_fetch_assoc($result_setor)) {
                             confirmButtonColor: '#d33',
                             allowEscapeKey: true,
                             allowOutsideClick: true
-                        }).then(() => {
-                            validandoCPF = false; // Desativar flag após fechar
                         });
                         this.style.border = '2px solid #dc3545';
                         this.style.boxShadow = '0 0 5px rgba(220, 53, 69, 0.5)';
-                        // NÃO usar this.focus() aqui para evitar loop
                         return; // Para aqui se CPF inválido
                     }
                     
