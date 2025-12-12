@@ -1,10 +1,20 @@
 <?php
+// Suprimir erros visuais para não quebrar o JSON
+error_reporting(0);
+ini_set('display_errors', 0);
+
+// Iniciar buffer de saída para garantir que nada seja impresso antes do JSON
+ob_start();
+
 include "database.php";
 
 // Iniciar sessão se necessário
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Limpar qualquer saída anterior (como espaços em branco do database.php)
+ob_clean();
 
 header('Content-Type: application/json');
 
