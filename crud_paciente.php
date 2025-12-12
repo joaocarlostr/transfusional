@@ -752,28 +752,31 @@ while ($row = pg_fetch_assoc($result_setor)) {
         <?php if ($mode === 'create'): ?>
         $(document).ready(function() {
             // Verificar Prontuário
-            $('#prontuario').on('blur', function() {
-                const valor = $(this).val();
+            document.getElementById('prontuario').addEventListener('blur', function() {
+                const valor = this.value;
                 if (valor && valor.trim() !== '') {
                     verificarPacienteDuplicado('prontuario', valor);
                 }
             });
             
             // Verificar CPF
-            $('#cpf').on('blur', function() {
-                const valor = $(this).val();
+            document.getElementById('cpf').addEventListener('blur', function() {
+                const valor = this.value;
                 if (valor && valor.trim() !== '') {
                     verificarPacienteDuplicado('cpf', valor);
                 }
             });
             
-            // Verificar CNS
-            $('#cns').on('blur', function() {
-                const valor = $(this).val();
-                if (valor && valor.trim() !== '') {
-                    verificarPacienteDuplicado('cns', valor);
-                }
-            });
+            // Verificar CNS (campo tem id="num_sus")
+            const cnsField = document.getElementById('num_sus');
+            if (cnsField) {
+                cnsField.addEventListener('blur', function() {
+                    const valor = this.value;
+                    if (valor && valor.trim() !== '') {
+                        verificarPacienteDuplicado('cns', valor);
+                    }
+                });
+            }
         });
         <?php endif; ?>
     </script>
