@@ -1,11 +1,11 @@
 ﻿/* __________________ ESTILO GERAIS _____________________ */
 :root {
   --fundo_formulario: #d9d9d9;
-  --fundo_mensagem: #d45853; 
+  --fundo_mensagem: #d45853;
   --cor_cabecario: #741c19;
   --cor_botao_verde: #006400;
 }
- 
+
 * {
   font-family: "Montserrat";
   margin: 0;
@@ -18,7 +18,8 @@ body {
   background: url(../img/doacao_sangue_HD.png);
   background-size: cover;
   background-repeat: repeat;
-  min-height: 100vh; /*altura total da viewport */
+  min-height: 100vh;
+  /*altura total da viewport */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +33,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.7); /* Aplica opacidade ao fundo da imagem */
+  background: rgba(255, 255, 255, 0.7);
+  /* Aplica opacidade ao fundo da imagem */
   z-index: -1;
 }
 
@@ -40,8 +42,8 @@ h1,
 h2,
 h3,
 h4 {
-    font-weight: inherit;
-    color: #363636;
+  font-weight: inherit;
+  color: #363636;
 }
 
 hr {
@@ -54,25 +56,29 @@ hr {
 }
 
 .modal .modal-footer {
-  justify-content: center; /* Centraliza os itens no rodapé */
+  justify-content: center;
+  /* Centraliza os itens no rodapé */
 }
 
 
 /* __________________ ESTILO PARA TEXTO _____________________ */
 #texto {
   text-align: center;
-  padding: 20px; /* Adicione algum espaçamento para melhor legibilidade */
+  padding: 20px;
+  /* Adicione algum espaçamento para melhor legibilidade */
 }
 
 #texto h2 {
   font-size: 24px;
-  color: #333; /* Cor do título */
+  color: #333;
+  /* Cor do título */
 }
 
 #texto p {
   font-size: 16px;
   line-height: 1.6;
-  color: #555; /* Cor do texto */
+  color: #555;
+  /* Cor do texto */
 }
 
 /* __________________ HEADER _____________________ */
@@ -151,7 +157,8 @@ hr {
   background-color: #D9D9D9;
   color: #fff;
   text-align: center;
-  transition: bottom 0.3s; /* Adiciona uma transição suave para a animação */
+  transition: bottom 0.3s;
+  /* Adiciona uma transição suave para a animação */
   z-index: 100;
   padding: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -180,7 +187,8 @@ hr {
 }
 
 .footer p a:hover {
-  color: #fff; /* Alterei a cor quando o mouse está sobre o link */
+  color: #fff;
+  /* Alterei a cor quando o mouse está sobre o link */
 }
 
 .footer .footer-links {
@@ -257,19 +265,26 @@ hr {
 /* ------------------------------ Media query para larguras até 1280px --------------------------- */
 @media (max-width: 1280px) {
   .footer {
-    padding: 2px 0; /* Reduz padding para economizar espaço */
+    padding: 2px 0;
+    /* Reduz padding para economizar espaço */
   }
 
-  .footer p, .footer a {
-    font-size: 12px; /* Reduz tamanho da fonte */
+  .footer p,
+  .footer a {
+    font-size: 12px;
+    /* Reduz tamanho da fonte */
   }
 
-  .footer .footer-links, .footer .footer-social {
-    margin-top: 2px; /* Reduz margens entre links e ícones sociais */
+  .footer .footer-links,
+  .footer .footer-social {
+    margin-top: 2px;
+    /* Reduz margens entre links e ícones sociais */
   }
 
-  .footer .footer-links a, .footer .footer-social a {
-    margin: 0 2px; /* Reduz espaçamento horizontal entre links e ícones sociais */
+  .footer .footer-links a,
+  .footer .footer-social a {
+    margin: 0 2px;
+    /* Reduz espaçamento horizontal entre links e ícones sociais */
   }
 }
 
@@ -280,11 +295,13 @@ hr {
     padding: 2px 0;
   }
 
-  .footer p, .footer a {
+  .footer p,
+  .footer a {
     font-size: 11px;
   }
 
-  .footer .footer-links a, .footer .footer-social a {
+  .footer .footer-links a,
+  .footer .footer-social a {
     margin: 0 1px;
   }
 }
@@ -292,18 +309,22 @@ hr {
 /* ---------------------------- Media query para dispositivos móveis até 576px ------------------ */
 @media (max-width: 576px) {
   .footer {
-    padding: 40px 0; /* Aumenta o padding no footer */
+    padding: 40px 0;
+    /* Aumenta o padding no footer */
   }
 
-  .footer p, .footer a {
+  .footer p,
+  .footer a {
     font-size: 12px;
   }
 
-  .footer .footer-links, .footer .footer-social {
+  .footer .footer-links,
+  .footer .footer-social {
     margin-top: 3px;
   }
 
-  .footer .footer-links a, .footer .footer-social a {
+  .footer .footer-links a,
+  .footer .footer-social a {
     margin: 0 3px;
   }
 
@@ -329,13 +350,17 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px; /* Arredonda as bordas da imagem */
-  overflow: hidden; /* Garante que a imagem não ultrapasse os limites do canto arredondado */
+  border-radius: 10px;
+  /* Arredonda as bordas da imagem */
+  overflow: hidden;
+  /* Garante que a imagem não ultrapasse os limites do canto arredondado */
 }
 
 .imagem-index img {
-  max-width: 100%; /* Garante que a imagem não ultrapasse o container */
-  height: auto; /* Permite que a imagem mantenha a proporção original */
+  max-width: 100%;
+  /* Garante que a imagem não ultrapasse o container */
+  height: auto;
+  /* Permite que a imagem mantenha a proporção original */
 }
 
 .borda-index {
@@ -350,60 +375,76 @@ hr {
 }
 
 .mensagem-borda-index {
-  margin-top: 40px; /* Ajuste o valor de acordo com suas necessidades */
+  margin-top: 40px;
+  /* Ajuste o valor de acordo com suas necessidades */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 20px;
   text-align: center;
-  color: #fff; /* Cor do texto da mensagem */
-  font-size: 30px; /* Tamanho da fonte da mensagem */
-  background-color: var(--fundo_mensagem); /* Cor de fundo da mensagem */
+  color: #fff;
+  /* Cor do texto da mensagem */
+  font-size: 30px;
+  /* Tamanho da fonte da mensagem */
+  background-color: var(--fundo_mensagem);
+  /* Cor de fundo da mensagem */
 }
 
- /* Estilo do texto justificado */
+/* Estilo do texto justificado */
 .texto-justificado {
   text-align: justify;
-  line-height: 1.2; /* Ajuste a altura da linha conforme necessário */
+  line-height: 1.2;
+  /* Ajuste a altura da linha conforme necessário */
 }
 
-  /* Estilo da linha de separação */
+/* Estilo da linha de separação */
 .linha-separacao {
-    border: 0;
-    height: 2px;
-    background: #525151; /* Cor da linha */
-    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+  border: 0;
+  height: 2px;
+  background: #525151;
+  /* Cor da linha */
+  margin: 20px 0;
+  /* Espaçamento acima e abaixo da linha */
 }
 
 .section {
-    padding: 30px; /* Adiciona espaço ao redor das seções */
-    margin-top: -30;
+  padding: 30px;
+  /* Adiciona espaço ao redor das seções */
+  margin-top: -30;
 }
 
 .section h4 {
-    text-align: center; /* Centraliza o título */
-    margin-bottom: 20px; /* Adiciona espaço abaixo do título */
+  text-align: center;
+  /* Centraliza o título */
+  margin-bottom: 20px;
+  /* Adiciona espaço abaixo do título */
 }
 
 .section p {
-  margin-bottom: 0; /* Remove a margem inferior do parágrafo */
+  margin-bottom: 0;
+  /* Remove a margem inferior do parágrafo */
 }
 
 .carousel-item img {
   width: 100%;
-  height: 450px; /* Ajuste a altura conforme necessário */
-  object-fit: cover; /* Mantém a proporção da imagem */
-  }
+  height: 450px;
+  /* Ajuste a altura conforme necessário */
+  object-fit: cover;
+  /* Mantém a proporção da imagem */
+}
 
-  .custom-position {
-  object-position: center 80%; /* Ajusta para que a imagem desça mais */
-  }
+.custom-position {
+  object-position: center 80%;
+  /* Ajusta para que a imagem desça mais */
+}
 
-  .linha-separacao {
+.linha-separacao {
   border: 0;
   height: 1px;
-  background: #000; /* Cor da linha */
-  margin: 12px 0; /* Espaçamento acima e abaixo da linha */
-  }
+  background: #000;
+  /* Cor da linha */
+  margin: 12px 0;
+  /* Espaçamento acima e abaixo da linha */
+}
 
 /* __________________ CONSULTAS DE MÍDIA - INDEX _____________________ */
 
@@ -422,11 +463,13 @@ hr {
 
   .mensagem-borda-index {
     font-size: 24px;
-    margin-top: 0; /* Remove a margem superior */
+    margin-top: 0;
+    /* Remove a margem superior */
   }
 
   .imagem-index img {
-    max-width: 80%; /* Garante que a imagem não ultrapasse o container */
+    max-width: 80%;
+    /* Garante que a imagem não ultrapasse o container */
     max-height: 70%;
   }
 }
@@ -447,7 +490,8 @@ hr {
 
   .mensagem-borda-index {
     font-size: 20px;
-    margin-top: 0; /* Remove a margem superior */
+    margin-top: 0;
+    /* Remove a margem superior */
   }
 
   .imagem-index {
@@ -458,40 +502,41 @@ hr {
 /* _______________ EFEITO CLICAVEL BOTAO __________________ */
 .btn:link,
 .btn:visited {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 40px;
-    display: inline-block;
-    border-radius: 100px;
-    transition: all .2s;
-    position: absolute;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: absolute;
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 100px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;   /* remoção da linha de transição*/
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* remoção da linha de transição*/
 }
 
 .btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
 }
 
 /* __________________ CADASTRO_PACIENTE _____________________ */
@@ -507,9 +552,12 @@ hr {
   border-top-right-radius: 10px;
   padding: 20px;
   text-align: center;
-  color: #fff; /* Cor do texto da mensagem */
-  font-size: 30px; /* Tamanho da fonte da mensagem */
-  background-color: var(--fundo_mensagem); /* Cor de fundo da mensagem */
+  color: #fff;
+  /* Cor do texto da mensagem */
+  font-size: 30px;
+  /* Tamanho da fonte da mensagem */
+  background-color: var(--fundo_mensagem);
+  /* Cor de fundo da mensagem */
 }
 
 #corpo {
@@ -524,25 +572,31 @@ hr {
 
 .container-cadastro-paciente {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top right bottom left */
+  padding: 10px 50px 10px 50px;
+  /* top right bottom left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
   max-height: 630px;
-  scrollbar-width: thin; /* Firefox */
+  scrollbar-width: thin;
+  /* Firefox */
 }
 
 .container-cadastro-paciente::-webkit-scrollbar {
-  width: 8px; /* WebKit */
+  width: 8px;
+  /* WebKit */
 }
 
 .container-cadastro-paciente::-webkit-scrollbar-thumb {
-  background-color: #999999; /* Cor do "thumb" da barra de rolagem */
-  border-radius: 4px; /* Borda arredondada do "thumb" */
+  background-color: #999999;
+  /* Cor do "thumb" da barra de rolagem */
+  border-radius: 4px;
+  /* Borda arredondada do "thumb" */
 }
 
 .container-cadastro-paciente::-webkit-scrollbar-track {
-  background-color: #ffffff; /* Cor da trilha da barra de rolagem */
+  background-color: #ffffff;
+  /* Cor da trilha da barra de rolagem */
   border-radius: 4px;
 }
 
@@ -562,14 +616,18 @@ hr {
   color: #363636;
 }
 
-.container-cadastro-paciente input, select, textarea {
+.container-cadastro-paciente input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
   border-radius: 4px;
   color: #363636;
 }
-.container-cadastro-paciente input[type="text"], textarea{
+
+.container-cadastro-paciente input[type="text"],
+textarea {
   width: 390px;
 }
 
@@ -585,11 +643,11 @@ hr {
   justify-content: center;
 }
 
-.container-cadastro-paciente .botoes-paciente input{
+.container-cadastro-paciente .botoes-paciente input {
   margin: 0 10px;
 }
 
-.container-cadastro-paciente .botoes-paciente input:hover{
+.container-cadastro-paciente .botoes-paciente input:hover {
   background-color: var(--cor_botao_verde);
   color: white;
   border: 3px solid var(--cor_botao_verde);
@@ -598,21 +656,25 @@ hr {
 .container-cadastro-paciente .botao-verde {
   background-color: #4CAF50;
   color: white;
-  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  padding: 10px 20px;
+  /* (direita e esquerda) (superior e inferior) */
   border: 3px solid #4CAF50;
   border-radius: 8px;
   cursor: pointer;
-  margin: 0; /* Remova a margem para centralizar os botões */
+  margin: 0;
+  /* Remova a margem para centralizar os botões */
 }
 
 .container-cadastro-paciente .botao-limpar {
   background-color: #26874E;
   color: white;
-  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  padding: 10px 20px;
+  /* (direita e esquerda) (superior e inferior) */
   border: 3px solid #26874E;
   border-radius: 8px;
   cursor: pointer;
-  margin: 0; /* Remova a margem para centralizar os botões */
+  margin: 0;
+  /* Remova a margem para centralizar os botões */
 }
 
 #copy {
@@ -631,19 +693,23 @@ hr {
   }
 
   .mensagem-borda {
-    font-size: 26px; /* Ajuste o tamanho da fonte conforme necessário */
+    font-size: 26px;
+    /* Ajuste o tamanho da fonte conforme necessário */
     padding: 15px;
   }
 
   #corpo {
     width: 95%;
     height: 760px;
-    margin: 120px auto; /* Centraliza horizontalmente */
+    margin: 120px auto;
+    /* Centraliza horizontalmente */
   }
 
   .container-cadastro-paciente {
-    padding: 10px 30px; /* Ajuste o padding conforme necessário */
-    max-height: 660px; /* Ajuste conforme necessário */
+    padding: 10px 30px;
+    /* Ajuste o padding conforme necessário */
+    max-height: 660px;
+    /* Ajuste conforme necessário */
   }
 }
 
@@ -655,44 +721,54 @@ hr {
   }
 
   .mensagem-borda {
-    font-size: 22px; /* Ajuste o tamanho da fonte conforme necessário */
+    font-size: 22px;
+    /* Ajuste o tamanho da fonte conforme necessário */
     padding: 10px;
   }
 
   #corpo {
     width: 95%;
     height: 750px;
-    margin: 120px auto 70px auto; /* Centraliza horizontalmente */
+    margin: 120px auto 70px auto;
+    /* Centraliza horizontalmente */
   }
 
   .container-cadastro-paciente {
-    padding: 10px 20px; /* Ajuste o padding conforme necessário */
-    max-height: 660px; /* Ajuste conforme necessário */
+    padding: 10px 20px;
+    /* Ajuste o padding conforme necessário */
+    max-height: 660px;
+    /* Ajuste conforme necessário */
   }
 }
 
 /* __________________ CADASTRAR_BOLSA _____________________*/
 .container-cadastrar-bolsa {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  padding: 10px 50px 10px 50px;
+  /* top / right / bottom / left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
-  scrollbar-width: thin; /* Firefox */
+  scrollbar-width: thin;
+  /* Firefox */
   max-height: 630px;
 }
 
 .container-cadastrar-bolsa::-webkit-scrollbar {
-  width: 8px; /* WebKit */
+  width: 8px;
+  /* WebKit */
 }
 
 .container-cadastrar-bolsa::-webkit-scrollbar-thumb {
-  background-color: #999999; /* Cor do "thumb" da barra de rolagem */
-  border-radius: 4px; /* Borda arredondada do "thumb" */
+  background-color: #999999;
+  /* Cor do "thumb" da barra de rolagem */
+  border-radius: 4px;
+  /* Borda arredondada do "thumb" */
 }
 
 .container-cadastrar-bolsa::-webkit-scrollbar-track {
-  background-color: #ffffff; /* Cor da trilha da barra de rolagem */
+  background-color: #ffffff;
+  /* Cor da trilha da barra de rolagem */
   border-radius: 4px;
 }
 
@@ -711,7 +787,9 @@ hr {
   color: #363636;
 }
 
-.container-cadastrar-bolsa input, select, textarea {
+.container-cadastrar-bolsa input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -723,11 +801,11 @@ hr {
   cursor: pointer;
 }
 
-.container-cadastrar-bolsa input[type="text"]{
+.container-cadastrar-bolsa input[type="text"] {
   width: 95%;
 }
 
-.container-cadastrar-bolsa textarea{
+.container-cadastrar-bolsa textarea {
   width: 73%;
 }
 
@@ -739,11 +817,12 @@ hr {
   justify-content: center;
 }
 
-.container-cadastrar-bolsa .botoes-bolsa input, button{
+.container-cadastrar-bolsa .botoes-bolsa input,
+button {
   margin: 0 10px;
 }
 
-.container-cadastrar-bolsa .botoes-bolsa input:hover{
+.container-cadastrar-bolsa .botoes-bolsa input:hover {
   background-color: var(--cor_botao_verde);
   color: white;
   border: 3px solid var(--cor_botao_verde);
@@ -752,7 +831,8 @@ hr {
 .container-cadastrar-bolsa .botao-verde {
   background-color: #4CAF50;
   color: white;
-  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  padding: 10px 20px;
+  /* (direita e esquerda) (superior e inferior) */
   border: 3px solid #4CAF50;
   border-radius: 8px;
   cursor: pointer;
@@ -762,7 +842,8 @@ hr {
 .container-cadastrar-bolsa .botao-limpar {
   background-color: #26874E;
   color: white;
-  padding: 10px 20px; /* (direita e esquerda) (superior e inferior) */
+  padding: 10px 20px;
+  /* (direita e esquerda) (superior e inferior) */
   border: 3px solid #26874E;
   border-radius: 8px;
   cursor: pointer;
@@ -782,13 +863,13 @@ hr {
   border-radius: 8px;
 }
 
-.container-cadastrar-bolsa .botao-voltar:hover{
+.container-cadastrar-bolsa .botao-voltar:hover {
   background-color: #15400e;
   border: 3px solid #15400e;
   color: white;
 }
 
-.container-cadastrar-bolsa .controle-devolver{
+.container-cadastrar-bolsa .controle-devolver {
   padding: 10px 20px;
   margin-left: 10px;
   background-color: #36499c;
@@ -798,7 +879,7 @@ hr {
   cursor: pointer;
 }
 
-.container-cadastrar-bolsa .controle-devolver:hover{
+.container-cadastrar-bolsa .controle-devolver:hover {
   background-color: #0056b3;
   border: 1px solid #0056b3;
   color: white;
@@ -808,7 +889,9 @@ hr {
 
 /* Media query para larguras até 1280px */
 @media (max-width: 1280px) {
-  #tabela_bolsa th, #tabela_bolsa td {
+
+  #tabela_bolsa th,
+  #tabela_bolsa td {
     font-size: 10px;
     /* padding: 8px; */
   }
@@ -821,14 +904,17 @@ hr {
   #tabela_bolsa th:nth-child(6),
   #tabela_bolsa th:nth-child(7),
   #tabela_bolsa th:nth-child(8) {
-    width: 20px; /* Ajusta a largura das colunas */
+    width: 20px;
+    /* Ajusta a largura das colunas */
   }
 }
 
 
 /* Media query para dispositivos móveis até 768px */
 @media (max-width: 768px) {
-  #tabela_bolsa th, #tabela_bolsa td {
+
+  #tabela_bolsa th,
+  #tabela_bolsa td {
     font-size: 8px;
     /* padding: 6px; */
   }
@@ -841,14 +927,16 @@ hr {
   #tabela_bolsa th:nth-child(6),
   #tabela_bolsa th:nth-child(7),
   #tabela_bolsa th:nth-child(8) {
-    width: 20px; /* Ajusta a largura das colunas */
+    width: 20px;
+    /* Ajusta a largura das colunas */
   }
 }
 
 /* __________________ BOLSAS_DEVOLVIDAS _____________________*/
 .container-devolver-bolsa {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top right bottom left */
+  padding: 10px 50px 10px 50px;
+  /* top right bottom left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
@@ -870,7 +958,9 @@ hr {
   color: #363636;
 }
 
-.container-devolver-bolsa input, select, textarea {
+.container-devolver-bolsa input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -890,7 +980,8 @@ hr {
   justify-content: center;
 }
 
-.container-devolver-bolsa .botoes-bolsa input, button {
+.container-devolver-bolsa .botoes-bolsa input,
+button {
   margin: 0 10px;
 }
 
@@ -932,7 +1023,7 @@ hr {
   border-radius: 8px;
 }
 
-.container-devolver-bolsa .botao-voltar:hover{
+.container-devolver-bolsa .botao-voltar:hover {
   background-color: #15400e;
   border: 3px solid #15400e;
   color: white;
@@ -942,7 +1033,9 @@ hr {
 
 /* Media query para larguras até 1280px */
 @media (max-width: 1280px) {
-  #tabela_bolsa_devolvida th, #tabela_bolsa_devolvida td {
+
+  #tabela_bolsa_devolvida th,
+  #tabela_bolsa_devolvida td {
     font-size: 10px;
     /* padding: 8px; */
   }
@@ -954,14 +1047,17 @@ hr {
   #tabela_bolsa_devolvida th:nth-child(5),
   #tabela_bolsa_devolvida th:nth-child(6),
   #tabela_bolsa_devolvida th:nth-child(7) {
-    width: 20px; /* Ajusta a largura das colunas */
+    width: 20px;
+    /* Ajusta a largura das colunas */
   }
 }
 
 
 /* Media query para dispositivos móveis até 768px */
 @media (max-width: 768px) {
-  #tabela_bolsa_devolvida th, #tabela_bolsa_devolvida td {
+
+  #tabela_bolsa_devolvida th,
+  #tabela_bolsa_devolvida td {
     font-size: 8px;
     /* padding: 6px; */
   }
@@ -973,19 +1069,22 @@ hr {
   #tabela_bolsa_devolvida th:nth-child(5),
   #tabela_bolsa_devolvida th:nth-child(6),
   #tabela_bolsa_devolvida th:nth-child(7) {
-    width: 20px; /* Ajusta a largura das colunas */
+    width: 20px;
+    /* Ajusta a largura das colunas */
   }
 }
 
 /* __________________ PERFIL_PACIENTE _____________________ */
 .container-perfil-paciente {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top right bottom left */
+  padding: 10px 50px 10px 50px;
+  /* top right bottom left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
   max-height: 630px;
-  scrollbar-width: thin; /* Firefox */
+  scrollbar-width: thin;
+  /* Firefox */
   /* Adicione os estilos restantes conforme necessário */
 }
 
@@ -1005,7 +1104,9 @@ hr {
   color: #363636;
 }
 
-.container-perfil-paciente input, select, textarea {
+.container-perfil-paciente input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -1017,7 +1118,8 @@ hr {
   cursor: pointer;
 }
 
-.container-perfil-paciente input[type="text"], textarea{
+.container-perfil-paciente input[type="text"],
+textarea {
   width: 390px;
 }
 
@@ -1046,7 +1148,8 @@ hr {
   border: 3px solid #4CAF50;
   border-radius: 8px;
   cursor: pointer;
-  margin: 0; /* Remova a margem para centralizar os botões */
+  margin: 0;
+  /* Remova a margem para centralizar os botões */
 }
 
 .container-perfil-paciente .botao-limpar {
@@ -1056,12 +1159,13 @@ hr {
   border: 3px solid #26874E;
   border-radius: 8px;
   cursor: pointer;
-  margin: 0; /* Remova a margem para centralizar os botões */
+  margin: 0;
+  /* Remova a margem para centralizar os botões */
 }
 
-.container-perfil-paciente .botao-bolsa-reacao{
+.container-perfil-paciente .botao-bolsa-reacao {
   padding: 10px;
-  background-color: #A52A2A	;
+  background-color: #A52A2A;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -1071,7 +1175,7 @@ hr {
   text-align: left;
 }
 
-.container-perfil-paciente .botao-bolsa-reacao:hover{
+.container-perfil-paciente .botao-bolsa-reacao:hover {
   background-color: var(--cor_cabecario);
   color: white;
 }
@@ -1088,7 +1192,7 @@ hr {
   border-radius: 8px;
 }
 
-.container-perfil-paciente .botao-voltar:hover{
+.container-perfil-paciente .botao-voltar:hover {
   background-color: #15400e;
   border: 3px solid #15400e;
   color: white;
@@ -1098,7 +1202,8 @@ hr {
 
 .container-reacao {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  padding: 10px 50px 10px 50px;
+  /* top / right / bottom / left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
@@ -1120,7 +1225,9 @@ hr {
   color: #363636;
 }
 
-.container-reacao input, select, textarea {
+.container-reacao input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -1141,7 +1248,8 @@ hr {
   justify-content: center;
 }
 
-.container-reacao .botoes-reacao input, button {
+.container-reacao .botoes-reacao input,
+button {
   margin: 0 10px;
 }
 
@@ -1184,7 +1292,7 @@ hr {
   border-radius: 8px;
 }
 
-.container-reacao .botao-voltar:hover{
+.container-reacao .botao-voltar:hover {
   background-color: #15400e;
   border: 3px solid #15400e;
   color: white;
@@ -1199,19 +1307,23 @@ hr {
   border-radius: 10px;
   background: var(--fundo_formulario);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  transition: height 0.5s; /* Transição suave ao expandir */
+  transition: height 0.5s;
+  /* Transição suave ao expandir */
 }
 
 .campos-avancados {
-  display: none; /* Inicialmente oculto */
+  display: none;
+  /* Inicialmente oculto */
 }
 
 .campos-avancados.expanded {
-  display: block; /* Tornar visível quando expandido */
+  display: block;
+  /* Tornar visível quando expandido */
 }
 
 .avancada-button.expanded {
-  background-color: #ff5722; /* Cor diferente para indicar que está no modo avançado */
+  background-color: #ff5722;
+  /* Cor diferente para indicar que está no modo avançado */
   color: #fff;
 }
 
@@ -1229,7 +1341,8 @@ hr {
 }
 
 #consulta-pacientes {
-  max-height: 800px; /* Defina a altura máxima desejada para a lista */
+  max-height: 800px;
+  /* Defina a altura máxima desejada para a lista */
 }
 
 .espace {
@@ -1237,7 +1350,8 @@ hr {
 }
 
 .cabecalho-tabela {
-  background-color: #fff; /* Cor de fundo para o cabeçalho da tabela */
+  background-color: #fff;
+  /* Cor de fundo para o cabeçalho da tabela */
   border-radius: 10px 10px 10px 10px;
   position: sticky;
   top: 0;
@@ -1247,52 +1361,64 @@ hr {
 /* Estilizando a tabela */
 
 #tabela-pacientes {
-  font-size: 15px; /* Tamanho da fonte da tabela */
+  font-size: 15px;
+  /* Tamanho da fonte da tabela */
 }
 
 #tabela-pacientes th,
 #tabela-pacientes td {
-  font-size: 15px; /* Tamanho da fonte das células */
+  font-size: 15px;
+  /* Tamanho da fonte das células */
 }
 
 #tabela-pacientes th:nth-child(1) {
-  width: 50px; /* Largura da coluna Relatorio */
+  width: 50px;
+  /* Largura da coluna Relatorio */
 }
 
 #tabela-pacientes th:nth-child(2) {
-  width: 200px; /* Largura da coluna Nome */
+  width: 200px;
+  /* Largura da coluna Nome */
 }
 
 #tabela-pacientes th:nth-child(3) {
-  width: 200px; /* Largura da coluna Nome da Mãe */
+  width: 200px;
+  /* Largura da coluna Nome da Mãe */
 }
 
 #tabela-pacientes th:nth-child(4) {
-  width: 100px; /* Largura da coluna CPF */
+  width: 100px;
+  /* Largura da coluna CPF */
 }
 
 #tabela-pacientes th:nth-child(5) {
-  width: 50px; /* Largura da coluna Data de Nascimento */
+  width: 50px;
+  /* Largura da coluna Data de Nascimento */
 }
 
 #tabela-pacientes th:nth-child(6) {
-  width: 20px; /* Largura da coluna Sexo */
+  width: 20px;
+  /* Largura da coluna Sexo */
 }
 
 #tabela-pacientes th:nth-child(7) {
-  width: 20px; /* Largura da coluna ABO */
+  width: 20px;
+  /* Largura da coluna ABO */
 }
 
 #tabela-pacientes th:nth-child(8) {
-  width: 120px; /* Largura da coluna Setor */
+  width: 120px;
+  /* Largura da coluna Setor */
 }
 
 #tabela-pacientes th:nth-child(9) {
-  width: 50px; /* Largura da coluna Data de Requisição */
+  width: 50px;
+  /* Largura da coluna Data de Requisição */
 }
 
 #tabela-pacientes th:nth-child(10) {
-  width: 50px; /* Largura da coluna Alterar */
+  width: 50px;
+  /* Largura da coluna Alterar */
 }
 
 table {
@@ -1302,27 +1428,32 @@ table {
   margin: 20px 0;
   background-color: #fff;
   border: 1px solid #ddd;
-  text-align: center; /* Centralize o texto horizontalmente */
+  text-align: center;
+  /* Centralize o texto horizontalmente */
 }
 
 th,
 td {
-  padding: 10px; /* Margem interna reduzida para espaçamento mais limpo */
+  padding: 10px;
+  /* Margem interna reduzida para espaçamento mais limpo */
 }
 
 th {
   background-color: #fff;
   border-radius: 10px;
   font-weight: bold;
-  color: #333; /* Cor do texto do cabeçalho */
+  color: #333;
+  /* Cor do texto do cabeçalho */
 }
 
 tr:nth-child(even) {
-  background-color: #f5f5f5; /* Cor de fundo para linhas pares */
+  background-color: #f5f5f5;
+  /* Cor de fundo para linhas pares */
 }
 
 tr:hover {
-  background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
+  background-color: #e0e0e0;
+  /* Cor de fundo ao passar o mouse */
 }
 
 .legenda {
@@ -1347,9 +1478,10 @@ tr:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-} 
+}
 
-.pesquisa input, select{
+.pesquisa input,
+select {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -1364,7 +1496,8 @@ tr:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 40px;
-  padding: 8px; /* Adicione padding para alinhar com os outros campos */
+  padding: 8px;
+  /* Adicione padding para alinhar com os outros campos */
 }
 
 .button-pesquisa {
@@ -1401,7 +1534,8 @@ tr:hover {
   justify-content: center;
 }
 
-.botoes-unificar input, button {
+.botoes-unificar input,
+button {
   margin: 0 10px;
 }
 
@@ -1436,19 +1570,19 @@ tr:hover {
   border-radius: 8px;
 }
 
-.botao-voltar:hover{
+.botao-voltar:hover {
   background-color: #15400e;
   border: 3px solid #15400e;
   color: white;
 }
 
-.botao-verde:hover{
+.botao-verde:hover {
   background-color: var(--cor_botao_verde);
   border: 3px solid var(--cor_botao_verde);
   color: white;
 }
 
-.botao-excluir:hover{
+.botao-excluir:hover {
   background-color: var(--cor_cabecario);
   border: 3px solid var(--cor_cabecario);
   color: white;
@@ -1461,7 +1595,8 @@ tr:hover {
   #corpo-pacientes {
     width: 95%;
     height: 1400px;
-    margin: 120px auto; /* Ajusta a margem conforme necessário */
+    margin: 120px auto;
+    /* Ajusta a margem conforme necessário */
   }
 
   .borda-pacientes {
@@ -1473,7 +1608,8 @@ tr:hover {
     padding: 10px;
   }
 
-  .pesquisa input, .pesquisa select {
+  .pesquisa input,
+  .pesquisa select {
     padding: 7px;
     font-size: 14px;
   }
@@ -1482,7 +1618,8 @@ tr:hover {
   .pesquisa input[type="date"],
   .pesquisa select {
     margin-right: 20px;
-    padding: 6px; /* Ajusta padding para tamanhos menores */
+    padding: 6px;
+    /* Ajusta padding para tamanhos menores */
   }
 
   .pesquisa button[type="button"],
@@ -1491,7 +1628,8 @@ tr:hover {
     font-size: 14px;
   }
 
-  #tabela-pacientes th, #tabela-pacientes td {
+  #tabela-pacientes th,
+  #tabela-pacientes td {
     font-size: 10px;
     padding: 8px;
   }
@@ -1502,17 +1640,20 @@ tr:hover {
   #tabela-pacientes th:nth-child(7),
   #tabela-pacientes th:nth-child(9),
   #tabela-pacientes th:nth-child(10) {
-    width: 5px; /* Ajusta a largura das colunas */
+    width: 5px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-pacientes th:nth-child(2),
   #tabela-pacientes th:nth-child(3),
   #tabela-pacientes th:nth-child(8) {
-    width: 150px; /* Ajusta a largura das colunas */
+    width: 150px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-pacientes th:nth-child(5) {
-    width: 80px; /* Ajusta a largura da coluna Data de Nascimento */
+    width: 80px;
+    /* Ajusta a largura da coluna Data de Nascimento */
   }
 }
 
@@ -1522,7 +1663,8 @@ tr:hover {
   #corpo-pacientes {
     width: 95%;
     height: auto;
-    margin: 60px auto; /* Ajusta a margem conforme necessário */
+    margin: 60px auto;
+    /* Ajusta a margem conforme necessário */
   }
 
   .borda-pacientes {
@@ -1534,12 +1676,14 @@ tr:hover {
     padding: 5px;
   }
 
-  .pesquisa input, select {
+  .pesquisa input,
+  select {
     margin-right: 10px;
     padding: 4px;
   }
 
-  #tabela-pacientes th, #tabela-pacientes td {
+  #tabela-pacientes th,
+  #tabela-pacientes td {
     font-size: 10px;
     padding: 6px;
   }
@@ -1550,17 +1694,20 @@ tr:hover {
   #tabela-pacientes th:nth-child(7),
   #tabela-pacientes th:nth-child(9),
   #tabela-pacientes th:nth-child(10) {
-    width: 30px; /* Ajusta a largura das colunas */
+    width: 30px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-pacientes th:nth-child(2),
   #tabela-pacientes th:nth-child(3),
   #tabela-pacientes th:nth-child(8) {
-    width: 120px; /* Ajusta a largura das colunas */
+    width: 120px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-pacientes th:nth-child(5) {
-    width: 60px; /* Ajusta a largura da coluna Data de Nascimento */
+    width: 60px;
+    /* Ajusta a largura da coluna Data de Nascimento */
   }
 }
 
@@ -1619,7 +1766,8 @@ tr:hover {
 /* Media query para larguras até 1280px */
 @media (max-width: 1280px) {
   .pagination-container {
-    margin-top: 200px; /* Ajusta a posição para baixo */
+    margin-top: 200px;
+    /* Ajusta a posição para baixo */
   }
 
   .pagination-item {
@@ -1630,7 +1778,8 @@ tr:hover {
   .pagination-item a,
   .pagination-item span {
     padding: 6px 10px;
-    font-size: 14px; /* Ajusta o tamanho da fonte para ser menor */
+    font-size: 14px;
+    /* Ajusta o tamanho da fonte para ser menor */
   }
 }
 
@@ -1644,11 +1793,13 @@ tr:hover {
   .pagination-item a,
   .pagination-item span {
     padding: 4px 8px;
-    font-size: 12px; /* Ajusta o tamanho da fonte para ser menor */
+    font-size: 12px;
+    /* Ajusta o tamanho da fonte para ser menor */
   }
 
   .pagination {
-    flex-wrap: wrap; /* Permite a quebra de linha para itens de paginação */
+    flex-wrap: wrap;
+    /* Permite a quebra de linha para itens de paginação */
   }
 }
 
@@ -1663,6 +1814,7 @@ tr:hover {
   border-radius: 4px;
   color: #363636;
 }
+
 /* Muda cor do select quando abre opcoes */
 .select2-dropdown {
   padding: 9px;
@@ -1671,31 +1823,32 @@ tr:hover {
   border-radius: 4px;
   color: #363636;
 }
+
 /* altura do select */
-.select2-container--default
-.select2-selection--single
-.select2-selection__rendered {
+.select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #444;
   line-height: 22px;
 }
+
 /* altura div select */
 .select2-container--default {
   height: 42px;
 }
+
 /* cursor quando abre dropdown */
 .select2-results__option--selectable {
   cursor: default;
 }
+
 /*atras do select*/
 .select2-container--default .select2-selection--single {
   background-color: #e8efe4;
   border: 0px #e8efe4;
   border-radius: 4px;
 }
+
 /* posicao do triangulo */
-.select2-container--default
-.select2-selection--single
-.select2-selection__arrow {
+.select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 26px;
   position: absolute;
   top: 8px;
@@ -1703,11 +1856,9 @@ tr:hover {
   left: 320px;
   width: 20px;
 }
+
 /* faz triangulo e personaliza */
-.select2-container--default
-.select2-selection--single
-.select2-selection__arrow
-b {
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
   border-color: black transparent transparent transparent;
   border-style: solid;
   border-width: 6px 5px 0 5px;
@@ -1719,27 +1870,30 @@ b {
   top: 50%;
   width: 0;
 }
+
 /* cor do triangulo quando abre */
-.select2-container--default .select2-container--open
-.select2-selection--single{
+.select2-container--default .select2-container--open .select2-selection--single {
   border-color: transparent transparent black transparent;
   border-width: 0 5px 6px 5px;
 }
+
 /* input de pesquisa */
 .select2-container--default .select2-search--dropdown .select2-search__field {
   border: 1px solid #aaa;
   border-radius: 2px;
 }
+
 /* selecionado pelo mouse */
 .select2-container--default .select2-results__option--selected {
   background-color: #e8efe4;
 }
+
 /* passa mouse */
-.select2-container--default
-.select2-results__option--highlighted.select2-results__option--selectable {
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
   background-color: #767676;
   color: white;
 }
+
 /* espaço entre os resultados do select */
 .select2-results__option {
   padding: 1px;
@@ -1755,46 +1909,63 @@ b {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Para centralizar verticalmente */
+  height: 100vh;
+  /* Para centralizar verticalmente */
 }
 
 #corpo-controle {
   /* max-width: 1385px; Limita a largura máxima */
-  width: 1600px; /* Ocupará 100% da largura do container pai */
+  width: 1600px;
+  /* Ocupará 100% da largura do container pai */
   height: 750px;
-  margin: 20px auto auto auto; /* Centraliza horizontalmente */
+  margin: 20px auto auto auto;
+  /* Centraliza horizontalmente */
   border-radius: 10px;
   background: var(--fundo_formulario);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .container-controle {
-  display: flex; /* Usar flexbox */
-  flex-direction: column; /* Itens em coluna */
-  align-items: center; /* Centraliza horizontalmente */
-  padding: 10px 40px; /* Padding */
+  display: flex;
+  /* Usar flexbox */
+  flex-direction: column;
+  /* Itens em coluna */
+  align-items: center;
+  /* Centraliza horizontalmente */
+  padding: 10px 40px;
+  /* Padding */
   border-radius: 10px;
-  overflow-y: auto; /* Habilita rolagem vertical */
-  scrollbar-width: thin; /* Para Firefox */
-  max-height: 630px; /* Limita a altura para a rolagem */
-  width: 100%; /* Ocupará 100% da largura do pai */
+  overflow-y: auto;
+  /* Habilita rolagem vertical */
+  scrollbar-width: thin;
+  /* Para Firefox */
+  max-height: 630px;
+  /* Limita a altura para a rolagem */
+  width: 100%;
+  /* Ocupará 100% da largura do pai */
 }
 
 .container-controle::-webkit-scrollbar {
-  width: 8px; /* WebKit */
+  width: 8px;
+  /* WebKit */
 }
 
 .container-controle::-webkit-scrollbar-thumb {
-  background-color: #999999; /* Cor do "thumb" da barra de rolagem */
-  border-radius: 4px; /* Borda arredondada do "thumb" */
+  background-color: #999999;
+  /* Cor do "thumb" da barra de rolagem */
+  border-radius: 4px;
+  /* Borda arredondada do "thumb" */
 }
 
 .container-controle::-webkit-scrollbar-track {
-  background-color: #ffffff; /* Cor da trilha da barra de rolagem */
+  background-color: #ffffff;
+  /* Cor da trilha da barra de rolagem */
   border-radius: 4px;
 }
 
-.container-controle input, select, textarea {
+.container-controle input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -1853,12 +2024,15 @@ b {
   margin-bottom: 20px;
 }
 
-.cabecalho-controle-paciente input[type="date"], input[type="text"], select {
+.cabecalho-controle-paciente input[type="date"],
+input[type="text"],
+select {
   width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 5px; /* Aumentei um pouco o espaço entre os campos */
+  margin-bottom: 5px;
+  /* Aumentei um pouco o espaço entre os campos */
 }
 
 /* Estilos para a estrutura da linha */
@@ -1924,7 +2098,9 @@ b {
 }
 
 /* Estilos para o fieldset 'cabecalho-controle-bolsa' */
-.cabecalho-controle-bolsa input[type="date"], input[type="text"], select {
+.cabecalho-controle-bolsa input[type="date"],
+input[type="text"],
+select {
   width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
@@ -1947,7 +2123,8 @@ b {
   justify-content: center;
 }
 
-.container-controle .botoes-controle input, button {
+.container-controle .botoes-controle input,
+button {
   margin: 0 10px;
 }
 
@@ -1990,13 +2167,13 @@ b {
   border-radius: 8px;
 }
 
-.container-controle .botao-voltar:hover{
+.container-controle .botao-voltar:hover {
   background-color: #15400e;
   border: 3px solid #15400e;
   color: white;
 }
 
-.container-controle .controle_registro{
+.container-controle .controle_registro {
   margin: 0 auto;
   display: inline-block;
   padding: 10px 20px;
@@ -2007,7 +2184,7 @@ b {
   cursor: pointer;
 }
 
-.container-controle .controle_registro:hover{
+.container-controle .controle_registro:hover {
   background-color: #0056b3;
   color: white;
 }
@@ -2015,7 +2192,8 @@ b {
 /* __________________ RELATORIO _____________________ */
 .container-relatorio {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top right bottom left */
+  padding: 10px 50px 10px 50px;
+  /* top right bottom left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
@@ -2023,7 +2201,8 @@ b {
 }
 
 .container-relatorio .row {
-  margin-bottom: 15px; /* Ajuste esse valor conforme necessário */
+  margin-bottom: 15px;
+  /* Ajuste esse valor conforme necessário */
 }
 
 .container-relatorio .direita {
@@ -2041,7 +2220,9 @@ b {
   color: #363636;
 }
 
-.container-relatorio input, select, textarea {
+.container-relatorio input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -2049,7 +2230,7 @@ b {
   color: #363636;
 }
 
-.container-relatorio input[type="file"]{
+.container-relatorio input[type="file"] {
   padding: 9px;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -2099,7 +2280,7 @@ b {
   margin: 0;
 }
 
-.relatorio_table{
+.relatorio_table {
   border-collapse: collapse;
   border: 1px solid #ededed;
 }
@@ -2142,7 +2323,8 @@ b {
 }
 
 .pdf-link:hover {
-  color: #e44d26; /* Vermelho - substitua pela cor desejada */
+  color: #e44d26;
+  /* Vermelho - substitua pela cor desejada */
 }
 
 .pdf-link i {
@@ -2163,83 +2345,110 @@ b {
 
 .floating-button {
   position: fixed;
-  bottom: 20px; /* Distância do fundo */
-  right: 20px; /* Distância da direita */
+  bottom: 20px;
+  /* Distância do fundo */
+  right: 20px;
+  /* Distância da direita */
   width: 50px;
   height: 50px;
-  background-color: var(--fundo_mensagem); /* Cor de fundo dos botões */
-  border-radius: 50%; /* Forma de círculo */
+  background-color: var(--fundo_mensagem);
+  /* Cor de fundo dos botões */
+  border-radius: 50%;
+  /* Forma de círculo */
   text-align: center;
-  line-height: 50px; /* Centralizar ícone verticalmente */
-  color: #ffffff; /* Cor do ícone */
+  line-height: 50px;
+  /* Centralizar ícone verticalmente */
+  color: #ffffff;
+  /* Cor do ícone */
   cursor: pointer;
-  z-index: 1000; /* Garante que os botões estejam acima de outros elementos */
+  z-index: 1000;
+  /* Garante que os botões estejam acima de outros elementos */
 }
 
 /* Estilos para o ícone */
 .floating-button i {
-  font-size: 24px; /* Tamanho do ícone */
+  font-size: 24px;
+  /* Tamanho do ícone */
 }
 
 .fas.fa-question {
   margin-top: 13px;
 }
+
 /* __________________ BOTÃO ALERTA _____________________ */
 
 /* Estilos para o alerta de CPF */
 .floating-alert {
   position: fixed;
-  bottom: 80px; /* Distância do fundo */
-  right: 20px; /* Distância da esquerda */
-  width: 50px; /* Largura automática com base no conteúdo */
-  height: 50px; /* Largura máxima para evitar que o alerta ocupe toda a tela */
-  background-color: #fab941; /* Cor de fundo do alerta */
-  border-radius: 50%; /* Borda arredondada */
+  bottom: 80px;
+  /* Distância do fundo */
+  right: 20px;
+  /* Distância da esquerda */
+  width: 50px;
+  /* Largura automática com base no conteúdo */
+  height: 50px;
+  /* Largura máxima para evitar que o alerta ocupe toda a tela */
+  background-color: #fab941;
+  /* Cor de fundo do alerta */
+  border-radius: 50%;
+  /* Borda arredondada */
   text-align: center;
   line-height: 50px;
   color: #ffffff;
   cursor: pointer;
-  z-index: 1000; /* Garante que os botões estejam acima de outros elementos */
+  z-index: 1000;
+  /* Garante que os botões estejam acima de outros elementos */
 }
 
 /* Estilos para o ícone */
 .floating-alert i {
-  font-size: 24px; /* Tamanho do ícone */
+  font-size: 24px;
+  /* Tamanho do ícone */
 }
 
 /* Estilos para garantir que os dados sejam exibidos em uma única linha */
 .modal-body-alert p {
-  white-space: nowrap; /* Impede que o texto seja quebrado em várias linhas */
-  overflow: hidden; /* Oculta qualquer texto que não caiba na largura do elemento */
-  text-overflow: ellipsis; /* Exibe reticências (...) quando o texto é cortado */
+  white-space: nowrap;
+  /* Impede que o texto seja quebrado em várias linhas */
+  overflow: hidden;
+  /* Oculta qualquer texto que não caiba na largura do elemento */
+  text-overflow: ellipsis;
+  /* Exibe reticências (...) quando o texto é cortado */
 }
 
 #cpfTableDisplay {
-  max-height: 300px; /* Defina a altura máxima desejada */
-  overflow-y: auto; /* Adicione uma barra de rolagem vertical quando necessário */
+  max-height: 300px;
+  /* Defina a altura máxima desejada */
+  overflow-y: auto;
+  /* Adicione uma barra de rolagem vertical quando necessário */
 }
 
 /* _________________ notificação sino ________________________ */
-.notificacao{
+.notificacao {
   border: none;
   border-radius: 50%;
   padding-left: 7px;
   padding-right: 7px;
   color: black;
+  display: inline-block !important;
+  vertical-align: middle;
+  margin-left: 5px;
+  line-height: normal;
 }
 
-.alerta{
+.alerta {
   background-color: #ffa500;
 }
 
-.sino{
+.sino {
   color: white;
+  vertical-align: middle;
 }
 
 /* _____________ RESPOSTA OBRIGATÓRIA(*) _____________ */
 
 .required:after {
-  content: " *"; 
+  content: " *";
   color: red;
 }
 
@@ -2262,26 +2471,38 @@ b {
 }
 
 .text-info-gerais {
-  margin: 20px auto; /* Centraliza o contêiner horizontalmente e adiciona espaçamento superior e inferior */
-  padding: 20px 30px; /* Espaçamento interno: 20px no topo e embaixo, 30px nas laterais */
-  max-width: 1240px; /* Define a largura máxima do contêiner */
+  margin: 20px auto;
+  /* Centraliza o contêiner horizontalmente e adiciona espaçamento superior e inferior */
+  padding: 20px 30px;
+  /* Espaçamento interno: 20px no topo e embaixo, 30px nas laterais */
+  max-width: 1240px;
+  /* Define a largura máxima do contêiner */
   max-height: 280px;
-  background-color: #f9f9f9; /* Cor de fundo para contraste */
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  border: 1px solid #ddd; /* Bordas suaves */
-  box-sizing: border-box; /* Inclui padding e border na largura total */
+  background-color: #f9f9f9;
+  /* Cor de fundo para contraste */
+  border-radius: 10px;
+  /* Bordas arredondadas */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra sutil */
+  border: 1px solid #ddd;
+  /* Bordas suaves */
+  box-sizing: border-box;
+  /* Inclui padding e border na largura total */
 }
 
 .text-info-gerais p {
-  text-align: justify; /* Justifica o texto */
-  line-height: 1.6; /* Altura da linha para melhorar a legibilidade */
-  margin: 0; /* Remove a margem padrão */
+  text-align: justify;
+  /* Justifica o texto */
+  line-height: 1.6;
+  /* Altura da linha para melhorar a legibilidade */
+  margin: 0;
+  /* Remove a margem padrão */
 }
 
 .container-info {
   text-align: left;
-  padding: 0px 50px 10px 50px; /* top right bottom left */
+  padding: 0px 50px 10px 50px;
+  /* top right bottom left */
   border-radius: 10px;
   z-index: 1;
   max-height: 370px;
@@ -2324,7 +2545,8 @@ b {
   .pagination-item a,
   .pagination-item span {
     padding: 5px 8px;
-    font-size: 12px; /* Ajusta o tamanho da fonte para ser menor */
+    font-size: 12px;
+    /* Ajusta o tamanho da fonte para ser menor */
   }
 }
 
@@ -2362,17 +2584,18 @@ b {
   .pagination-item a,
   .pagination-item span {
     padding: 3px 6px;
-    font-size: 10px; /* Ajusta o tamanho da fonte para ser menor */
+    font-size: 10px;
+    /* Ajusta o tamanho da fonte para ser menor */
   }
 }
 
 /* __________ BOTAO SELECIONA SIM CHECAGENS CONTROLE _____________ */
 
-.toggle > input {
+.toggle>input {
   display: none;
 }
 
-.toggle > label {
+.toggle>label {
   position: relative;
   display: block;
   height: 20px;
@@ -2382,7 +2605,8 @@ b {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.toggle > label:after {
+
+.toggle>label:after {
   position: absolute;
   left: -2px;
   top: -3px;
@@ -2391,25 +2615,30 @@ b {
   height: 26px;
   border-radius: 100px;
   background: #fff;
-  box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
   content: '';
   transition: all 0.3s ease;
 }
-.toggle > label:active:after {
+
+.toggle>label:active:after {
   transform: scale(1.15, 0.85);
 }
-.toggle > input:checked ~ label {
+
+.toggle>input:checked~label {
   background: #6fbeb5;
 }
-.toggle > input:checked ~ label:after {
+
+.toggle>input:checked~label:after {
   left: 20px;
   background: #179588;
 }
-.toggle > input:disabled ~ label {
+
+.toggle>input:disabled~label {
   background: #d5d5d5;
   pointer-events: none;
 }
-.toggle > input:disabled ~ label:after {
+
+.toggle>input:disabled~label:after {
   background: #bcbdbc;
 }
 
@@ -2417,7 +2646,8 @@ b {
 
 .container-setor {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  padding: 10px 50px 10px 50px;
+  /* top / right / bottom / left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
@@ -2429,7 +2659,9 @@ b {
   color: #363636;
 }
 
-.container-setor input, select, textarea{
+.container-setor input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -2449,7 +2681,8 @@ b {
   justify-content: center;
 }
 
-.container-setor .botoes-setor input, button{
+.container-setor .botoes-setor input,
+button {
   margin: 0 10px;
 }
 
@@ -2489,13 +2722,13 @@ b {
   margin: 0;
 }
 
-.container-setor .botao-editar:hover{
+.container-setor .botao-editar:hover {
   background-color: #0056b3;
   border: 3px solid #0056b3;
   color: white;
 }
 
-.container-setor .botao-verde:hover{
+.container-setor .botao-verde:hover {
   background-color: var(--cor_botao_verde);
   border: 3px solid var(--cor_botao_verde);
   color: white;
@@ -2505,7 +2738,8 @@ b {
 
 .container-responsavel {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  padding: 10px 50px 10px 50px;
+  /* top / right / bottom / left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
@@ -2517,7 +2751,9 @@ b {
   color: #363636;
 }
 
-.container-responsavel input, select, textarea {
+.container-responsavel input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -2577,13 +2813,13 @@ b {
   margin: 0;
 }
 
-.container-responsavel .botao-editar:hover{
+.container-responsavel .botao-editar:hover {
   background-color: #0056b3;
   border: 3px solid #0056b3;
   color: white;
 }
 
-.container-responsavel .botao-verde:hover{
+.container-responsavel .botao-verde:hover {
   background-color: var(--cor_botao_verde);
   border: 3px solid var(--cor_botao_verde);
   color: white;
@@ -2593,7 +2829,8 @@ b {
 
 .container-nao-conformidade {
   text-align: left;
-  padding: 10px 50px 10px 50px; /* top / right / bottom / left */
+  padding: 10px 50px 10px 50px;
+  /* top / right / bottom / left */
   border-radius: 10px;
   z-index: 1;
   overflow-y: auto;
@@ -2605,7 +2842,9 @@ b {
   color: #363636;
 }
 
-.container-nao-conformidade input, select, textarea{
+.container-nao-conformidade input,
+select,
+textarea {
   padding: 9px;
   border: 1px solid #cccccc;
   background: #e8efe4;
@@ -2625,7 +2864,8 @@ b {
   justify-content: center;
 }
 
-.container-nao-conformidade .botoes-nao-conformidade input, button{
+.container-nao-conformidade .botoes-nao-conformidade input,
+button {
   margin: 0 10px;
 }
 
@@ -2665,13 +2905,13 @@ b {
   margin: 0;
 }
 
-.container-nao-conformidade .botao-editar:hover{
+.container-nao-conformidade .botao-editar:hover {
   background-color: #0056b3;
   border: 3px solid #0056b3;
   color: white;
 }
 
-.container-nao-conformidade .botao-verde:hover{
+.container-nao-conformidade .botao-verde:hover {
   background-color: var(--cor_botao_verde);
   border: 3px solid var(--cor_botao_verde);
   color: white;
@@ -2686,7 +2926,8 @@ b {
   border-radius: 10px;
   background: var(--fundo_formulario);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  transition: height 0.5s; /* Transição suave ao expandir */
+  transition: height 0.5s;
+  /* Transição suave ao expandir */
 }
 
 .borda-exclusoes {
@@ -2705,36 +2946,44 @@ b {
 /* Estilizando a tabela */
 
 #tabela-exclusoes {
-  font-size: 15px; /* Tamanho da fonte da tabela */
+  font-size: 15px;
+  /* Tamanho da fonte da tabela */
 }
 
 #tabela-exclusoes th,
 #tabela-exclusoes td {
-  font-size: 15px; /* Tamanho da fonte das células */
+  font-size: 15px;
+  /* Tamanho da fonte das células */
 }
 
 #tabela-exclusoes th:nth-child(1) {
-  width: 180px; /* Largura da coluna Nome */
+  width: 180px;
+  /* Largura da coluna Nome */
 }
 
 #tabela-exclusoes th:nth-child(2) {
-  width: 100px; /* Largura da coluna Nome da Mãe */
+  width: 100px;
+  /* Largura da coluna Nome da Mãe */
 }
 
 #tabela-exclusoes th:nth-child(3) {
-  width: 450px; /* Largura da coluna CPF */
+  width: 450px;
+  /* Largura da coluna CPF */
 }
 
 #tabela-exclusoes th:nth-child(4) {
-  width: 70px; /* Largura da coluna Data de Nascimento */
+  width: 70px;
+  /* Largura da coluna Data de Nascimento */
 }
 
 #tabela-exclusoes th:nth-child(5) {
-  width: 120px; /* Largura da coluna Sexo */
+  width: 120px;
+  /* Largura da coluna Sexo */
 }
 
 #tabela-exclusoes th:nth-child(6) {
-  width: 150px; /* Largura da coluna ABO */
+  width: 150px;
+  /* Largura da coluna ABO */
 }
 
 table {
@@ -2744,27 +2993,32 @@ table {
   margin: 20px 0;
   background-color: #fff;
   border: 1px solid #ddd;
-  text-align: center; /* Centralize o texto horizontalmente */
+  text-align: center;
+  /* Centralize o texto horizontalmente */
 }
 
 th,
 td {
-  padding: 10px; /* Margem interna reduzida para espaçamento mais limpo */
+  padding: 10px;
+  /* Margem interna reduzida para espaçamento mais limpo */
 }
 
 th {
   background-color: #fff;
   border-radius: 10px;
   font-weight: bold;
-  color: #333; /* Cor do texto do cabeçalho */
+  color: #333;
+  /* Cor do texto do cabeçalho */
 }
 
 tr:nth-child(even) {
-  background-color: #f5f5f5; /* Cor de fundo para linhas pares */
+  background-color: #f5f5f5;
+  /* Cor de fundo para linhas pares */
 }
 
 tr:hover {
-  background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
+  background-color: #e0e0e0;
+  /* Cor de fundo ao passar o mouse */
 }
 
 /* _____________ RESP. EXCLUSOES _____________ */
@@ -2774,7 +3028,8 @@ tr:hover {
   #corpo-pacientes {
     width: 95%;
     height: 1300px;
-    margin: 120px auto; /* Ajusta a margem conforme necessário */
+    margin: 120px auto;
+    /* Ajusta a margem conforme necessário */
   }
 
   .borda-exclusoes {
@@ -2785,7 +3040,8 @@ tr:hover {
     margin-bottom: 200px;
   }
 
-  #tabela-exclusoes th, #tabela-exclusoes td {
+  #tabela-exclusoes th,
+  #tabela-exclusoes td {
     font-size: 12px;
     padding: 8px;
   }
@@ -2794,16 +3050,19 @@ tr:hover {
   #tabela-exclusoes th:nth-child(3),
   #tabela-exclusoes th:nth-child(4),
   #tabela-exclusoes th:nth-child(5) {
-    width: 40px; /* Ajusta a largura das colunas */
+    width: 40px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-exclusoes th:nth-child(2),
   #tabela-exclusoes th:nth-child(6) {
-    width: 150px; /* Ajusta a largura das colunas */
+    width: 150px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-exclusoes th:nth-child(0) {
-    width: 80px; /* Ajusta a largura da coluna Data de Nascimento */
+    width: 80px;
+    /* Ajusta a largura da coluna Data de Nascimento */
   }
 }
 
@@ -2813,7 +3072,8 @@ tr:hover {
   #corpo-pacientes {
     width: 95%;
     height: auto;
-    margin: 60px auto; /* Ajusta a margem conforme necessário */
+    margin: 60px auto;
+    /* Ajusta a margem conforme necessário */
   }
 
   .borda-exclusoes {
@@ -2825,12 +3085,14 @@ tr:hover {
     padding: 5px;
   }
 
-  .pesquisa input, select {
+  .pesquisa input,
+  select {
     margin-right: 10px;
     padding: 4px;
   }
 
-  #tabela-exclusoes th, #tabela-exclusoes td {
+  #tabela-exclusoes th,
+  #tabela-exclusoes td {
     font-size: 10px;
     padding: 6px;
   }
@@ -2839,15 +3101,18 @@ tr:hover {
   #tabela-exclusoes th:nth-child(3),
   #tabela-exclusoes th:nth-child(4),
   #tabela-exclusoes th:nth-child(5) {
-    width: 30px; /* Ajusta a largura das colunas */
+    width: 30px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-exclusoes th:nth-child(2),
   #tabela-exclusoes th:nth-child(6) {
-    width: 120px; /* Ajusta a largura das colunas */
+    width: 120px;
+    /* Ajusta a largura das colunas */
   }
 
   #tabela-exclusoes th:nth-child(0) {
-    width: 60px; /* Ajusta a largura da coluna Data de Nascimento */
+    width: 60px;
+    /* Ajusta a largura da coluna Data de Nascimento */
   }
 }

@@ -57,12 +57,26 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Removido Bootstrap 4, mantendo apenas Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <title>Transfusional - HUM</title>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        .header {
+            padding: 5px 0 !important;
+        }
+        .logo img {
+            max-height: 40px !important;
+            width: auto !important;
+        }
+        .navbar {
+            padding: 0 !important;
+            min-height: auto !important;
+        }
+    </style>
 </head>
 <header class="header">
     <nav class="navbar navbar-expand-lg">
@@ -78,7 +92,8 @@
         <?php endif; ?>
 
         <!-- Navbar colapse quando tela sm e md -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="teste" >
+        <!-- Atualizado para data-bs-toggle e data-bs-target (Bootstrap 5) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="teste" >
             <span class="navbar-toggler-icon"></span>
         </button>
     
@@ -92,7 +107,7 @@
                     <a class="" href="buscar_paciente.php">Buscar</a>
                 </li>
                 <!-- <li class="nav-item dropdown show">
-                    <a href="#" class="dropdown-toggle" id="cadastroDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" id="cadastroDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Buscar
                     </a>
                     <div class="dropdown-menu" aria-labelledby="cadastroDropdown">
@@ -100,15 +115,16 @@
                         <a class="dropdown-item" href="buscar_bolsa.php">Bolsa</a>
                     </div>
                 </li> -->
-                <li class="nav-item dropdown show">
-                    <a href="#" class="dropdown-toggle" id="cadastroDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <!-- Atualizado para data-bs-toggle (Bootstrap 5) -->
+                    <a href="#" class="dropdown-toggle" id="cadastroDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Cadastro
                     </a>
                     <div class="dropdown-menu" aria-labelledby="cadastroDropdown">
-                        <a class="dropdown-item" href="cadastro_paciente.php">Paciente</a>
-                        <a class="dropdown-item" href="cadastrar_setor.php">Setor</a>
-                        <a class="dropdown-item" href="cadastrar_responsavel.php">Responsável</a>
-                        <a class="dropdown-item" href="cadastrar_nao_conformidade.php">Não conformidade</a>
+                        <a class="dropdown-item" href="crud_paciente.php">Paciente</a>
+                        <a class="dropdown-item" href="crud_setor.php">Setor</a>
+                        <a class="dropdown-item" href="crud_responsavel.php">Responsável</a>
+                        <a class="dropdown-item" href="crud_nao_conformidade.php">Não Conformidade</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -121,9 +137,9 @@
                     <a class="" href="exclusoes.php">Exclusões</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" title="Bolsas reserva" data-toggle="modal" data-target="#notificaçãoVencido">
-                        <i class="fa fa-bell sino"></i>
-                        <button class="notificacao"><?php echo $bolsa_reserva; ?></button>
+                    <a href="#" title="Bolsas reserva" data-bs-toggle="modal" data-bs-target="#notificaçãoVencido">
+                        <i class="fa fa-bell sino" style="vertical-align: middle;"></i>
+                        <span class="notificacao" style="display: inline-block; vertical-align: middle; margin-left: 5px; background: white; color: black; border-radius: 50%; padding: 2px 6px; font-weight: bold; font-size: 13px; line-height: normal;"><?php echo $bolsa_reserva; ?></span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -143,7 +159,8 @@
             <div class="modal-content" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="notificationModalLabel">Bolsas reserva</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal"></button>
+                    <!-- Atualizado para data-bs-dismiss (Bootstrap 5) -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div style="height:300px; overflow:scroll;">
@@ -188,14 +205,16 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                    <!-- Atualizado para data-bs-dismiss (Bootstrap 5) -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Scripts do Bootstrap 4 removidos. Use apenas os do footer.php -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
     
 </body>
 </html>

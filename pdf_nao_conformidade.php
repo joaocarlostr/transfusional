@@ -1,11 +1,12 @@
-<?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+﻿<?php
+    error_reporting(0);
+    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
 
     // Pega as variáveis do request para garantir que existam
-    $data_inicio = $_REQUEST['data_inicio'] ?? '';
-    $data_fim = $_REQUEST['data_fim'] ?? '';
-    $id_setor = $_REQUEST['id_setor'] ?? '';
+    // Pega as variáveis do request para garantir que existam
+    $data_inicio = isset($_REQUEST['data_inicio']) ? $_REQUEST['data_inicio'] : '';
+    $data_fim = isset($_REQUEST['data_fim']) ? $_REQUEST['data_fim'] : '';
+    $id_setor = isset($_REQUEST['id_setor']) ? $_REQUEST['id_setor'] : '';
 
     // Definindo uma classe que estende FPDF
     class PDF extends FPDF {    
@@ -194,7 +195,7 @@
         }
 
         // Saída do PDF para o navegador (inline - abre no navegador)
-        $pdf->Output('I', 'relatorio_nao_conformidade.pdf');
+        $pdf->Output('I', 'pdf_nao_conformidade.pdf');
     }else{
         //mostra mensagem se o relatorio estiver vazio
         $_SESSION['validado_relatorio_vazio'] = 0;

@@ -1,6 +1,6 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+    error_reporting(0);
+    ini_set('display_errors', 0); // Desabilitado para não corromper o PDF
 
     class PDF extends FPDF { 
         function Footer() { // RodapÃ© personalizado

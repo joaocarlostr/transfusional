@@ -1,6 +1,18 @@
-<?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+﻿<?php
+    // Desabilitar Xdebug para evitar interferência
+    if (function_exists('xdebug_disable')) {
+        xdebug_disable();
+    }
+    
+    error_reporting(0);
+    ini_set('display_errors', 0);
+
+    // Função wrapper para iconv que trata NULL e caracteres ilegais
+    function iconv_safe($from, $to, $string) {
+        if ($string === null || $string === '') return '';
+        $result = @iconv($from, $to . '//TRANSLIT//IGNORE', $string);
+        return $result !== false ? $result : '';
+    }
 
     // Definindo uma classe que estende FPDF
     class PDF extends FPDF {    
@@ -18,10 +30,10 @@
             $this->Line($marginLeft, $this->GetY(), $marginRight, $this->GetY()); // Desenha a linha
             $this->SetY(-12); // Move para a posição do contador de páginas
             $this->SetFont('Arial', 'I', 8); // Fonte em itálico, tamanho 8
-            $this->Cell(80, 10, iconv('utf-8', 'iso-8859-1', 'Sistema do Serviço Transfusional do HUM'), 0, 0, 'L');
+            $this->Cell(80, 10, iconv_safe('utf-8', 'iso-8859-1', 'Sistema do Serviço Transfusional do HUM'), 0, 0, 'L');
 
             // Número da página
-            $this->Cell(0, 10, iconv('utf-8', 'iso-8859-1', 'Página ' . $this->PageNo() . ' / {nb}'), 0, 0, 'R');
+            $this->Cell(0, 10, iconv_safe('utf-8', 'iso-8859-1', 'Página ' . $this->PageNo() . ' / {nb}'), 0, 0, 'R');
         }
     }
 
@@ -31,14 +43,14 @@
         $pdf->SetFillColor(200); // Define a cor cinza 
     
         // Cabeçalho da tabela
-        $pdf->Cell(15, 10, iconv('utf-8', 'iso-8859-1', 'N°'), 1, 0, 'C', true);
-        $pdf->Cell(20, 10, iconv('utf-8', 'iso-8859-1', 'Dt transfusão'), 1, 0, 'C', true);
-        $pdf->Cell(15, 10, iconv('utf-8', 'iso-8859-1', 'Horário'), 1, 0, 'C', true);
-        $pdf->Cell(27, 10, iconv('utf-8', 'iso-8859-1', 'Bolsa'), 1, 0, 'C', true);
-        $pdf->Cell(27, 10, iconv('utf-8', 'iso-8859-1', 'Hemoc'), 1, 0, 'C', true);
-        $pdf->Cell(27, 10, iconv('utf-8', 'iso-8859-1', 'SUS da bolsa'), 1, 0, 'C', true);
-        $pdf->Cell(75, 10, iconv('utf-8', 'iso-8859-1', 'Paciente'), 1, 0, 'C', true);
-        $pdf->Cell(20, 10, iconv('utf-8', 'iso-8859-1', 'Prontuário'), 1, 1, 'C', true);
+        $pdf->Cell(15, 10, iconv_safe('utf-8', 'iso-8859-1', 'N°'), 1, 0, 'C', true);
+        $pdf->Cell(20, 10, iconv_safe('utf-8', 'iso-8859-1', 'Dt transfusão'), 1, 0, 'C', true);
+        $pdf->Cell(15, 10, iconv_safe('utf-8', 'iso-8859-1', 'Horário'), 1, 0, 'C', true);
+        $pdf->Cell(27, 10, iconv_safe('utf-8', 'iso-8859-1', 'Bolsa'), 1, 0, 'C', true);
+        $pdf->Cell(27, 10, iconv_safe('utf-8', 'iso-8859-1', 'Hemoc'), 1, 0, 'C', true);
+        $pdf->Cell(27, 10, iconv_safe('utf-8', 'iso-8859-1', 'SUS da bolsa'), 1, 0, 'C', true);
+        $pdf->Cell(75, 10, iconv_safe('utf-8', 'iso-8859-1', 'Paciente'), 1, 0, 'C', true);
+        $pdf->Cell(20, 10, iconv_safe('utf-8', 'iso-8859-1', 'Prontuário'), 1, 1, 'C', true);
     
         // Processar os resultados
         $cont = 0;
@@ -52,13 +64,13 @@
             
             $cont++;
             $pdf->Cell(15, 8, $cont, 1, 0, 'C');
-            $pdf->Cell(20, 8, iconv('utf-8', 'iso-8859-1', date('d/m/Y', strtotime($row['data_transfusao']))), 1, 0, 'C');
-            $pdf->Cell(15, 8, iconv('utf-8', 'iso-8859-1', $row['horario_inicio']), 1, 0, 'C');
-            $pdf->Cell(27, 8, iconv('utf-8', 'iso-8859-1', $row["num_bolsa"]), 1, 0, 'C');
-            $pdf->Cell(27, 8, iconv('utf-8', 'iso-8859-1', $row["sigla"]), 1, 0, 'L');
-            $pdf->Cell(27, 8, iconv('utf-8', 'iso-8859-1', $row["num_sus"]), 1, 0, 'C');
-            $pdf->Cell(75, 8, iconv('utf-8', 'iso-8859-1', $nome_paciente), 1, 0, 'L');
-            $pdf->Cell(20, 8, iconv('utf-8', 'iso-8859-1', $row['prontuario']), 1, 1, 'L');
+            $pdf->Cell(20, 8, iconv_safe('utf-8', 'iso-8859-1', date('d/m/Y', strtotime($row['data_transfusao']))), 1, 0, 'C');
+            $pdf->Cell(15, 8, iconv_safe('utf-8', 'iso-8859-1', $row['horario_inicio']), 1, 0, 'C');
+            $pdf->Cell(27, 8, iconv_safe('utf-8', 'iso-8859-1', $row["num_bolsa"]), 1, 0, 'C');
+            $pdf->Cell(27, 8, iconv_safe('utf-8', 'iso-8859-1', $row["sigla"]), 1, 0, 'L');
+            $pdf->Cell(27, 8, iconv_safe('utf-8', 'iso-8859-1', $row["num_sus"]), 1, 0, 'C');
+            $pdf->Cell(75, 8, iconv_safe('utf-8', 'iso-8859-1', $nome_paciente), 1, 0, 'L');
+            $pdf->Cell(20, 8, iconv_safe('utf-8', 'iso-8859-1', $row['prontuario']), 1, 1, 'L');
 
             // Mostra reações transfusionais
             $query_reacao_tranfusional = "SELECT tp.descricao, tp.nome, rt.observacao 
@@ -79,7 +91,7 @@
                     }
                 }
 
-                $pdf->multiCell(226, 10, iconv('utf-8', 'iso-8859-1', $reacoes), 1, 'L');
+                $pdf->multiCell(226, 10, iconv_safe('utf-8', 'iso-8859-1', $reacoes), 1, 'L');
             }
         }
     }   
@@ -142,11 +154,11 @@
 
         // Construa o cabeçalho do relatório PDF
         $pdf->SetFont('Arial', 'B', 12);
-        $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', 'RELATÓRIO DE REAÇÕES TRANSFUSIONAIS POR PACIENTE HUM'),0,1,'C');
+        $pdf->Cell(280,10,iconv_safe('utf-8', 'iso-8859-1', 'RELATÓRIO DE REAÇÕES TRANSFUSIONAIS POR PACIENTE HUM'),0,1,'C');
 
         $pdf->SetFont('Arial', '', 12);
         $pdf->ln();
-        $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', "Período selecionado: $intervalo_selecionado"),0,1,'');
+        $pdf->Cell(280,10,iconv_safe('utf-8', 'iso-8859-1', "Período selecionado: $intervalo_selecionado"),0,1,'');
 
         if (!empty($id_setor)) {
 
@@ -156,10 +168,10 @@
 
             if ($row_setor = pg_fetch_assoc($resultado_setor)) {
                 $nome_setor = $row_setor['nome_setor'];
-                $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', "Setor: $nome_setor"),0,1,"");
+                $pdf->Cell(280,10,iconv_safe('utf-8', 'iso-8859-1', "Setor: $nome_setor"),0,1,"");
                 
             } else {
-                $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', "Setor não encontrado"),0,1,"");
+                $pdf->Cell(280,10,iconv_safe('utf-8', 'iso-8859-1', "Setor não encontrado"),0,1,"");
             }
 
             // Liberar resultados da consulta do setor
@@ -171,7 +183,7 @@
         pg_free_result($resultado_consulta);
 
         // Saí­da do PDF para o navegador
-        $pdf->Output('relatorio_reacao_por_paciente.pdf', 'D');
+        output_pdf_safe($pdf, 'pdf_reacao_por_paciente.pdf', 'D');
     }else{
         //mostra mensagem se o relatorio estiver vazio
         $_SESSION['validado_relatorio_vazio'] = 0;

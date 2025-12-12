@@ -258,16 +258,20 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <div class="chart-wrapper">
+                <div class="chart-wrapper d-flex flex-column">
                     <div class="chart-title">Distribuição por Hemocomponente</div>
-                    <canvas id="chartHemocomponentes"></canvas>
+                    <div class="flex-grow-1" style="position: relative; min-height: 0;">
+                        <canvas id="chartHemocomponentes"></canvas>
+                    </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="chart-wrapper">
+                <div class="chart-wrapper d-flex flex-column">
                     <div class="chart-title">Evolução de Transfusões (7 Dias)</div>
-                    <canvas id="chartTransfusoes"></canvas>
+                    <div class="flex-grow-1" style="position: relative; min-height: 0;">
+                        <canvas id="chartTransfusoes"></canvas>
+                    </div>
                 </div>
             </div>
         </div>

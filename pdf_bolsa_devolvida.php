@@ -1,6 +1,6 @@
-<?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+﻿<?php
+    error_reporting(0);
+    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
 
     // RODAPÉ -------------------------------------------------------------------------------
     class PDF extends FPDF {
@@ -102,7 +102,7 @@
         pg_free_result($resultado_consulta);
         
         // Saída do PDF para o navegador
-        $pdf->Output('relatorio_bolsas_nao_transfundidas.pdf', 'D');
+        output_pdf_safe($pdf, 'pdf_bolsas_nao_transfundidas.pdf', 'D');
 
     } else {
         // Mensagem se o relatório for vazio

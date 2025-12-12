@@ -1,6 +1,6 @@
-<?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+﻿<?php
+    error_reporting(0);
+    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
 
     // Definindo uma classe que estende FPDF
     class PDF extends FPDF { 
@@ -92,7 +92,7 @@
         pg_free_result($resultado_consulta);
 
         // Saí­da do PDF para o navegador
-        $pdf->Output('relatorio_pacientes_sem_registro.pdf', 'D');
+        $pdf->Output('pdf_pacientes_sem_registro.pdf', 'D');
     }else{
         //mostra mensagem se o relatorio estiver vazio
         $_SESSION['validado_relatorio_vazio'] = 0;

@@ -1,0 +1,210 @@
+/* Flatpickr Custom Styling - Cabeçalho Ultra Compacto */
+
+/* Calendário Principal */
+.flatpickr-calendar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 8px !important;
+    border: 2px solid #ddd !important;
+    font-family: 'Segoe UI', 'Montserrat', sans-serif !important;
+    background: white !important;
+    width: 320px !important;
+}
+
+/* Cabeçalho Azul - ALTURA MÍNIMA (36px = altura dos botões) */
+.flatpickr-months {
+    background: #4682b4 !important;
+    border-radius: 6px 6px 0 0 !important;
+    padding: 6px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.flatpickr-month {
+    background: transparent !important;
+    color: white !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+}
+
+.flatpickr-current-month {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    gap: 6px !important;
+    flex: 1 !important;
+}
+
+/* Dropdowns de Mês e Ano - ALTURA MÍNIMA (24px) */
+.flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+    background: white !important;
+    color: #333 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 3px !important;
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    height: 24px !important;
+    line-height: 20px !important;
+    text-align: center !important;
+}
+
+.flatpickr-monthDropdown-months {
+    width: 100px !important;
+}
+
+.flatpickr-current-month input.cur-year {
+    width: 50px !important;
+}
+
+/* Botões de Navegação - 24px (mesma altura dos dropdowns) */
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    fill: white !important;
+    background: #5a9bd5 !important;
+    border-radius: 3px !important;
+    padding: 4px !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+    background: #4a7fb5 !important;
+}
+
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+    width: 12px !important;
+    height: 12px !important;
+}
+
+/* Cabeçalho dos Dias da Semana */
+.flatpickr-weekdays {
+    background: #f8f9fa !important;
+    border-bottom: 1px solid #ddd !important;
+    height: 32px !important;
+}
+
+.flatpickr-weekday {
+    color: #333 !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    line-height: 32px !important;
+}
+
+/* Container dos Dias */
+.flatpickr-days {
+    background: white !important;
+}
+
+.dayContainer {
+    padding: 4px !important;
+}
+
+/* Dias Individuais - TAMANHO E BORDAS AJUSTADAS */
+.flatpickr-day {
+    border-radius: 4px !important;
+    color: #333 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    height: 28px !important;
+    max-width: 36px !important;
+    margin: 2px !important;
+}
+
+/* DIAS ÚTEIS (Segunda a Sexta) - VERDE */
+.flatpickr-day.weekday:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay) {
+    background: #e8f5e9 !important;
+    color: #2e7d32 !important;
+    border: 1px solid #a5d6a7 !important;
+}
+
+.flatpickr-day.weekday:not(.flatpickr-disabled):hover {
+    background: #c8e6c9 !important;
+    color: #1b5e20 !important;
+    border: 1px solid #81c784 !important;
+}
+
+/* SÁBADOS - AZUL */
+.flatpickr-day.saturday:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay) {
+    background: #e3f2fd !important;
+    color: #1565c0 !important;
+    border: 1px solid #90caf9 !important;
+}
+
+.flatpickr-day.saturday:not(.flatpickr-disabled):hover {
+    background: #bbdefb !important;
+    color: #0d47a1 !important;
+    border: 1px solid #64b5f6 !important;
+}
+
+/* DOMINGOS - LARANJA */
+.flatpickr-day.sunday:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay) {
+    background: #fff3e0 !important;
+    color: #e65100 !important;
+    border: 1px solid #ffcc80 !important;
+}
+
+.flatpickr-day.sunday:not(.flatpickr-disabled):hover {
+    background: #ffe0b2 !important;
+    color: #bf360c !important;
+    border: 1px solid #ffb74d !important;
+}
+
+/* FERIADOS - VERMELHO */
+.flatpickr-day.holiday:not(.flatpickr-disabled) {
+    background: #ffebee !important;
+    color: #d32f2f !important;
+    border: 1px solid #ef9a9a !important;
+}
+
+.flatpickr-day.holiday:not(.flatpickr-disabled):hover {
+    background: #ffcdd2 !important;
+    color: #c62828 !important;
+    border: 1px solid #e57373 !important;
+}
+
+/* Dia Selecionado */
+.flatpickr-day.selected {
+    background: #4682b4 !important;
+    color: white !important;
+    border: 2px solid #2c5f8d !important;
+    font-weight: 700 !important;
+}
+
+/* Dia Hoje */
+.flatpickr-day.today {
+    border: 2px solid #4682b4 !important;
+    font-weight: 700 !important;
+}
+
+.flatpickr-day.today.selected {
+    background: #4682b4 !important;
+    color: white !important;
+}
+
+/* Meses anteriores/posteriores */
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+    color: #ccc !important;
+    background: #fafafa !important;
+    border: 1px solid #f0f0f0 !important;
+}

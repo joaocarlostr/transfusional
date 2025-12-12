@@ -1,7 +1,7 @@
-<?php
+﻿<?php
     // CONSTRUÇÃO DA PÁGINA DO RELATÓRIO
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+    error_reporting(0);
+    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
 
     // Definindo uma classe que estende FPDF
     class PDF extends FPDF {       
@@ -345,7 +345,7 @@
 
         //Saída do PDF para o navegador
         if($qtd_achados > 0){
-            $pdf->Output("relatorio_bolsas_transfundidas_ST_vs_Hemocentro $mes_arquivo $ano_arquivo.pdf", 'D');
+            $pdf->Output("pdf_bolsas_transfundidas_ST_vs_Hemocentro $mes_arquivo $ano_arquivo.pdf", 'D');
             
         } else {
             //mostra mensagem de relatorio vazio

@@ -1,0 +1,31 @@
+<?php
+// database.php.example
+// Exemplo de configuração de conexão com o banco.
+// COPIE este arquivo para "database.php" localmente e preencha com suas credenciais reais.
+// NUNCA comite o arquivo "database.php" com credenciais reais no repositório.
+
+return [
+    // host do banco (ex.: localhost)
+    'host'    => 'localhost',
+
+    // porta (MySQL padrão = 3306)
+    'port'    => 3306,
+
+    // nome do banco
+    'dbname'  => 'transfusional_db',
+
+    // usuário do banco
+    'user'    => 'seu_usuario',
+
+    // senha do banco
+    'pass'    => 'sua_senha',
+
+    // charset a ser usado
+    'charset' => 'utf8mb4',
+
+    // opcional: outras opções PDO (ex.: flags)
+    // 'options' => [
+    //     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    // ],
+];

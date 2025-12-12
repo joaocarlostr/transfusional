@@ -900,4 +900,4 @@
         $query = conecta_query($conexao, "UPDATE sth_cadastro_bolsa SET 
         id_paciente = $id_paciente_novo
         WHERE id_paciente = $id_paciente_antigo and id_bolsa in ($id_bolsas)");
-    }
+    }?>

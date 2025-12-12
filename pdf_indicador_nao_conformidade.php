@@ -1,11 +1,11 @@
-<?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+﻿<?php
+    error_reporting(0);
+    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
 
     // Definindo uma classe que estende FPDF
-    class PDF extends FPDF {       
+    class PDF extends FPDF {    
         function Footer() { // Rodapé personalizado
-            
+
             $this->SetY(-15); // Posição: a 15 mm do fim
 
             // Desenha uma linha separadora
@@ -26,7 +26,7 @@
     }
 
     // Função para construir o conteúdo da tabela PDF de indicadores de hemocomponentes
-    function ConstruirTablePDFIndicadorReacao($pdf, $query_reacao, $conexao, $query_bolsa) {
+    function ConstruirTablePDFIndicadorReacao($pdf, $query_nao_conformidade, $conexao, $query_bolsa) {
 
         $pdf->SetFont('Arial', '', 9); // Definindo a fonte e o tamanho
         $pdf->SetFillColor(200); // Define a cor cinza para o cabeçalho da tabela
@@ -34,7 +34,7 @@
 
         // Cabeçalho da tabela
         $pdf->Cell(35, 10, 'OBJETIVO', 1, 0, 'C', true);
-        $pdf->Cell(237, 10, iconv('utf-8', 'iso-8859-1', 'Monitorar a porcentagem de reações transfusionais perante o total de transfusões realizadas'), 1, 1, 'C', FALSE);
+        $pdf->Cell(237, 10, iconv('utf-8', 'iso-8859-1', 'Monitorar a porcentagem de não conformidades perante o total de transfusões realizadas'), 1, 1, 'C', FALSE);
 
         $pdf->Cell(35, 10, 'Periodicidade', 1, 0, 'C', true);
         $pdf->Cell(29, 10, 'Mensal', 1, 0, 'C', false);
@@ -46,7 +46,7 @@
         $pdf->Cell(45, 10, 'FIT/Sistema transfusional', 1, 1, 'C', false);
 
         $pdf->Cell(35, 10, iconv('utf-8', 'iso-8859-1', 'Fórmula'), 1, 0, 'C', true);
-        $pdf->Cell(237, 10, iconv('utf-8', 'iso-8859-1', '(N° de reações transfusionais / N° de transfusões) X 100'), 1, 1, 'C', FALSE);
+        $pdf->Cell(237, 10, iconv('utf-8', 'iso-8859-1', '(N° de não conformidades / N° de transfusões) X 100'), 1, 1, 'C', FALSE);
         $pdf->ln();
 
         $pdf->Cell(70, 10, 'MESES', 1, 0, 'C', true);
@@ -56,48 +56,48 @@
         }
 
         $pdf->Cell(22, 10, 'TOTAL', 1, 1, 'C', true);
-        $pdf->Cell(70, 10,  iconv('utf-8', 'iso-8859-1', 'N° de reações transfusionais (HUM)'), 1, 0, 'C', true);
+        $pdf->Cell(70, 10,  iconv('utf-8', 'iso-8859-1', 'N° de não conformidades (HUM)'), 1, 0, 'C', true);
         
-        $total_reacao = $total_bolsa = $flag = 0;
+        $total_nao_conformidade = $total_bolsa = $flag = 0;
 
         //pegando os dados
         for($cont = 1; $cont < 14; $cont++){
 
-            $quantidade_bolsa = $quantidade_reacao = 0;
+            $quantidade_bolsa = $quantidade_nao_conformidade = 0;
 
-            $query_bolsa_linha  = $query_bolsa;
-            $query_reacao_linha = $query_reacao;
+            $query_bolsa_linha            = $query_bolsa;
+            $query_nao_conformidade_linha = $query_nao_conformidade;
 
             //pega qtd de bolsa transfundidas por mes
-            $query_bolsa_linha .= " AND extract(MONTH from cb.data_transfusao) = $cont group by mes";
+            $query_bolsa_linha .= " AND extract(MONTH FROM cb.data_transfusao) = $cont GROUP BY mes";
 
-            $resultado_bolsa                = conecta_query($conexao, $query_bolsa_linha);
-            $resultado_quantidade_bolsa     = conecta_query($conexao, $query_bolsa_linha);
-            $row_resultado_quantidade_bolsa = pg_fetch_row($resultado_quantidade_bolsa);
+            $resultado_bolsa            = conecta_query($conexao, $query_bolsa_linha);
+            $resultado_quantidade_bolsa = conecta_query($conexao, $query_bolsa_linha);
+            $row_quantidade_bolsa       = pg_fetch_row($resultado_quantidade_bolsa);
 
             //pega qtd mensal e calcula total
-            if($row_resultado_quantidade_bolsa > 0){
+            if($row_quantidade_bolsa > 0){
                 $row_quantidade   = pg_fetch_assoc($resultado_bolsa);
                 $quantidade_bolsa = $row_quantidade['qtd'];
                 $total_bolsa += $quantidade_bolsa;
             }
 
-            $query_reacao_linha .= " AND extract(MONTH from data) = $cont group by mes";
+            $query_nao_conformidade_linha .= " AND extract(MONTH FROM dt_busca_ativa) = $cont GROUP BY mes";
+ 
+            $resultado_bolsa                    = conecta_query($conexao, $query_nao_conformidade_linha);
+            $resultado_quantidade_bolsa_reserva = conecta_query($conexao, $query_nao_conformidade_linha);
+            $row_quantidade_nao_conformidade    = pg_fetch_row($resultado_quantidade_bolsa_reserva);
 
-            $resultado_bolsa           = conecta_query($conexao, $query_reacao_linha);
-            $quantidade_bolsa_reserva  = conecta_query($conexao, $query_reacao_linha);
-            $row_quantidade_reacao     = pg_fetch_row($quantidade_bolsa_reserva);
-
-            if($row_quantidade_reacao > 0){
-                $row_quantidade    = pg_fetch_assoc($resultado_bolsa);
-                $quantidade_reacao = $row_quantidade['qtd'];
-                $total_reacao += $quantidade_reacao;
+            if($row_quantidade_nao_conformidade > 0){
+                $row_quantidade              = pg_fetch_assoc($resultado_bolsa);
+                $quantidade_nao_conformidade = $row_quantidade['qtd'];
+                $total_nao_conformidade += $quantidade_nao_conformidade;
             }
 
             if($cont == 13){
 
                 if($flag == 0){
-                    $total = $total_reacao;
+                    $total = $total_nao_conformidade;
 
                 }else if($flag == 1){
                     $total = $total_bolsa;
@@ -105,7 +105,7 @@
                 }else if($flag == 2){
 
                     if($total_bolsa != 0){
-                        $total  = ($total_reacao / $total_bolsa) * 100;
+                        $total  = ($total_nao_conformidade / $total_bolsa) * 100;
                         $total  = number_format($total, 2, ',', '');
                         $total .= "%";
                     }else{
@@ -119,7 +119,7 @@
                 if($flag > 2){
 
                     if($total_bolsa != 0){
-                        $total  = (($total_reacao / $total_bolsa) * 100) / 12;
+                        $total  = (($total_nao_conformidade / $total_bolsa) * 100) / 12;
                         $total  = number_format($total, 2, ',', '');
                         $total .= "%";
                     }else{
@@ -132,10 +132,10 @@
 
                 }else if($flag == 1){
                     $pdf->Cell(70, 10,  iconv('utf-8', 'iso-8859-1', 'N° de transfusões (HUM)'), 1, 0, 'C', true);
-                    
+
                 }else if($flag == 2){
 
-                    if ($total_bolsa == 0 && $total_reacao == 0){
+                    if ($total_bolsa == 0 && $total_nao_conformidade == 0){
                         //mostra mensagem se o relatorio estiver vazio
                         $_SESSION['validado_relatorio_vazio'] = 0;
                         header("Location:relatorio.php");
@@ -145,10 +145,10 @@
                     $pdf->Cell(70, 10, 'Realizado HUM', 1, 0, 'C', true);
                 }
 
-                $cont = $total_bolsa = $total_reacao = 0;
+                $cont = $total_bolsa = $total_nao_conformidade = 0;
 
             }else{
-                $quantidade = $quantidade_reacao;
+                $quantidade = $quantidade_nao_conformidade;
 
                 if($flag == 1){
                     $quantidade = $quantidade_bolsa;
@@ -156,7 +156,7 @@
                 }else if($flag == 2){
 
                     if($quantidade_bolsa != 0){
-                        $quantidade = ($quantidade_reacao / $quantidade_bolsa) * 100;
+                        $quantidade = ($quantidade_nao_conformidade / $quantidade_bolsa) * 100;
                         $quantidade = number_format($quantidade, 2, ',', '');
                         $quantidade .= "%";
                     }else{
@@ -178,13 +178,13 @@
     $pdf->SetDrawColor(150); // Define cor dos desenhos como retangulos, bordas...
 
     // Construa a parte da consulta SQL para o intervalo selecionado
-    $query_reacao = "SELECT count(id_transfusionais) AS qtd, extract(MONTH FROM data) AS mes 
-    FROM  sth_reacoes_transfusionais";
+    $query_nao_conformidade = "SELECT count(id_controle) AS qtd, extract(MONTH FROM dt_busca_ativa) AS mes 
+    FROM sth_controle
+    WHERE id_controle IN (SELECT cnc.id_controle FROM sth_controle_nao_conformidade cnc INNER JOIN sth_controle c ON c.id_controle = cnc.id_controle)";
 
     $query_bolsa = "SELECT count(cb.id_bolsa) AS qtd, extract(MONTH FROM cb.data_transfusao) AS mes 
     FROM sth_cadastro_bolsa cb
     INNER JOIN sth_controle c ON c.id_bolsa = cb.id_bolsa";
-
 
     // Verifique se as datas estão preenchidas e têm formato válido
     if (!empty($data_inicio) && !empty($data_fim) && 
@@ -192,8 +192,8 @@
     DateTime::createFromFormat('Y-m-d', $data_fim) !== false) {
         
         // Adicione a condição do intervalo de datas à consulta
-        $query_reacao .= " WHERE data BETWEEN '$data_inicio' AND '$data_fim'";
-        $query_bolsa  .= " WHERE cb.data_transfusao BETWEEN '$data_inicio' AND '$data_fim'";
+        $query_nao_conformidade .= " AND dt_busca_ativa BETWEEN '$data_inicio' AND '$data_fim'";
+        $query_bolsa            .= " WHERE cb.data_transfusao BETWEEN '$data_inicio' AND '$data_fim'";
 
         if(date('d/m', strtotime($data_inicio)) == "01/01" && 
         date('d/m', strtotime($data_fim)) == "31/12" && 
@@ -203,21 +203,20 @@
         
     } else {
         // Se as datas não estiverem preenchidas ou não tiverem formato válido, remova a parte WHERE da consulta
-        $query_reacao .= " WHERE 1=1";
-        $query_bolsa  .= " WHERE 1=1";
+        $query_bolsa .= " WHERE 1=1";
     }
 
     // Construa o cabeçalho do relatório PDF
     $pdf->Image('img/hum_relatorio.png', 10, 10, 50); // Ajuste as coordenadas e o tamanho conforme necessário
 
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', 'RELATÓRIO DE INDICADOR DE REAÇÕES TRANSFUSIONAIS HUM'),0,1,'C');
+    $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', 'RELATÓRIO DE INDICADOR DE NÃO CONFORMIDADES HUM'),0,1,'C');
 
     $pdf->SetFont('Arial', '', 12);
     $pdf->ln();
     $pdf->Cell(280,10,iconv('utf-8', 'iso-8859-1', "Período selecionado: $intervalo_selecionado"),0,1,'');
 
-    ConstruirTablePDFIndicadorReacao($pdf, $query_reacao, $conexao, $query_bolsa);
+    ConstruirTablePDFIndicadorReacao($pdf, $query_nao_conformidade, $conexao, $query_bolsa);
 
     // Saída para o navegador em uma nova guia para visualização
-    $pdf->Output('relatorio_indicador_reacoes_transfusionais.pdf', 'D');
+    $pdf->Output('pdf_indicador_nao_conformidade.pdf', 'D');
