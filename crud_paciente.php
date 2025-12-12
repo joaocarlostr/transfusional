@@ -590,7 +590,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
     </form>
 
     <?php include 'includes/footer.php'; ?>
-    <script type="text/javascript" src="js/script.js"></script>
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
     <script>
         // Confirmação de Exclusão
         function confirmarExclusao(id) {
