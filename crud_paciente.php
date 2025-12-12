@@ -671,6 +671,111 @@ while ($row = pg_fetch_assoc($result_setor)) {
             select.style.backgroundSize = "16px";
             select.style.paddingRight = "40px";
         });
+        
+        // ==================== VERIFICAÇÃO DE PACIENTE DUPLICADO ====================
+        
+        // Função para verificar se paciente já existe
+        function verificarPacienteDuplicado(campo, valor) {
+            // Não verificar se o valor estiver vazio
+            if (!valor || valor.trim() === '') {
+                return;
+            }
+            
+            // Mostrar loading
+            Swal.fire({
+                title: 'Verificando...',
+                text: 'Aguarde enquanto verificamos se este paciente já está cadastrado.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            // Fazer requisição AJAX
+            $.ajax({
+                url: 'action_verifica_paciente_duplicado.php',
+                method: 'POST',
+                data: {
+                    campo: campo,
+                    valor: valor
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.existe) {
+                        // Paciente já existe - mostrar alerta
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Paciente Já Cadastrado!',
+                            html: `
+                                <div style="text-align: left; padding: 10px;">
+                                    <p><strong>Este paciente já está cadastrado no sistema:</strong></p>
+                                    <hr>
+                                    <p><strong>Nome:</strong> ${response.paciente.nome}</p>
+                                    <p><strong>Prontuário:</strong> ${response.paciente.prontuario}</p>
+                                    <p><strong>CPF:</strong> ${response.paciente.cpf}</p>
+                                    <p><strong>CNS:</strong> ${response.paciente.cns || 'Não informado'}</p>
+                                    <hr>
+                                    <p style="color: #d33; font-weight: bold;">Não é permitido cadastrar pacientes duplicados.</p>
+                                    <p>Clique em OK para ir ao cadastro existente.</p>
+                                </div>
+                            `,
+                            confirmButtonText: 'OK - Ir ao Cadastro',
+                            confirmButtonColor: '#d33',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Redirecionar para o cadastro existente em modo edição
+                                window.location.href = 'crud_paciente.php?mode=edit&id=' + response.paciente.id;
+                            }
+                        });
+                        
+                        // Limpar o campo que causou a duplicação
+                        $('#' + campo).val('').focus();
+                        
+                    } else {
+                        // Paciente não existe - tudo ok
+                        Swal.close();
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro',
+                        text: 'Erro ao verificar duplicação. Tente novamente.',
+                        timer: 3000
+                    });
+                }
+            });
+        }
+        
+        // Adicionar evento onblur (ao sair do campo) apenas no modo CREATE
+        <?php if ($mode === 'create'): ?>
+        $(document).ready(function() {
+            // Verificar Prontuário
+            $('#prontuario').on('blur', function() {
+                const valor = $(this).val();
+                if (valor && valor.trim() !== '') {
+                    verificarPacienteDuplicado('prontuario', valor);
+                }
+            });
+            
+            // Verificar CPF
+            $('#cpf').on('blur', function() {
+                const valor = $(this).val();
+                if (valor && valor.trim() !== '') {
+                    verificarPacienteDuplicado('cpf', valor);
+                }
+            });
+            
+            // Verificar CNS
+            $('#cns').on('blur', function() {
+                const valor = $(this).val();
+                if (valor && valor.trim() !== '') {
+                    verificarPacienteDuplicado('cns', valor);
+                }
+            });
+        });
+        <?php endif; ?>
     </script>
 </body>
 </html>
