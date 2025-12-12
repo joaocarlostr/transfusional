@@ -265,6 +265,23 @@ while ($row = pg_fetch_assoc($result_setor)) {
             color: #fff !important; 
             border: 1px solid #28a745 !important;
         }
+        
+        /* Forçar alinhamento à esquerda nas colunas de texto */
+        .table-custom th.text-left,
+        .table-custom td.text-left {
+            text-align: left !important;
+        }
+        
+        /* Bordas verticais entre colunas */
+        .table-custom th,
+        .table-custom td {
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .table-custom th:last-child,
+        .table-custom td:last-child {
+            border-right: none;
+        }
     </style>
 </head>
 <body>

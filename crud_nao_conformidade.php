@@ -129,6 +129,23 @@ $result_nc = conecta_query($conexao, $query_nc);
         .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
         .status-active { background-color: #e8f5e9; color: #2e7d32; }
         .status-inactive { background-color: #ffebee; color: #c62828; }
+        
+        /* Forçar alinhamento à esquerda nas colunas de texto */
+        .table-custom th.text-left,
+        .table-custom td.text-left {
+            text-align: left !important;
+        }
+        
+        /* Bordas verticais entre colunas */
+        .table-custom th,
+        .table-custom td {
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .table-custom th:last-child,
+        .table-custom td:last-child {
+            border-right: none;
+        }
 
         /* Modal Styles */
         .modal-header { background: linear-gradient(135deg, #741c19 0%, #a02c28 100%); color: #fff; }
