@@ -287,7 +287,6 @@ $result_nc = conecta_query($conexao, $query_nc);
     <script>
         // Bootstrap 5 Modal - Criar instância sempre que necessário
         function openAddModal() {
-            console.log('openAddModal chamado');
             document.getElementById('modalTitle').innerText = 'Adicionar Não Conformidade';
             document.getElementById('formAction').value = 'create';
             document.getElementById('inputId').value = '';
@@ -299,11 +298,9 @@ $result_nc = conecta_query($conexao, $query_nc);
             const modalElement = document.getElementById('modalNC');
             const modal = new bootstrap.Modal(modalElement);
             modal.show();
-            console.log('Modal aberto');
         }
 
         function openEditModal(id, tipo, desc, status) {
-            console.log('openEditModal chamado');
             document.getElementById('modalTitle').innerText = 'Editar Não Conformidade';
             document.getElementById('formAction').value = 'update';
             document.getElementById('inputId').value = id;
@@ -315,20 +312,16 @@ $result_nc = conecta_query($conexao, $query_nc);
             const modalElement = document.getElementById('modalNC');
             const modal = new bootstrap.Modal(modalElement);
             modal.show();
-            console.log('Modal aberto');
         }
         
         // Adicionar event listeners quando o documento estiver pronto
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM carregado, configurando event listeners');
-            
             // Garantir que os botões com data-bs-dismiss funcionem
             const modalElement = document.getElementById('modalNC');
             if (modalElement) {
                 modalElement.addEventListener('click', function(e) {
                     if (e.target.hasAttribute('data-bs-dismiss') || 
                         e.target.closest('[data-bs-dismiss]')) {
-                        console.log('Botão de fechar clicado');
                         const modal = bootstrap.Modal.getInstance(modalElement);
                         if (modal) {
                             modal.hide();
