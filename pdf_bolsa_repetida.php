@@ -1,6 +1,6 @@
-<?php
+﻿<?php
     error_reporting(0);
-    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
+    ini_set('display_errors', 0); // Desabilitado para n�o corromper o PDF
 
     class PDF extends FPDF {     
         function Footer() {  // Rodapé personalizado
@@ -178,6 +178,6 @@
     } else {
         //mostra mensagem de relatorio vazio
         $_SESSION['validado_relatorio_vazio'] = 0;
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         exit();
     }

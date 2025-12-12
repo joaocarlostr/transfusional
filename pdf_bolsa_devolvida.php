@@ -107,6 +107,6 @@
     } else {
         // Mensagem se o relatório for vazio
         $_SESSION['validado_relatorio_vazio'] = 0;
-        header("Location: relatorio.php");
+        header("Location: form_gera_relatorios.php");
         exit();
     }

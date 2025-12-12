@@ -415,7 +415,7 @@
             </div>
             <div class="card-body card-body-crud">
                 
-                <form class="row g-3" id="form_relatorio" action="gerar_relatorio.php" method="POST" target="_blank" onsubmit="return validarFormulario()" enctype="multipart/form-data">
+                <form class="row g-3" id="form_relatorio" action="action_gera_relatorio.php" method="POST" target="_blank" onsubmit="return validarFormulario()" enctype="multipart/form-data">
                      <?php
                         if(isset($_SESSION['validado_relatorio']) && $_SESSION['validado_relatorio'] == 0){
                             echo "<script>Swal.fire('Atenção', 'Campos associados incorretamente.', 'warning');</script>";

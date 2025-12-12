@@ -74,27 +74,27 @@
     //MENSAGENS DE ERRO
     if($arquivo['error'] != 0) {
         $_SESSION['erro_arquivo'] = "erro no arquivo";
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         exit;
     }
 
     if($arquivo['size'] == 0 or $arquivo['tmp_name'] == NULL) {
         $_SESSION['erro_arquivo'] = "nenhum arquivo enviado";
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         // echo '<p><b><font color="red">Nenhum arquivo enviado </font></b></p>';
         exit;
     }
 
     if($arquivo['size'] > $tamanho_maximo) {
         $_SESSION['erro_arquivo'] = "arquivo grande";
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         // echo '<p><b><font color="red">O arquivo enviado é muito grande</font></b></p>';
         exit;
     }
 
     if(array_search($arquivo['type'],$tipos_aceitos) === FALSE) {
         $_SESSION['erro_arquivo'] = "arquivo tipo errado";
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         // echo '<p><b><font color="red">O arquivo enviado não é do tipo(' .$arquivo['type']. ') aceito para transferencia. O tipo aceito é </font></b></p>';
         // echo '<pre>';
         // print_r($tipos_aceitos);
@@ -350,7 +350,7 @@
         } else {
             //mostra mensagem de relatorio vazio
             $_SESSION['validado_relatorio_vazio'] = 0;
-            header("Location:relatorio.php");
+            header("Location:form_gera_relatorios.php");
         }
         
     } else {

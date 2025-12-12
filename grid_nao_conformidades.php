@@ -83,7 +83,7 @@
         <div class="card card-grid">
             <div class="card-header card-header-grid">
                 <span><i class="fas fa-list mr-2"></i> Lista de Não Conformidades</span>
-                <a href="cadastrar_nao_conformidade.php" class="btn-add"><i class="fas fa-plus mr-1"></i> Adicionar</a>
+                <a href="crud_nao_conformidade.php" class="btn-add"><i class="fas fa-plus mr-1"></i> Adicionar</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">

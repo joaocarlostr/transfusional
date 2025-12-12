@@ -66,11 +66,8 @@ $result_responsaveis = conecta_query($conexao, $query_responsaveis);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" type="imagex/png" href="img/gota_sangue.ico">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Gerenciar - Responsáveis</title>
     <style>
@@ -130,8 +127,32 @@ $result_responsaveis = conecta_query($conexao, $query_responsaveis);
         /* Modal Styles */
         .modal-header { background: linear-gradient(135deg, #741c19 0%, #a02c28 100%); color: #fff; }
         .modal-title { color: #fff; font-weight: 600; }
-        .close { color: #fff; opacity: 0.8; }
-        .close:hover { opacity: 1; }
+        .btn-close { 
+            filter: brightness(0) invert(1);
+            opacity: 1;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+        .btn-close:hover { 
+            opacity: 0.75;
+        }
+        .btn-close:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        
+        /* Garantir que botões do modal sejam clicáveis */
+        .modal-header .btn-close {
+            position: relative;
+            z-index: 1051;
+            pointer-events: auto !important;
+        }
+        
+        .modal-footer .btn,
+        .modal-body .btn {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
     </style>
 </head>
 <body>
@@ -188,9 +209,7 @@ $result_responsaveis = conecta_query($conexao, $query_responsaveis);
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">Adicionar Responsável</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formResponsavel" method="POST" action="">
@@ -209,8 +228,8 @@ $result_responsaveis = conecta_query($conexao, $query_responsaveis);
                             </div>
                         </div>
 
-                        <div class="text-right mt-3">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <div class="text-end mt-3">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-success" id="btnSave">Salvar</button>
                         </div>
                     </form>
@@ -228,25 +247,56 @@ $result_responsaveis = conecta_query($conexao, $query_responsaveis);
     <?php include 'includes/footer.php'; ?>
 
     <script>
+        // Bootstrap 5 Modal - Criar instância sempre que necessário
         function openAddModal() {
+            console.log('openAddModal chamado');
             document.getElementById('modalTitle').innerText = 'Adicionar Responsável';
             document.getElementById('formAction').value = 'create';
             document.getElementById('inputId').value = '';
             document.getElementById('inputNome').value = '';
             document.getElementById('inputStatus').checked = true;
             document.getElementById('btnSave').innerText = 'Salvar';
-            $('#modalResponsavel').modal('show');
+            
+            const modalElement = document.getElementById('modalResponsavel');
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+            console.log('Modal aberto');
         }
 
         function openEditModal(id, nome, status) {
+            console.log('openEditModal chamado');
             document.getElementById('modalTitle').innerText = 'Editar Responsável';
             document.getElementById('formAction').value = 'update';
             document.getElementById('inputId').value = id;
             document.getElementById('inputNome').value = nome;
             document.getElementById('inputStatus').checked = (status === 'ativo');
             document.getElementById('btnSave').innerText = 'Atualizar';
-            $('#modalResponsavel').modal('show');
+            
+            const modalElement = document.getElementById('modalResponsavel');
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+            console.log('Modal aberto');
         }
+        
+        // Adicionar event listeners quando o documento estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado, configurando event listeners');
+            
+            // Garantir que os botões com data-bs-dismiss funcionem
+            const modalElement = document.getElementById('modalResponsavel');
+            if (modalElement) {
+                modalElement.addEventListener('click', function(e) {
+                    if (e.target.hasAttribute('data-bs-dismiss') || 
+                        e.target.closest('[data-bs-dismiss]')) {
+                        console.log('Botão de fechar clicado');
+                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        if (modal) {
+                            modal.hide();
+                        }
+                    }
+                });
+            }
+        });
 
         function confirmarExclusao(id) {
             Swal.fire({

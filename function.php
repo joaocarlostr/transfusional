@@ -237,7 +237,7 @@
             $_SESSION['validado_paciente'] = $cpf == '000.000.000-00' && $prontuario == '0' ? 2 : 1;
             if ($valida_registro > 0) $_SESSION['validado_paciente'] = 3;
             if($registro == $prontuario || $registro == $cpf) $_SESSION['validado_paciente'] = 4;
-            redireciona($conexao, $busca_prontuario, "cadastro_paciente.php");
+            redireciona($conexao, $busca_prontuario, "crud_paciente.php");
         }
     }
 
@@ -402,7 +402,7 @@
         VALUES('$nome_setor', '$status')");
 
         $_SESSION['validado_setor'] = 0;
-        redireciona($conexao, $query, "cadastrar_setor.php");
+        redireciona($conexao, $query, "crud_setor.php");
     }
 
     //---------------------------------------------------------------------------------------
@@ -413,7 +413,7 @@
         VALUES('$nome', '$status')");
 
         $_SESSION['validado_responsavel'] = 0;
-        redireciona($conexao, $query, "cadastrar_responsavel.php");
+        redireciona($conexao, $query, "crud_responsavel.php");
     }
 
     //---------------------------------------------------------------------------------------
@@ -424,7 +424,7 @@
         VALUES('$nao_conformidade', '$tipo', 'ativo')");
 
         $_SESSION['validado_nao_conformidade'] = 0;
-        redireciona($conexao, $query, "cadastrar_nao_conformidade.php");
+        redireciona($conexao, $query, "crud_nao_conformidade.php");
     }
 
     //---------------------------------------------------------------------------------------
@@ -708,7 +708,7 @@
             WHERE id_setor = $id_setor");
 
         $_SESSION['validado_setor_editar'] = 0;
-        redireciona($conexao, $query, "cadastrar_setor.php");
+        redireciona($conexao, $query, "crud_setor.php");
     }
 
     //---------------------------------------------------------------------------------------
@@ -720,7 +720,7 @@
             WHERE id_responsavel = $id_responsavel");
 
         $_SESSION['validado_responsavel_editar'] = 0;
-        redireciona($conexao, $query, "cadastrar_responsavel.php");
+        redireciona($conexao, $query, "crud_responsavel.php");
     }
 
     //---------------------------------------------------------------------------------------
@@ -733,7 +733,7 @@
         WHERE id_nao_conformidade = $id_nao_conformidade");
 
         $_SESSION['validado_nao_conformidade_editar'] = 0;
-        redireciona($conexao, $query, "cadastrar_nao_conformidade.php");
+        redireciona($conexao, $query, "crud_nao_conformidade.php");
     }
 
     //---------------------------------------------------------------------------------------

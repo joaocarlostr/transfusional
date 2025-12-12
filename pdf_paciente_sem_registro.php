@@ -96,6 +96,6 @@
     }else{
         //mostra mensagem se o relatorio estiver vazio
         $_SESSION['validado_relatorio_vazio'] = 0;
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         exit();
     }

@@ -128,7 +128,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="" href="relatorio.php">Relatórios</a>
+                    <a class="" href="form_gera_relatorios.php">Relatórios</a>
                 </li>
                 <li class="nav-item">
                     <a class="" href="info_gerais.php">Informações</a>

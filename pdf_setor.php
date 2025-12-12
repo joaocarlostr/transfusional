@@ -1,6 +1,6 @@
-<?php
+ï»¿<?php
     error_reporting(0);
-    ini_set('display_errors', 0); // Desabilitado para não corromper o PDF
+    ini_set('display_errors', 0); // Desabilitado para nï¿½o corromper o PDF
 
     // Definindo uma classe que estende FPDF
     class PDF extends FPDF {
@@ -141,6 +141,6 @@
     }else{
         //mostra mensagem se o relatorio estiver vazio
         $_SESSION['validado_relatorio_vazio'] = 0;
-        header("Location:relatorio.php");
+        header("Location:form_gera_relatorios.php");
         exit();
     }
