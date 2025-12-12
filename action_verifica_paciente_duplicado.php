@@ -57,11 +57,20 @@ try {
         $campo_db = 'numero_sus';
     }
 
-    // Query
-    $query = "SELECT id_paciente, nome_completo, prontuario, cpf, numero_sus 
-              FROM sth_dados_paciente 
-              WHERE $campo_db = '$valor_limpo' 
-              LIMIT 1";
+    // Query - Para CPF, remover formatação do banco antes de comparar
+    if ($campo === 'cpf') {
+        // Comparar CPF sem formatação (remove pontos e traços do banco)
+        $query = "SELECT id_paciente, nome_completo, prontuario, cpf, numero_sus 
+                  FROM sth_dados_paciente 
+                  WHERE REPLACE(REPLACE(REPLACE(cpf, '.', ''), '-', ''), ' ', '') = '$valor_limpo' 
+                  LIMIT 1";
+    } else {
+        // Para outros campos, comparação normal
+        $query = "SELECT id_paciente, nome_completo, prontuario, cpf, numero_sus 
+                  FROM sth_dados_paciente 
+                  WHERE $campo_db = '$valor_limpo' 
+                  LIMIT 1";
+    }
 
     $result = @pg_query($conexao, $query);
 
