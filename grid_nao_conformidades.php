@@ -107,7 +107,7 @@
                                             <td class='text-left'>{$row['nao_conformidade']}</td>
                                             <td class='text-center'><span class='status-badge {$statusClass}'>{$statusText}</span></td>
                                             <td class='text-center pr-4'>
-                                                <a href='editar_nao_conformidade.php?id={$row['id_nao_conformidade']}' class='action-btn btn-edit' title='Editar'><i class='fas fa-pencil-alt'></i></a>
+                                                <a href='crud_nao_conformidade.php' class='action-btn btn-edit' title='Editar'><i class='fas fa-pencil-alt'></i></a>
                                                 <button onclick='confirmarExclusao({$row['id_nao_conformidade']})' class='action-btn btn-delete' title='Excluir'><i class='fas fa-trash-alt'></i></button>
                                             </td>
                                         </tr>";
