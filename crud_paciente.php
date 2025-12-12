@@ -428,7 +428,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                 <span><i class="fas fa-<?php echo $mode === 'create' ? 'user-plus' : 'user-edit'; ?> mr-2"></i> <?php echo $mode === 'create' ? 'Cadastrar Paciente' : 'Editar Paciente'; ?></span>
             </div>
             <div class="card-body card-body-crud">
-                <form id="formPaciente" method="POST" action="crud_paciente.php">
+                <form id="formPaciente" method="POST" action="crud_paciente.php" novalidate>
                     <input type="hidden" name="action" value="<?php echo $mode === 'create' ? 'create' : 'update'; ?>">
                     <?php if($edit_id): ?>
                         <input type="hidden" name="id_paciente" value="<?php echo $edit_id; ?>">
@@ -444,11 +444,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                             <label class="required">Recém-Nascido (RN)?</label>
                             <div class="radio-group pt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="recem_nascido" value="sim" id="rn_sim" required <?php if($edit_data && $edit_data['rn'] == 'sim') echo 'checked'; ?>>
+                                    <input class="form-check-input" type="radio" name="recem_nascido" value="sim" id="rn_sim" tabindex="1" required <?php if($edit_data && $edit_data['rn'] == 'sim') echo 'checked'; ?>>
                                     <label class="form-check-label" for="rn_sim"> Sim</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="recem_nascido" value="nao" id="rn_nao" required <?php if($edit_data && $edit_data['rn'] == 'nao') echo 'checked'; ?>>
+                                    <input class="form-check-input" type="radio" name="recem_nascido" value="nao" id="rn_nao" tabindex="2" required <?php if($edit_data && $edit_data['rn'] == 'nao') echo 'checked'; ?>>
                                     <label class="form-check-label" for="rn_nao"> Não</label>
                                 </div>
                             </div>
@@ -459,15 +459,15 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="prontuario" class="required">Prontuário</label>
-                            <input type="text" name="prontuario" id="prontuario" maxlength="15" class="form-control" required placeholder="Somente números" value="<?php echo $edit_data['prontuario'] ?? ''; ?>">
+                            <input type="text" name="prontuario" id="prontuario" maxlength="15" class="form-control" tabindex="3" required placeholder="Somente números" value="<?php echo $edit_data['prontuario'] ?? ''; ?>">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="num_sus">CNS</label>
-                            <input type="text" id="num_sus" name="num_sus" maxlength="18" class="form-control" placeholder="000.0000.0000.0000" value="<?php echo $edit_data['numero_sus'] ?? ''; ?>">
+                            <input type="text" id="num_sus" name="num_sus" maxlength="18" class="form-control" tabindex="4" placeholder="000.0000.0000.0000" value="<?php echo $edit_data['numero_sus'] ?? ''; ?>">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="cpf" class="required">CPF</label>
-                            <input type="text" name="cpf" id="cpf" maxlength="14" class="form-control" required placeholder="000.000.000-00" value="<?php echo $edit_data['cpf'] ?? ''; ?>">
+                            <input type="text" name="cpf" id="cpf" maxlength="14" class="form-control" tabindex="5" required placeholder="000.000.000-00" value="<?php echo $edit_data['cpf'] ?? ''; ?>">
                         </div>
                     </div>
 
@@ -475,11 +475,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nome" class="required">Nome Completo</label>
-                            <input type="text" name="nome_completo" id="nome" maxlength="255" class="form-control" required placeholder="Digite o nome completo" value="<?php echo $edit_data['nome_completo'] ?? ''; ?>">
+                            <input type="text" name="nome_completo" id="nome_completo" maxlength="255" class="form-control" tabindex="6" required placeholder="Digite o nome completo" value="<?php echo $edit_data['nome_completo'] ?? ''; ?>">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="mae" class="required">Nome da Mãe</label>
-                            <input type="text" name="mae" id="mae" maxlength="255" class="form-control" required placeholder="Nome completo da mãe" value="<?php echo $edit_data['nome_mae'] ?? ''; ?>">
+                            <input type="text" name="mae" id="nome_mae" maxlength="255" class="form-control" tabindex="7" required placeholder="Nome completo da mãe" value="<?php echo $edit_data['nome_mae'] ?? ''; ?>">
                         </div>
                     </div>
 
@@ -487,11 +487,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label for="data_nascimento" class="required">Data de Nascimento</label>
-                            <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" required value="<?php echo $edit_data['dt_nasc'] ?? ''; ?>">
+                            <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" tabindex="8" required value="<?php echo $edit_data['dt_nasc'] ?? ''; ?>">
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="sexo" class="required">Sexo</label>
-                            <select name="sexo" id="sexo" class="form-control" required>
+                            <select name="sexo" id="sexo" class="form-control" tabindex="9" required>
                                 <option value="">Selecione</option>
                                 <option value="F" <?php if($edit_data && $edit_data['sexo'] == 'F') echo 'selected'; ?>>Feminino</option>
                                 <option value="M" <?php if($edit_data && $edit_data['sexo'] == 'M') echo 'selected'; ?>>Masculino</option>
@@ -500,7 +500,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="nome_social">Nome Social Completo</label>
-                            <input type="text" maxlength="255" name="nome_social" id="nome_social" class="form-control" placeholder="Opcional" value="<?php echo $edit_data['nome_social'] ?? ''; ?>">
+                            <input type="text" maxlength="255" name="nome_social" id="nome_social" class="form-control" tabindex="10" placeholder="Opcional" value="<?php echo $edit_data['nome_social'] ?? ''; ?>">
                         </div>
                     </div>
 
@@ -508,7 +508,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="abo" class="required">ABO</label>
-                            <select name="abo" id="abo" class="form-control" required>
+                            <select name="abo" id="abo" class="form-control" tabindex="11" required>
                                 <option value="">Selecione</option>
                                 <option value="A" <?php if($edit_data && $edit_data['abo'] == 'A') echo 'selected'; ?>>A</option>
                                 <option value="B" <?php if($edit_data && $edit_data['abo'] == 'B') echo 'selected'; ?>>B</option>
@@ -520,7 +520,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="rh" class="required">Fator RH</label>
-                            <select name="rh" id="rh" class="form-control" required>
+                            <select name="rh" id="rh" class="form-control" tabindex="12" required>
                                 <option value="">Selecione</option>
                                 <option value="Positivo" <?php if($edit_data && $edit_data['rh_d'] == 'Positivo') echo 'selected'; ?>>Positivo</option>
                                 <option value="Negativo" <?php if($edit_data && $edit_data['rh_d'] == 'Negativo') echo 'selected'; ?>>Negativo</option>
@@ -538,14 +538,14 @@ while ($row = pg_fetch_assoc($result_setor)) {
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="setor" class="required">Setor</label>
-                            <select name="setor" id="setor" class="form-control" required>
+                            <select name="setor" id="setor" class="form-control" tabindex="13" required>
                                 <option value="">Selecione</option>
                                 <?php echo $options_setor; ?>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="leito">Leito</label>
-                            <input type="text" name="leito" id="leito" maxlength="200" class="form-control" placeholder="Ex: 102-A" value="<?php echo $edit_data['leito'] ?? ''; ?>">
+                            <input type="text" name="leito" id="leito" maxlength="200" class="form-control" tabindex="14" placeholder="Ex: 102-A" value="<?php echo $edit_data['leito'] ?? ''; ?>">
                         </div>
                     </div>
 
@@ -553,11 +553,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="registro" class="required">Registro</label>
-                            <input type="text" name="registro" id="registro" maxlength="15" class="form-control" required placeholder="Nº de Registro" value="<?php echo $edit_data['registro'] ?? ''; ?>">
+                            <input type="text" name="registro" id="registro" maxlength="15" class="form-control" tabindex="15" required placeholder="Nº de Registro" value="<?php echo $edit_data['registro'] ?? ''; ?>">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="numero_rt">Número RT</label>
-                            <input type="text" name="numero_rt" id="numero_rt" minlength="10" maxlength="10" class="form-control" placeholder="Opcional" value="<?php echo $edit_data['numero_rt'] ?? ''; ?>">
+                            <input type="text" name="numero_rt" id="numero_rt" minlength="10" maxlength="10" class="form-control" tabindex="16" placeholder="Opcional" value="<?php echo $edit_data['numero_rt'] ?? ''; ?>">
                         </div>
                     </div>
 
@@ -565,11 +565,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-5 form-group">
                             <label for="diagnostico">Diagnóstico</label>
-                            <input type="text" name="diagnostico" id="diagnostico" maxlength="255" class="form-control" placeholder="Diagnóstico principal" value="<?php echo $edit_data['diagnostico'] ?? ''; ?>">
+                            <input type="text" name="diagnostico" id="diagnostico" maxlength="255" class="form-control" tabindex="17" placeholder="Diagnóstico principal" value="<?php echo $edit_data['diagnostico'] ?? ''; ?>">
                         </div>
                         <div class="col-md-7 form-group">
                             <label for="observacao">Observação</label>
-                            <textarea name="observacao" id="observacao" rows="2" maxlength="255" class="form-control" placeholder="Informações adicionais..."><?php echo $edit_data['observacao'] ?? ''; ?></textarea>
+                            <textarea name="observacao" id="observacao" rows="2" maxlength="255" class="form-control" tabindex="18" placeholder="Informações adicionais..."><?php echo $edit_data['observacao'] ?? ''; ?></textarea>
                         </div>
                     </div>
 
@@ -592,6 +592,155 @@ while ($row = pg_fetch_assoc($result_setor)) {
     <?php include 'includes/footer.php'; ?>
     <!-- <script type="text/javascript" src="js/script.js"></script> -->
     <script>
+        // ==================== VALIDAÇÃO DE FORMULÁRIO ====================
+        
+        document.getElementById('formPaciente')?.addEventListener('submit', function(e) {
+            // Pegar todos os campos obrigatórios
+            const camposObrigatorios = this.querySelectorAll('[required]');
+            const camposVazios = [];
+            
+            // Remover destaque anterior
+            camposObrigatorios.forEach(campo => {
+                campo.style.border = '';
+                campo.style.boxShadow = '';
+            });
+            
+            // Verificar cada campo
+            camposObrigatorios.forEach(campo => {
+                let vazio = false;
+                
+                if (campo.type === 'radio') {
+                    // Para radio buttons, verificar se algum do grupo está marcado
+                    const nome = campo.name;
+                    const grupoRadio = document.querySelectorAll(`input[name="${nome}"]`);
+                    const algumMarcado = Array.from(grupoRadio).some(r => r.checked);
+                    if (!algumMarcado && !camposVazios.find(c => c.nome === nome)) {
+                        vazio = true;
+                        camposVazios.push({
+                            campo: grupoRadio[0],
+                            nome: nome,
+                            label: campo.closest('.form-group')?.querySelector('label')?.textContent || nome
+                        });
+                    }
+                } else if (campo.tagName === 'SELECT') {
+                    // Para selects, verificar se não está em "Selecione"
+                    if (!campo.value || campo.value === '' || campo.value === 'Selecione') {
+                        vazio = true;
+                    }
+                } else {
+                    // Para inputs normais
+                    if (!campo.value || campo.value.trim() === '') {
+                        vazio = true;
+                    }
+                }
+                
+                if (vazio && campo.type !== 'radio') {
+                    camposVazios.push({
+                        campo: campo,
+                        nome: campo.name,
+                        label: campo.closest('.form-group')?.querySelector('label')?.textContent || campo.name
+                    });
+                }
+            });
+            
+            // Se houver campos vazios, impedir envio e mostrar alerta
+            if (camposVazios.length > 0) {
+                e.preventDefault();
+                
+                // Destacar campos vazios
+                camposVazios.forEach(item => {
+                    item.campo.style.border = '2px solid #dc3545';
+                    item.campo.style.boxShadow = '0 0 5px rgba(220, 53, 69, 0.5)';
+                });
+                
+                // Montar lista de campos
+                const listaCampos = camposVazios.map(item => 
+                    `• ${item.label.replace('*', '').trim()}`
+                ).join('<br>');
+                
+                // Mostrar alerta amigável
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos Obrigatórios Não Preenchidos',
+                    html: `
+                        <div style="text-align: left; padding: 10px;">
+                            <p><strong>Por favor, preencha os seguintes campos obrigatórios:</strong></p>
+                            <hr>
+                            <div style="padding-left: 10px; line-height: 1.8;">
+                                ${listaCampos}
+                            </div>
+                            <hr>
+                            <p style="color: #856404; font-size: 14px;">
+                                ⚠️ Os campos destacados em vermelho precisam ser preenchidos.
+                            </p>
+                        </div>
+                    `,
+                    confirmButtonText: 'OK, vou preencher',
+                    confirmButtonColor: '#ffc107',
+                    allowEscapeKey: true,
+                    allowOutsideClick: true
+                }).then(() => {
+                    // Focar no primeiro campo vazio
+                    if (camposVazios[0]) {
+                        camposVazios[0].campo.focus();
+                        camposVazios[0].campo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+                
+                return false;
+            }
+        });
+        
+        // ==================== VALIDAÇÃO DE CPF ====================
+        
+        function validarCPF(cpf) {
+            cpf = cpf.replace(/[^\d]/g, '');
+            
+            if (cpf.length !== 11) return false;
+            if (/^(\d)\1{10}$/.test(cpf)) return false; // CPFs com todos dígitos iguais
+            
+            let soma = 0;
+            let resto;
+            
+            for (let i = 1; i <= 9; i++) {
+                soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            }
+            
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) resto = 0;
+            if (resto !== parseInt(cpf.substring(9, 10))) return false;
+            
+            soma = 0;
+            for (let i = 1; i <= 10; i++) {
+                soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            }
+            
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) resto = 0;
+            if (resto !== parseInt(cpf.substring(10, 11))) return false;
+            
+            return true;
+        }
+        
+        // ==================== UPPERCASE AUTOMÁTICO ====================
+        
+        // Campos que devem ser uppercase
+        const camposUppercase = ['nome_completo', 'nome_mae', 'nome_social'];
+        
+        camposUppercase.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', function() {
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    this.value = this.value.toUpperCase();
+                    this.setSelectionRange(start, end);
+                });
+            }
+        });
+        
+        // ==================== CONFIRMAÇÃO DE EXCLUSÃO ====================
+        
         // Confirmação de Exclusão
         function confirmarExclusao(id) {
             Swal.fire({
@@ -652,12 +801,82 @@ while ($row = pg_fetch_assoc($result_setor)) {
             });
         }
         
-        // Inicializar Flatpickr para Data de Nascimento
+        // ==================== CALENDÁRIO ESTILIZADO (form_gera_relatorios) ====================
+        
+        // Calcular feriados brasileiros
+        function calcularFeriadosBrasileiros(ano) {
+            const feriadosFixos = [
+                `${ano}-01-01`, `${ano}-04-21`, `${ano}-05-01`, `${ano}-09-07`,
+                `${ano}-10-12`, `${ano}-11-02`, `${ano}-11-15`, `${ano}-11-20`, `${ano}-12-25`
+            ];
+            
+            // Calcular Páscoa
+            const a = ano % 19;
+            const b = Math.floor(ano / 100);
+            const c = ano % 100;
+            const d = Math.floor(b / 4);
+            const e = b % 4;
+            const f = Math.floor((b + 8) / 25);
+            const g = Math.floor((b - f + 1) / 3);
+            const h = (19 * a + b - d - g + 15) % 30;
+            const i = Math.floor(c / 4);
+            const k = c % 4;
+            const l = (32 + 2 * e + 2 * i - h - k) % 7;
+            const m = Math.floor((a + 11 * h + 22 * l) / 451);
+            const mes = Math.floor((h + l - 7 * m + 114) / 31);
+            const dia = ((h + l - 7 * m + 114) % 31) + 1;
+            const pascoa = new Date(ano, mes - 1, dia);
+            
+            const formatarData = (data) => {
+                const ano = data.getFullYear();
+                const mes = String(data.getMonth() + 1).padStart(2, '0');
+                const dia = String(data.getDate()).padStart(2, '0');
+                return `${ano}-${mes}-${dia}`;
+            };
+            
+            const carnaval = new Date(pascoa);
+            carnaval.setDate(pascoa.getDate() - 47);
+            const carnavalSegunda = new Date(carnaval);
+            carnavalSegunda.setDate(carnaval.getDate() - 1);
+            const paixaoCristo = new Date(pascoa);
+            paixaoCristo.setDate(pascoa.getDate() - 2);
+            const corpusChristi = new Date(pascoa);
+            corpusChristi.setDate(pascoa.getDate() + 60);
+            
+            return [...feriadosFixos, formatarData(carnavalSegunda), formatarData(carnaval),
+                formatarData(paixaoCristo), formatarData(corpusChristi)];
+        }
+        
+        // Gerar feriados para os próximos 5 anos
+        const anoAtual = new Date().getFullYear();
+        let todosFeriados = [];
+        for (let ano = anoAtual - 100; ano <= anoAtual; ano++) {
+            todosFeriados = [...todosFeriados, ...calcularFeriadosBrasileiros(ano)];
+        }
+        
+        // Inicializar Flatpickr para Data de Nascimento com estilo completo
         flatpickr("#data_nascimento", {
             locale: "pt",
             dateFormat: "d/m/Y",
             allowInput: true,
-            maxDate: "today"
+            maxDate: "today",
+            showMonths: 1,
+            onDayCreate: function(dObj, dStr, fp, dayElem) {
+                const date = dayElem.dateObj;
+                const dateStr = fp.formatDate(date, "Y-m-d");
+                const dayOfWeek = date.getDay();
+                
+                // Adicionar classes baseadas no tipo de dia
+                if (todosFeriados.includes(dateStr)) {
+                    dayElem.classList.add("holiday");
+                } else if (dayOfWeek === 0) {
+                    dayElem.classList.add("sunday");
+                } else if (dayOfWeek === 6) {
+                    dayElem.classList.add("saturday");
+                } else {
+                    dayElem.classList.add("weekday");
+                }
+            }
         });
         
         // Aplicar máscara no campo
@@ -671,6 +890,20 @@ while ($row = pg_fetch_assoc($result_setor)) {
             select.style.backgroundSize = "16px";
             select.style.paddingRight = "40px";
         });
+        
+        // ==================== FOCO INICIAL NO MODO CREATE ====================
+        
+        <?php if ($mode === 'create'): ?>
+        // Focar no primeiro campo (RN - Sim) ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const rnSim = document.getElementById('rn_sim');
+            if (rnSim) {
+                setTimeout(() => {
+                    rnSim.focus();
+                }, 100);
+            }
+        });
+        <?php endif; ?>
         
         // ==================== VERIFICAÇÃO DE PACIENTE DUPLICADO ====================
         
@@ -704,30 +937,38 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     console.log('RESPOSTA DO SERVIDOR:', response); // DEBUG
 
                     if (response.existe) {
-                        // Paciente JÁ EXISTE
+                        // Paciente JÁ EXISTE - CPF ou Prontuário são únicos
+                        
+                        const campoNome = campo === 'cpf' ? 'CPF' : 'Prontuário';
+                        
                         Swal.fire({
-                            icon: 'warning',
-                            title: 'Paciente Já Cadastrado!',
-                            // ... (resto do código igual)
+                            icon: 'error',
+                            title: `${campoNome} Já Cadastrado!`,
                             html: `
                                 <div style="text-align: left; padding: 10px;">
-                                    <p><strong>Paciente encontrado:</strong></p>
-                                    <p>Nome: ${response.paciente.nome}</p>
-                                    <p>Prontuário: ${response.paciente.prontuario}</p>
+                                    <p><strong>Este ${campoNome} já está cadastrado:</strong></p>
+                                    <p><strong>Nome:</strong> ${response.paciente.nome}</p>
+                                    <p><strong>Prontuário:</strong> ${response.paciente.prontuario}</p>
+                                    <p><strong>CPF:</strong> ${response.paciente.cpf}</p>
                                     <hr>
-                                    <p class="text-danger">Este cadastro já existe.</p>
+                                    <p style="color: #d33; font-weight: bold;">
+                                        ❌ NÃO é permitido cadastrar pacientes duplicados!
+                                    </p>
+                                    <p>Você será redirecionado para o cadastro existente.</p>
                                 </div>
                             `,
-                            confirmButtonText: 'Ir para Cadastro',
-                            confirmButtonColor: '#d33', 
+                            confirmButtonText: 'OK - Ir ao Cadastro',
+                            confirmButtonColor: '#d33',
+                            allowEscapeKey: false,
                             allowOutsideClick: false
                         }).then((result) => {
-                             if (result.isConfirmed) {
-                                window.location.href = 'crud_paciente.php?mode=edit&id=' + response.paciente.id;
-                            }
+                            // Sempre redireciona (não permite ESC)
+                            window.location.href = 'crud_paciente.php?mode=edit&id=' + response.paciente.id;
                         });
                         
-                        $('#' + campo).val('');
+                        // Limpar o campo
+                        document.getElementById(campo).value = '';
+                        
                         
                     } else if (response.erro) {
                         // ERRO RETORNADO PELO PHP
@@ -739,17 +980,21 @@ while ($row = pg_fetch_assoc($result_setor)) {
                             footer: 'Veja o console (F12) para mais detalhes'
                         });
                     } else {
-                        // NAO EXISTE (Disponível)
-                        console.log('Paciente não encontrado (Disponível)');
-                        // Swal.close(); // COMENTADO PARA DEBUG - VAI FICAR NA TELA "Verificando..." ou você fecha manualmente? 
-                        // Melhor: mostrar um Toast rápido
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Disponível',
-                            text: 'Paciente não encontrado no banco.',
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
+                        // NÃO EXISTE (Disponível) - Apenas fecha o loading, sem alerta
+                        console.log('Paciente não encontrado (Disponível) - Pode prosseguir');
+                        Swal.close();
+                        
+                        // Focar no próximo campo para manter a ordem de navegação
+                        setTimeout(() => {
+                            const campoAtual = document.getElementById(campo);
+                            if (campoAtual) {
+                                const tabindexAtual = parseInt(campoAtual.getAttribute('tabindex'));
+                                const proximoCampo = document.querySelector(`[tabindex="${tabindexAtual + 1}"]`);
+                                if (proximoCampo) {
+                                    proximoCampo.focus();
+                                }
+                            }
+                        }, 100);
                     }
                 },
                 error: function(xhr, status, error) {
@@ -776,23 +1021,35 @@ while ($row = pg_fetch_assoc($result_setor)) {
             });
             
             // Verificar CPF
+            let validandoCPF = false; // Flag para evitar loop
             document.getElementById('cpf').addEventListener('blur', function() {
                 const valor = this.value;
-                if (valor && valor.trim() !== '') {
+                if (valor && valor.trim() !== '' && !validandoCPF) {
+                    // PRIMEIRO: Validar se o CPF é válido
+                    if (!validarCPF(valor)) {
+                        validandoCPF = true; // Ativar flag
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'CPF Inválido',
+                            text: 'O CPF digitado não é válido. Por favor, verifique e corrija.',
+                            confirmButtonColor: '#d33',
+                            allowEscapeKey: true,
+                            allowOutsideClick: true
+                        }).then(() => {
+                            validandoCPF = false; // Desativar flag após fechar
+                        });
+                        this.style.border = '2px solid #dc3545';
+                        this.style.boxShadow = '0 0 5px rgba(220, 53, 69, 0.5)';
+                        // NÃO usar this.focus() aqui para evitar loop
+                        return; // Para aqui se CPF inválido
+                    }
+                    
+                    // SEGUNDO: Se CPF válido, verificar duplicados
+                    this.style.border = '';
+                    this.style.boxShadow = '';
                     verificarPacienteDuplicado('cpf', valor);
                 }
             });
-            
-            // Verificar CNS (campo tem id="num_sus")
-            const cnsField = document.getElementById('num_sus');
-            if (cnsField) {
-                cnsField.addEventListener('blur', function() {
-                    const valor = this.value;
-                    if (valor && valor.trim() !== '') {
-                        verificarPacienteDuplicado('cns', valor);
-                    }
-                });
-            }
         });
         <?php endif; ?>
     </script>
