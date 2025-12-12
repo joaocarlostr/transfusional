@@ -701,48 +701,64 @@ while ($row = pg_fetch_assoc($result_setor)) {
                 },
                 dataType: 'json',
                 success: function(response) {
+                    console.log('RESPOSTA DO SERVIDOR:', response); // DEBUG
+
                     if (response.existe) {
-                        // Paciente já existe - mostrar alerta
+                        // Paciente JÁ EXISTE
                         Swal.fire({
                             icon: 'warning',
                             title: 'Paciente Já Cadastrado!',
+                            // ... (resto do código igual)
                             html: `
                                 <div style="text-align: left; padding: 10px;">
-                                    <p><strong>Este paciente já está cadastrado no sistema:</strong></p>
+                                    <p><strong>Paciente encontrado:</strong></p>
+                                    <p>Nome: ${response.paciente.nome}</p>
+                                    <p>Prontuário: ${response.paciente.prontuario}</p>
                                     <hr>
-                                    <p><strong>Nome:</strong> ${response.paciente.nome}</p>
-                                    <p><strong>Prontuário:</strong> ${response.paciente.prontuario}</p>
-                                    <p><strong>CPF:</strong> ${response.paciente.cpf}</p>
-                                    <p><strong>CNS:</strong> ${response.paciente.cns || 'Não informado'}</p>
-                                    <hr>
-                                    <p style="color: #d33; font-weight: bold;">Não é permitido cadastrar pacientes duplicados.</p>
-                                    <p>Clique em OK para ir ao cadastro existente.</p>
+                                    <p class="text-danger">Este cadastro já existe.</p>
                                 </div>
                             `,
-                            confirmButtonText: 'OK - Ir ao Cadastro',
-                            confirmButtonColor: '#d33',
+                            confirmButtonText: 'Ir para Cadastro',
+                            confirmButtonColor: '#d33', 
                             allowOutsideClick: false
                         }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Redirecionar para o cadastro existente em modo edição
+                             if (result.isConfirmed) {
                                 window.location.href = 'crud_paciente.php?mode=edit&id=' + response.paciente.id;
                             }
                         });
                         
-                        // Limpar o campo que causou a duplicação
-                        $('#' + campo).val('').focus();
+                        $('#' + campo).val('');
                         
+                    } else if (response.erro) {
+                        // ERRO RETORNADO PELO PHP
+                        console.error('Erro PHP:', response);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro no Servidor',
+                            text: response.mensagem,
+                            footer: 'Veja o console (F12) para mais detalhes'
+                        });
                     } else {
-                        // Paciente não existe - tudo ok
-                        Swal.close();
+                        // NAO EXISTE (Disponível)
+                        console.log('Paciente não encontrado (Disponível)');
+                        // Swal.close(); // COMENTADO PARA DEBUG - VAI FICAR NA TELA "Verificando..." ou você fecha manualmente? 
+                        // Melhor: mostrar um Toast rápido
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Disponível',
+                            text: 'Paciente não encontrado no banco.',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
                     }
                 },
-                error: function() {
+                error: function(xhr, status, error) {
+                    console.error('ERRO AJAX:', xhr.responseText);
                     Swal.fire({
                         icon: 'error',
-                        title: 'Erro',
-                        text: 'Erro ao verificar duplicação. Tente novamente.',
-                        timer: 3000
+                        title: 'Falha na Requisição',
+                        html: 'Ocorreu um erro ao comunicar com o servidor.<br>Status: ' + status + '<br>Erro: ' + error,
+                        // timer: 3000 // REMOVIDO TIMER
                     });
                 }
             });

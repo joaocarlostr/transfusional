@@ -40,16 +40,27 @@ try {
         throw new Exception("Campo inválido: $campo");
     }
 
-    // Limpar valor
-    $valor_limpo = pg_escape_string($conexao, $valor);
-    if ($campo === 'cpf') {
+    // Limpar valor (remover formatação)
+    $valor_limpo = $valor;
+    
+    // CPF e CNS: remover pontos, traços, espaços
+    if ($campo === 'cpf' || $campo === 'cns') {
         $valor_limpo = preg_replace('/[^0-9]/', '', $valor);
+    }
+    
+    // Escapar para segurança
+    $valor_limpo = pg_escape_string($conexao, $valor_limpo);
+
+    // Mapear campo 'cns' para o nome real da coluna 'numero_sus'
+    $campo_db = $campo;
+    if ($campo === 'cns') {
+        $campo_db = 'numero_sus';
     }
 
     // Query
-    $query = "SELECT id_paciente, nome, prontuario, cpf, cns 
-              FROM sth_paciente 
-              WHERE $campo = '$valor_limpo' 
+    $query = "SELECT id_paciente, nome_completo, prontuario, cpf, numero_sus 
+              FROM sth_dados_paciente 
+              WHERE $campo_db = '$valor_limpo' 
               LIMIT 1";
 
     $result = @pg_query($conexao, $query);
@@ -76,10 +87,10 @@ try {
             'existe' => true,
             'paciente' => [
                 'id' => $paciente['id_paciente'],
-                'nome' => $paciente['nome'],
+                'nome' => $paciente['nome_completo'],
                 'prontuario' => $paciente['prontuario'],
                 'cpf' => $cpf_formatado,
-                'cns' => $paciente['cns']
+                'cns' => $paciente['numero_sus']
             ],
             'campo' => $campo,
             'mensagem' => 'Paciente já cadastrado!'
