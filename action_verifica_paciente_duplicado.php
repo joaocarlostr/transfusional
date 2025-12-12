@@ -1,5 +1,11 @@
 <?php
 include "database.php";
+
+// Iniciar sessão se necessário
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 header('Content-Type: application/json');
 
 // Receber dados via POST
@@ -26,12 +32,13 @@ if ($campo === 'cpf') {
 }
 
 // Verificar se já existe no banco
-$query = "SELECT id_paciente, nome, prontuario, cpf, cns 
-          FROM sth_paciente 
-          WHERE $campo = '$valor_limpo' 
-          LIMIT 1";
-
-$result = conecta_query($conexao, $query);
+try {
+    $query = "SELECT id_paciente, nome, prontuario, cpf, cns 
+              FROM sth_paciente 
+              WHERE $campo = '$valor_limpo' 
+              LIMIT 1";
+    
+    $result = conecta_query($conexao, $query);
 
 if (pg_num_rows($result) > 0) {
     $paciente = pg_fetch_assoc($result);
@@ -61,6 +68,16 @@ if (pg_num_rows($result) > 0) {
     echo json_encode([
         'existe' => false,
         'mensagem' => 'Disponível'
+    ]);
+}
+} catch (Exception $e) {
+    // Log do erro (opcional)
+    error_log("Erro ao verificar paciente duplicado: " . $e->getMessage());
+    
+    echo json_encode([
+        'existe' => false,
+        'erro' => true,
+        'mensagem' => 'Erro ao verificar duplicação'
     ]);
 }
 ?>
