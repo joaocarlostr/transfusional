@@ -85,4 +85,4 @@
             }
         }
     }
-    redireciona($conexao, $query, "buscar_paciente.php");
+    redireciona($conexao, $query, "crud_paciente.php");

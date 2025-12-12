@@ -286,7 +286,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="botoes-perfil" style="display: flex;">
                                 <input type="submit" onclick="removeRequired()" value="Atualizar Perfil" class="btn botao-verde" name="atualizar_paciente" id="atualizar_paciente_submit" >
-                                <button type="button" onclick="window.location.href='buscar_paciente.php<?php if(isset($_GET['pagina'])){ echo '?pagina='.$_GET['pagina']; } ?>'" class="btn botao-voltar">
+                                <button type="button" onclick="window.location.href='crud_paciente.php<?php if(isset($_GET['pagina'])){ echo '?pagina='.$_GET['pagina']; } ?>'" class="btn botao-voltar">
                                     <i class="fas fa-arrow-left"></i> Voltar
                                 </button>
                                 <?php $_SESSION['atualiza'] = "atualizar_paciente"; ?>

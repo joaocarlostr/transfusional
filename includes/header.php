@@ -103,15 +103,13 @@
                 <li class="nav-item active">
                     <a class="" href="index.php">Inicio <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="" href="buscar_paciente.php">Buscar</a>
-                </li>
+
                 <!-- <li class="nav-item dropdown show">
                     <a href="#" class="dropdown-toggle" id="cadastroDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Buscar
                     </a>
                     <div class="dropdown-menu" aria-labelledby="cadastroDropdown">
-                        <a class="dropdown-item" href="buscar_paciente.php">Paciente</a>
+                        <a class="dropdown-item" href="crud_paciente.php">Paciente</a>
                         <a class="dropdown-item" href="buscar_bolsa.php">Bolsa</a>
                     </div>
                 </li> -->
