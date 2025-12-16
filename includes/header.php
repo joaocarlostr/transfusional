@@ -22,20 +22,22 @@
     
     // Define constantes de ambiente
     if ($is_desenvolvimento) {
-        define('AMBIENTE', 'DESENVOLVIMENTO');
-        define('AMBIENTE_ALERTA', 'AMBIENTE DE DESENVOLVIMENTO - OPERANDO NA BASE: SHI DES (shiteste)');
-        define('DB_HOST', '10.15.0.35');
+        if (!defined('AMBIENTE')) define('AMBIENTE', 'DESENVOLVIMENTO');
+        if (!defined('AMBIENTE_ALERTA')) define('AMBIENTE_ALERTA', 'AMBIENTE DE DESENVOLVIMENTO - OPERANDO NA BASE: SHI DES (shiteste)');
+        if (!defined('DB_HOST')) define('DB_HOST', '10.15.0.35');
     } else {
-        define('AMBIENTE', 'PRODUCAO');
+        if (!defined('AMBIENTE')) define('AMBIENTE', 'PRODUCAO');
         // Em produção, não define AMBIENTE_ALERTA para não exibir o aviso
-        define('DB_HOST', '10.15.1.77'); // IP principal de produção
+        if (!defined('DB_HOST')) define('DB_HOST', '10.15.1.77'); // IP principal de produção
         // Fallback: 186.233.152.78
     }
     
+    
     // Configurações comuns do banco de dados
-    define('DB_NAME', 'shiteste');
-    define('DB_USER', 'postgres');
-    define('DB_PASS', 'systemhum');
+    if (!defined('DB_NAME')) define('DB_NAME', 'shiteste');
+    if (!defined('DB_USER')) define('DB_USER', 'postgres');
+    if (!defined('DB_PASS')) define('DB_PASS', 'systemhum');
+    
     
     // ========================================
     // DETECÇÃO AUTOMÁTICA DE CAMINHO BASE

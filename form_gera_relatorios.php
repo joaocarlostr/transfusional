@@ -805,6 +805,11 @@
         function limpa_select2() {
             $('.select2').val(null).trigger('change');
             $('.custom-file-label').html('Escolher arquivo...');
+            // Limpar também os campos de autocomplete
+            $('#prontuario_search').val('');
+            $('#prontuario').val('');
+            $('#bolsa_search').val('');
+            $('#bolsa').val('');
         }
 
         function validarFormulario() {
@@ -818,12 +823,97 @@
             var importa_arquivo = document.getElementById('importa_arquivo').value;
             var prontuario      = document.getElementById('prontuario').value;
 
-            if (!dt_inicio && !dt_fim && !setor && !bolsa && !hemocomponente && !reacao && !tipo && !importa_arquivo && !prontuario) {
-                Swal.fire('Atenção', 'Por favor, selecione pelo menos um filtro ou tipo de relatório.', 'warning');
+            // Validação básica: pelo menos tipo de relatório deve estar selecionado
+            if (!tipo) {
+                Swal.fire('Atenção', 'Por favor, selecione o tipo de relatório.', 'warning');
                 return false;
             }
+
+            // Validações específicas por tipo de relatório
+            var requiredFields = {
+                'bolsa': ['data_inicio', 'data_fim'],
+                'paciente': ['data_inicio', 'data_fim'],
+                'tipo_reacao_paciente': ['data_inicio', 'data_fim'],
+                'bolsa_devolvida': ['data_inicio', 'data_fim'],
+                'bolsa_reserva': ['data_inicio', 'data_fim'],
+                'bolsa_repetida': [],
+                'paciente_sem_registro': [],
+                'tipo_sanguineo': ['data_inicio', 'data_fim'],
+                'tipo_setor': ['data_inicio', 'data_fim'],
+                'nao_conformidade': ['data_inicio', 'data_fim'],
+                'indi_nao_conformidade': ['data_inicio'],
+                'reacao_transfusional': ['data_inicio'],
+                'indi_bolsa_reserva': ['data_inicio'],
+                'indi_bolsa_devolvida': ['data_inicio']
+            };
+
+            if (requiredFields[tipo]) {
+                var missing = [];
+                
+                if (requiredFields[tipo].includes('data_inicio') && !dt_inicio) {
+                    missing.push('Data de Início');
+                }
+                if (requiredFields[tipo].includes('data_fim') && !dt_fim) {
+                    missing.push('Data de Fim');
+                }
+                
+                if (missing.length > 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Campos Obrigatórios',
+                        html: 'Por favor, preencha os seguintes campos:<br><strong>' + missing.join(', ') + '</strong>',
+                        confirmButtonColor: '#741c19'
+                    });
+                    return false;
+                }
+            }
+
+            // Validar se data_fim >= data_inicio (quando ambos preenchidos)
+            if (dt_inicio && dt_fim) {
+                var dataInicio = new Date(dt_inicio);
+                var dataFim = new Date(dt_fim);
+                
+                if (dataFim < dataInicio) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Datas Inválidas',
+                        text: 'A Data de Fim não pode ser anterior à Data de Início.',
+                        confirmButtonColor: '#741c19'
+                    });
+                    return false;
+                }
+            }
+
+            // Mostrar loading spinner
+            Swal.fire({
+                title: 'Gerando Relatório...',
+                html: '<div style="text-align: center;"><i class="fas fa-file-pdf fa-3x" style="color: #741c19; animation: pulse 1.5s infinite;"></i><br><br>Por favor aguarde, estamos processando os dados.</div>',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // Fechar o loading após 2 segundos (tempo para abrir nova aba)
+            setTimeout(function() {
+                Swal.close();
+            }, 2000);
+
             return true;
         }
+        
+        // Adicionar animação CSS para o ícone
+        var style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.1); opacity: 0.8; }
+            }
+        `;
+        document.head.appendChild(style);
+    
     </script>
 </body>
 </html>
