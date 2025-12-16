@@ -1,4 +1,74 @@
 <?php
+    // ========================================
+    // DETECÇÃO AUTOMÁTICA DE AMBIENTE
+    // ========================================
+    
+    // Detecta o ambiente baseado no IP do servidor
+    $server_addr = isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '';
+    $server_name = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
+    
+    // Define se está em desenvolvimento ou produção
+    $is_desenvolvimento = false;
+    
+    // Verifica se está em ambiente de desenvolvimento (IP 10.15.0.35 ou localhost)
+    if (
+        strpos($server_addr, '10.15.0.35') !== false || 
+        strpos($server_name, 'localhost') !== false ||
+        strpos($server_name, '127.0.0.1') !== false ||
+        strpos($server_addr, '127.0.0.1') !== false
+    ) {
+        $is_desenvolvimento = true;
+    }
+    
+    // Define constantes de ambiente
+    if ($is_desenvolvimento) {
+        define('AMBIENTE', 'DESENVOLVIMENTO');
+        define('AMBIENTE_ALERTA', 'AMBIENTE DE DESENVOLVIMENTO - OPERANDO NA BASE: SHI DES (shiteste)');
+        define('DB_HOST', '10.15.0.35');
+    } else {
+        define('AMBIENTE', 'PRODUCAO');
+        // Em produção, não define AMBIENTE_ALERTA para não exibir o aviso
+        define('DB_HOST', '10.15.1.77'); // IP principal de produção
+        // Fallback: 186.233.152.78
+    }
+    
+    // Configurações comuns do banco de dados
+    define('DB_NAME', 'shiteste');
+    define('DB_USER', 'postgres');
+    define('DB_PASS', 'systemhum');
+    
+    // ========================================
+    // DETECÇÃO AUTOMÁTICA DE CAMINHO BASE
+    // ========================================
+    
+    // Detecta o diretório raiz da aplicação
+    // __DIR__ aponta para /includes, então subimos um nível
+    if (!defined('BASE_PATH')) {
+        define('BASE_PATH', dirname(__DIR__));
+    }
+    
+    // Detecta a URL base da aplicação
+    if (!defined('BASE_URL')) {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+        $host = $_SERVER['HTTP_HOST'];
+        
+        // Pega o caminho do script atual e remove o nome do arquivo
+        $script_path = dirname($_SERVER['SCRIPT_NAME']);
+        
+        // Remove /includes se estiver presente no caminho
+        $script_path = str_replace('/includes', '', $script_path);
+        
+        // Garante que sempre termine com /
+        $base_url = $protocol . $host . $script_path;
+        if (substr($base_url, -1) !== '/') {
+            $base_url .= '/';
+        }
+        
+        define('BASE_URL', $base_url);
+    }
+    
+    // ========================================
+    
     //descomentar apenas no servidor principal
     // Verifica se o usuário está autenticado
     /*

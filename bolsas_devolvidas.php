@@ -1,6 +1,6 @@
-<?php
-    include "database.php";
-    include "function.php";
+﻿<?php
+    include __DIR__ . "/database.php";
+    include __DIR__ . "/function.php";
 
     // inicializando variaveis
     $data_reg = $data_dev = $obs = $motivo = $bolsa = null;

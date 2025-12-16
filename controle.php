@@ -1,6 +1,6 @@
-<?php
-    include "database.php";
-    include "function.php";
+﻿<?php
+    include __DIR__ . "/database.php";
+    include __DIR__ . "/function.php";
 
     $dt_busca = $rt = $leito_t = $setor_t = $bolsa = $pai = $fit = $responsavel = $setor = $leito = $observacao = $funcao_load = null;
     $submit = $msg_nao_conformidade = "Adicionar";

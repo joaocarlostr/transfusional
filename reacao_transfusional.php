@@ -1,6 +1,6 @@
-<?php
-    include "database.php";
-    include "function.php";
+﻿<?php
+    include __DIR__ . "/database.php";
+    include __DIR__ . "/function.php";
 
     $data = $hora = $bolsa = $obs = $notificacao = $id_tipo = $nome_tipo = $funcao_load = null;
 

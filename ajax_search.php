@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // Prevent any implicit output
 ob_start();
 
@@ -25,7 +25,7 @@ $conexao = null;
 // Try to include database
 if (file_exists("database.php")) {
     try {
-        include "database.php";
+        include __DIR__ . "/database.php";
         $debug[] = "Included database.php";
     } catch (Throwable $t) {
         $debug[] = "Exception including database.php: " . $t->getMessage();

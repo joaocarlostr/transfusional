@@ -1,6 +1,6 @@
-<?php
-    include "database.php";
-    include "function.php";
+﻿<?php
+    include __DIR__ . "/database.php";
+    include __DIR__ . "/function.php";
 
     // Consulta SQL para buscar os setores no banco de dados
     $query_setor  = "SELECT * FROM sth_setores WHERE status='ativo' ORDER BY nome_setor DESC";

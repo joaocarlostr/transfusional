@@ -1,6 +1,6 @@
-<?php
-    include "database.php";
-    include "function.php";
+﻿<?php
+    include __DIR__ . "/database.php";
+    include __DIR__ . "/function.php";
 
     // Consulta SQL para nao_conformidades
     $query_nao_conformidade = "SELECT * FROM sth_nao_conformidade ORDER BY tipo, nao_conformidade";

@@ -1,5 +1,5 @@
 <?php
-    include "database.php";
+    include __DIR__ . "/database.php";
     session_start();
 
     // IMPORTANTE: não armazene o objeto/recursos de conexão com o banco na sessão.
