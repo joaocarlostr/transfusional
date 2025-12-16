@@ -1,6 +1,6 @@
 <?php
-include "database.php";
-include "function.php";
+include __DIR__ . "/database.php";
+include __DIR__ . "/function.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Handle Actions (Create, Update, Delete)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $action = $_POST['action'] ?? '';
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     if ($action === 'create') {
         $nome = trim($_POST["nome_responsavel"]);

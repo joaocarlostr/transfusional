@@ -1,6 +1,6 @@
 <?php
-include "database.php";
-include "function.php";
+include __DIR__ . "/database.php";
+include __DIR__ . "/function.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -12,7 +12,7 @@ if (!isset($_GET['id_paciente']) && !isset($_POST['id_paciente'])) {
     exit;
 }
 
-$id_paciente = $_GET['id_paciente'] ?? $_POST['id_paciente'];
+$id_paciente = isset($_GET['id_paciente']) ? $_GET['id_paciente'] : $_POST['id_paciente'];
 
 // Busca dados do paciente para exibir no cabeçalho
 $query_paciente = "SELECT nome_completo, nome_social FROM sth_dados_paciente WHERE id_paciente = $id_paciente";
@@ -29,7 +29,7 @@ function highlight_term($text, $term) {
 
 // Gerencia Ações (Criar, Atualizar, Excluir)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $action = $_POST['action'] ?? '';
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     if ($action === 'create' || $action === 'update') {
         $id_bolsa           = filter_input(INPUT_POST, 'id_bolsa', FILTER_SANITIZE_NUMBER_INT);
@@ -120,9 +120,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Configurações de Modo (List / Create / Edit)
-$mode = $_GET['mode'] ?? 'list';
-$edit_id = $_GET['id_bolsa'] ?? null;
-$edit_data = [];
+$mode = isset($_GET['mode']) ? $_GET['mode'] : 'list';
+$edit_id = isset($_GET['id_bolsa']) ? $_GET['id_bolsa'] : null;
+$edit_data = array();
 
 // Carrega dados para Edição
 if ($mode === 'edit' && $edit_id) {
@@ -366,7 +366,7 @@ if ($mode === 'list') {
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="numero_bolsa" class="required">Nº da Bolsa</label>
-                            <input type="text" name="numero_bolsa" id="numero_bolsa" maxlength="13" minlength="13" class="form-control" placeholder="Ex: B123456789012" required value="<?php echo $edit_data['num_bolsa'] ?? ''; ?>">
+                            <input type="text" name="numero_bolsa" id="numero_bolsa" maxlength="13" minlength="13" class="form-control" placeholder="Ex: B123456789012" required value="<?php echo isset($edit_data['num_bolsa']) ? $edit_data['num_bolsa'] : ''; ?>">
                         </div>
                         <div class="col-md-4 form-group">
                              <label for="setor_livro">Livro Setor</label>
@@ -392,7 +392,7 @@ if ($mode === 'list') {
                         </div>
                          <div class="col-md-4 form-group">
                             <label for="num_sus_bolsa" class="required">Nº SUS da Bolsa</label>
-                            <input type="text" name="num_sus_bolsa" id="num_sus_bolsa" maxlength="15" class="form-control" required value="<?php echo $edit_data['num_sus'] ?? ''; ?>">
+                            <input type="text" name="num_sus_bolsa" id="num_sus_bolsa" maxlength="15" class="form-control" required value="<?php echo isset($edit_data['num_sus']) ? $edit_data['num_sus'] : ''; ?>">
                         </div>
                     </div>
 
@@ -400,15 +400,15 @@ if ($mode === 'list') {
                     <div class="row">
                          <div class="col-md-4 form-group">
                             <label for="data_transfusao" class="required">Data da Transfusão</label>
-                            <input type="date" name="data_transfusao" id="data_transfusao" class="form-control" max="<?php echo date('Y-m-d'); ?>" required value="<?php echo $edit_data['data_transfusao'] ?? ''; ?>">
+                            <input type="date" name="data_transfusao" id="data_transfusao" class="form-control" max="<?php echo date('Y-m-d'); ?>" required value="<?php echo isset($edit_data['data_transfusao']) ? $edit_data['data_transfusao'] : ''; ?>">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="horario_inicio" class="required">Horário</label>
-                            <input type="time" name="horario_inicio" id="horario_inicio" class="form-control" required value="<?php echo $edit_data['horario_inicio'] ?? ''; ?>">
+                            <input type="time" name="horario_inicio" id="horario_inicio" class="form-control" required value="<?php echo isset($edit_data['horario_inicio']) ? $edit_data['horario_inicio'] : ''; ?>">
                         </div>
                          <div class="col-md-4 form-group">
                             <label for="dt_saida" class="required">Data de Saída</label>
-                            <input type="date" name="dt_saida" id="dt_saida" class="form-control" max="<?php echo date('Y-m-d'); ?>" required value="<?php echo $edit_data['dt_saida'] ?? ''; ?>">
+                            <input type="date" name="dt_saida" id="dt_saida" class="form-control" max="<?php echo date('Y-m-d'); ?>" required value="<?php echo isset($edit_data['dt_saida']) ? $edit_data['dt_saida'] : ''; ?>">
                         </div>
                     </div>
 
@@ -416,7 +416,7 @@ if ($mode === 'list') {
                      <div class="row">
                         <div class="col-md-12 form-group">
                              <label for="observacao">Observação</label>
-                             <textarea name="observacao" id="observacao" rows="2" class="form-control" maxlength="255"><?php echo $edit_data['observacao'] ?? ''; ?></textarea>
+                             <textarea name="observacao" id="observacao" rows="2" class="form-control" maxlength="255"><?php echo isset($edit_data['observacao']) ? $edit_data['observacao'] : ''; ?></textarea>
                         </div>
                      </div>
 

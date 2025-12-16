@@ -24,3 +24,5 @@ composer.lock
 
 # uploads / user content
 uploads/
+# SFTP credentials
+.vscode/sftp.json

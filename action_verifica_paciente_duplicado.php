@@ -13,7 +13,7 @@ try {
         throw new Exception("Arquivo database.php não encontrado");
     }
 
-    require_once "database.php";
+    include __DIR__ . "/database.php";
 
     // Iniciar sessão
     if (session_status() === PHP_SESSION_NONE) {
@@ -28,8 +28,8 @@ try {
     header('Content-Type: application/json');
 
     // Validar input
-    $campo = $_POST['campo'] ?? '';
-    $valor = $_POST['valor'] ?? '';
+    $campo = isset($_POST['campo']) ? $_POST['campo'] : '';
+    $valor = isset($_POST['valor']) ? $_POST['valor'] : '';
 
     if (empty($campo) || empty($valor)) {
         throw new Exception("Dados inválidos: Campo ou Valor vazios");
@@ -78,7 +78,7 @@ try {
         throw new Exception("Erro na consulta SQL: " . pg_last_error($conexao));
     }
 
-    $response = [];
+    $response = array();
 
     if (pg_num_rows($result) > 0) {
         $paciente = pg_fetch_assoc($result);
@@ -92,30 +92,30 @@ try {
                             substr($paciente['cpf'], 9, 2);
         }
 
-        $response = [
+        $response = array(
             'existe' => true,
-            'paciente' => [
+            'paciente' => array(
                 'id' => $paciente['id_paciente'],
                 'nome' => $paciente['nome_completo'],
                 'prontuario' => $paciente['prontuario'],
                 'cpf' => $cpf_formatado,
                 'cns' => $paciente['numero_sus']
-            ],
+            ),
             'campo' => $campo,
             'mensagem' => 'Paciente já cadastrado!'
-        ];
+        );
     } else {
-        $response = [
+        $response = array(
             'existe' => false,
             'mensagem' => 'Disponível'
-        ];
+        );
     }
 
     // Limpar buffer antes de enviar JSON
     ob_end_clean();
     echo json_encode($response);
 
-} catch (Throwable $e) { // Throwable pega Erros Fatais e Exceptions
+} catch (Exception $e) { // Exception funciona no PHP 5.4
     // Limpar buffer
     if (ob_get_length()) ob_end_clean();
     
@@ -124,10 +124,10 @@ try {
 
     // Retorno JSON de erro
     header('Content-Type: application/json');
-    echo json_encode([
+    echo json_encode(array(
         'existe' => false,
         'erro' => true,
         'mensagem' => 'Erro interno: ' . $e->getMessage() // Útil para debug agora (remover em prod)
-    ]);
+    ));
 }
 ?>

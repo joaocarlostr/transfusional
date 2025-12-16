@@ -1,6 +1,6 @@
 <?php
-include "database.php";
-include "function.php";
+include __DIR__ . "/database.php";
+include __DIR__ . "/function.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -12,7 +12,7 @@ if (!isset($_GET['id_paciente']) && !isset($_POST['id_paciente'])) {
     exit;
 }
 
-$id_paciente = $_GET['id_paciente'] ?? $_POST['id_paciente'];
+$id_paciente = isset($_GET['id_paciente']) ? $_GET['id_paciente'] : $_POST['id_paciente'];
 
 // Busca dados do paciente
 $query_paciente = "SELECT nome_completo, nome_social FROM sth_dados_paciente WHERE id_paciente = $id_paciente";
@@ -29,7 +29,7 @@ function highlight_term($text, $term) {
 
 // Actions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $action = $_POST['action'] ?? '';
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     if ($action === 'create' || $action === 'update') {
         $id_reacao          = filter_input(INPUT_POST, 'id_reacao', FILTER_SANITIZE_NUMBER_INT);
@@ -98,9 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Mode Handling
-$mode = $_GET['mode'] ?? 'list';
-$edit_id = $_GET['id_reacao'] ?? null;
-$edit_data = [];
+$mode = isset($_GET['mode']) ? $_GET['mode'] : 'list';
+$edit_id = isset($_GET['id_reacao']) ? $_GET['id_reacao'] : null;
+$edit_data = array();
 
 // Load Edit Data
 if ($mode === 'edit' && $edit_id) {
@@ -327,15 +327,15 @@ if ($mode === 'list') {
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label for="data_reacao" class="required">Data</label>
-                            <input type="date" name="data_reacao" id="data_reacao" class="form-control" max="<?php echo date('Y-m-d'); ?>" required value="<?php echo $edit_data['data'] ?? ''; ?>">
+                            <input type="date" name="data_reacao" id="data_reacao" class="form-control" max="<?php echo date('Y-m-d'); ?>" required value="<?php echo isset($edit_data['data']) ? $edit_data['data'] : ''; ?>">
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="hora_reacao" class="required">Hora</label>
-                            <input type="time" name="hora_reacao" id="hora_reacao" class="form-control" required value="<?php echo $edit_data['hora'] ?? ''; ?>">
+                            <input type="time" name="hora_reacao" id="hora_reacao" class="form-control" required value="<?php echo isset($edit_data['hora']) ? $edit_data['hora'] : ''; ?>">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="num_notificacao" class="required">Nº Notificação</label>
-                            <input type="text" name="num_notificacao" id="num_notificacao" class="form-control" maxlength="20" required value="<?php echo $edit_data['num_notificacao'] ?? ''; ?>">
+                            <input type="text" name="num_notificacao" id="num_notificacao" class="form-control" maxlength="20" required value="<?php echo isset($edit_data['num_notificacao']) ? $edit_data['num_notificacao'] : ''; ?>">
                         </div>
                     </div>
 
@@ -381,7 +381,7 @@ if ($mode === 'list') {
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label for="observacao" class="required">Observação</label>
-                            <textarea name="observacao" id="observacao" rows="3" class="form-control" required><?php echo $edit_data['observacao'] ?? ''; ?></textarea>
+                            <textarea name="observacao" id="observacao" rows="3" class="form-control" required><?php echo isset($edit_data['observacao']) ? $edit_data['observacao'] : ''; ?></textarea>
                         </div>
                     </div>
 

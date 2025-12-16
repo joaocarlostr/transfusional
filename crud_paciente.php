@@ -1,6 +1,6 @@
 <?php
-include "database.php";
-include "function.php";
+include __DIR__ . "/database.php";
+include __DIR__ . "/function.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -17,7 +17,7 @@ function highlight_term($text, $term) {
 
 // Gerencia Ações (Criar, Atualizar, Excluir)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $action = $_POST['action'] ?? '';
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     if ($action === 'create' || $action === 'update') {
         // Coleta Dados
@@ -112,9 +112,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Verifica se estamos no modo de edição ou criação (via parâmetro GET)
-$mode = $_GET['mode'] ?? 'list';
-$edit_id = $_GET['id'] ?? null;
-$edit_data = [];
+$mode = isset($_GET['mode']) ? $_GET['mode'] : 'list';
+$edit_id = isset($_GET['id']) ? $_GET['id'] : null;
+$edit_data = array();
 
 if ($mode === 'edit' && $edit_id) {
     $query_edit = "SELECT * FROM sth_dados_paciente WHERE id_paciente = $edit_id";
@@ -424,8 +424,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
         <?php else: ?>
         <!-- FORM VIEW (CREATE/EDIT) -->
         <div class="card card-crud">
-            <div class="card-header card-header-crud">
+            <div class="card-header card-header-crud" style="position: relative;">
                 <span><i class="fas fa-<?php echo $mode === 'create' ? 'user-plus' : 'user-edit'; ?> mr-2"></i> <?php echo $mode === 'create' ? 'Cadastrar Paciente' : 'Editar Paciente'; ?></span>
+                <a href="crud_paciente.php" class="btn btn-sm btn-light" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); border-radius: 50%; width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center;" title="Cancelar e voltar">
+                    <i class="fas fa-times"></i>
+                </a>
             </div>
             <div class="card-body card-body-crud">
                 <form id="formPaciente" method="POST" action="crud_paciente.php" novalidate>
@@ -459,15 +462,15 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="prontuario" class="required">Prontuário</label>
-                            <input type="text" name="prontuario" id="prontuario" maxlength="15" class="form-control" tabindex="3" required placeholder="Somente números" value="<?php echo $edit_data['prontuario'] ?? ''; ?>">
+                            <input type="text" name="prontuario" id="prontuario" maxlength="15" class="form-control" tabindex="3" required placeholder="Somente números" value="<?php echo isset($edit_data['prontuario']) ? $edit_data['prontuario'] : ''; ?>">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="num_sus">CNS</label>
-                            <input type="text" id="num_sus" name="num_sus" maxlength="18" class="form-control" tabindex="4" placeholder="000.0000.0000.0000" value="<?php echo $edit_data['numero_sus'] ?? ''; ?>">
+                            <input type="text" id="num_sus" name="num_sus" maxlength="18" class="form-control" tabindex="4" placeholder="000.0000.0000.0000" value="<?php echo isset($edit_data['numero_sus']) ? $edit_data['numero_sus'] : ''; ?>">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="cpf" class="required">CPF</label>
-                            <input type="text" name="cpf" id="cpf" maxlength="14" class="form-control" tabindex="5" required placeholder="000.000.000-00" value="<?php echo $edit_data['cpf'] ?? ''; ?>">
+                            <input type="text" name="cpf" id="cpf" maxlength="14" class="form-control" tabindex="5" required placeholder="000.000.000-00" value="<?php echo isset($edit_data['cpf']) ? $edit_data['cpf'] : ''; ?>">
                         </div>
                     </div>
 
@@ -475,11 +478,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nome" class="required">Nome Completo</label>
-                            <input type="text" name="nome_completo" id="nome_completo" maxlength="255" class="form-control" tabindex="6" required placeholder="Digite o nome completo" value="<?php echo $edit_data['nome_completo'] ?? ''; ?>">
+                            <input type="text" name="nome_completo" id="nome_completo" maxlength="255" class="form-control" tabindex="6" required placeholder="Digite o nome completo" value="<?php echo isset($edit_data['nome_completo']) ? $edit_data['nome_completo'] : ''; ?>">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="mae" class="required">Nome da Mãe</label>
-                            <input type="text" name="mae" id="nome_mae" maxlength="255" class="form-control" tabindex="7" required placeholder="Nome completo da mãe" value="<?php echo $edit_data['nome_mae'] ?? ''; ?>">
+                            <input type="text" name="mae" id="nome_mae" maxlength="255" class="form-control" tabindex="7" required placeholder="Nome completo da mãe" value="<?php echo isset($edit_data['nome_mae']) ? $edit_data['nome_mae'] : ''; ?>">
                         </div>
                     </div>
 
@@ -487,7 +490,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label for="data_nascimento" class="required">Data de Nascimento</label>
-                            <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" tabindex="8" required value="<?php echo $edit_data['dt_nasc'] ?? ''; ?>">
+                            <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" tabindex="8" required value="<?php echo isset($edit_data['dt_nasc']) ? $edit_data['dt_nasc'] : ''; ?>">
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="sexo" class="required">Sexo</label>
@@ -500,7 +503,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="nome_social">Nome Social Completo</label>
-                            <input type="text" maxlength="255" name="nome_social" id="nome_social" class="form-control" tabindex="10" placeholder="Opcional" value="<?php echo $edit_data['nome_social'] ?? ''; ?>">
+                            <input type="text" maxlength="255" name="nome_social" id="nome_social" class="form-control" tabindex="10" placeholder="Opcional" value="<?php echo isset($edit_data['nome_social']) ? $edit_data['nome_social'] : ''; ?>">
                         </div>
                     </div>
 
@@ -545,7 +548,7 @@ while ($row = pg_fetch_assoc($result_setor)) {
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="leito">Leito</label>
-                            <input type="text" name="leito" id="leito" maxlength="200" class="form-control" tabindex="14" placeholder="Ex: 102-A" value="<?php echo $edit_data['leito'] ?? ''; ?>">
+                            <input type="text" name="leito" id="leito" maxlength="200" class="form-control" tabindex="14" placeholder="Ex: 102-A" value="<?php echo isset($edit_data['leito']) ? $edit_data['leito'] : ''; ?>">
                         </div>
                     </div>
 
@@ -553,11 +556,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="registro" class="required">Registro</label>
-                            <input type="text" name="registro" id="registro" maxlength="15" class="form-control" tabindex="15" required placeholder="Nº de Registro" value="<?php echo $edit_data['registro'] ?? ''; ?>">
+                            <input type="text" name="registro" id="registro" maxlength="15" class="form-control" tabindex="15" required placeholder="Nº de Registro" value="<?php echo isset($edit_data['registro']) ? $edit_data['registro'] : ''; ?>">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="numero_rt">Número RT</label>
-                            <input type="text" name="numero_rt" id="numero_rt" minlength="10" maxlength="10" class="form-control" tabindex="16" placeholder="Opcional" value="<?php echo $edit_data['numero_rt'] ?? ''; ?>">
+                            <input type="text" name="numero_rt" id="numero_rt" minlength="10" maxlength="10" class="form-control" tabindex="16" placeholder="Opcional" value="<?php echo isset($edit_data['numero_rt']) ? $edit_data['numero_rt'] : ''; ?>">
                         </div>
                     </div>
 
@@ -565,11 +568,11 @@ while ($row = pg_fetch_assoc($result_setor)) {
                     <div class="row">
                         <div class="col-md-5 form-group">
                             <label for="diagnostico">Diagnóstico</label>
-                            <input type="text" name="diagnostico" id="diagnostico" maxlength="255" class="form-control" tabindex="17" placeholder="Diagnóstico principal" value="<?php echo $edit_data['diagnostico'] ?? ''; ?>">
+                            <input type="text" name="diagnostico" id="diagnostico" maxlength="255" class="form-control" tabindex="17" placeholder="Diagnóstico principal" value="<?php echo isset($edit_data['diagnostico']) ? $edit_data['diagnostico'] : ''; ?>">
                         </div>
                         <div class="col-md-7 form-group">
                             <label for="observacao">Observação</label>
-                            <textarea name="observacao" id="observacao" rows="2" maxlength="255" class="form-control" tabindex="18" placeholder="Informações adicionais..."><?php echo $edit_data['observacao'] ?? ''; ?></textarea>
+                            <textarea name="observacao" id="observacao" rows="2" maxlength="255" class="form-control" tabindex="18" placeholder="Informações adicionais..."><?php echo isset($edit_data['observacao']) ? $edit_data['observacao'] : ''; ?></textarea>
                         </div>
                     </div>
 

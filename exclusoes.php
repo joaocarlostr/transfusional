@@ -1,6 +1,6 @@
-<?php
-    include "database.php";
-    include "function.php";
+﻿<?php
+    include __DIR__ . "/database.php";
+    include __DIR__ . "/function.php";
 
     // Query de busca, filtro e exibição
     // Helper para destacar termo
@@ -240,7 +240,7 @@
                                     } else {
                                         $result_nome_usuario_logado = conecta_query($conexao, "SELECT de_usuario FROM usuario WHERE id = $row[id_usuario]");
                                         $row_nome_usuario_logado    = pg_fetch_assoc($result_nome_usuario_logado);
-                                        $nome_usuario_logado        = $row_nome_usuario_logado["de_usuario"] ?? 'N/A';
+                                        $nome_usuario_logado        = isset($row_nome_usuario_logado["de_usuario"]) ? $row_nome_usuario_logado["de_usuario"] : 'N/A';
                                     }
                                     
                                     // Pegar apenas o Primeiro Nome
