@@ -59,6 +59,29 @@
         $labels_transf[] = $row['data_fmt'];
         $data_transf[] = $row['qtd'];
     }
+
+    // 7. Dados para Gráfico de Top 10 Não Conformidades (Barras)
+    $query_graf_nc = "SELECT nc.tipo || ' - ' || nc.nao_conformidade as descricao, COUNT(cnc.id_controle_nao_conformidade) as qtd
+                      FROM sth_controle_nao_conformidade cnc
+                      INNER JOIN sth_nao_conformidade nc ON nc.id_nao_conformidade = cnc.id_nao_conformidade
+                      INNER JOIN sth_controle c ON c.id_controle = cnc.id_controle
+                      INNER JOIN sth_cadastro_bolsa cb ON c.id_bolsa = cb.id_bolsa
+                      WHERE cb.data_transfusao >= CURRENT_DATE - INTERVAL '6 months'
+                      GROUP BY nc.tipo, nc.nao_conformidade
+                      ORDER BY qtd DESC
+                      LIMIT 10";
+    $result_graf_nc = conecta_query($conexao, $query_graf_nc);
+    $labels_nc = [];
+    $labels_nc_completos = [];
+    $data_nc = [];
+    while ($row = pg_fetch_assoc($result_graf_nc)) {
+        // Armazenar descrição completa para o tooltip
+        $labels_nc_completos[] = $row['descricao'];
+        // Limitar o tamanho do label para exibição no eixo Y
+        $descricao_truncada = strlen($row['descricao']) > 40 ? substr($row['descricao'], 0, 37) . '...' : $row['descricao'];
+        $labels_nc[] = $descricao_truncada;
+        $data_nc[] = $row['qtd'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -232,7 +255,7 @@
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
                             <div class="kpi-value"><?php echo $total_reacoes_mes; ?></div>
-                            <div class="kpi-label">Reações Adversas</div>
+                            <div class="kpi-label">Reações Transfusionais</div>
                         </div>
                         <div class="kpi-icon-wrapper">
                             <i class="fas fa-heartbeat"></i>
@@ -271,6 +294,17 @@
                     <div class="chart-title">Evolução de Transfusões (7 Dias)</div>
                     <div class="flex-grow-1" style="position: relative; min-height: 0;">
                         <canvas id="chartTransfusoes"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 60px;">
+            <div class="col-12">
+                <div class="chart-wrapper d-flex flex-column">
+                    <div class="chart-title">Top 10 Não Conformidades (Últimos 6 Meses)</div>
+                    <div class="flex-grow-1" style="position: relative; min-height: 0;">
+                        <canvas id="chartNaoConformidades"></canvas>
                     </div>
                 </div>
             </div>
@@ -365,6 +399,88 @@
                 plugins: {
                     legend: {
                         display: false
+                    }
+                },
+                layout: {
+                    padding: {
+                        top: 5,
+                        bottom: 5,
+                        left: 5,
+                        right: 5
+                    }
+                }
+            }
+        });
+
+        const ctxNC = document.getElementById('chartNaoConformidades').getContext('2d');
+        new Chart(ctxNC, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($labels_nc); ?>,
+                datasets: [{
+                    label: 'Ocorrências',
+                    data: <?php echo json_encode($data_nc); ?>,
+                    backgroundColor: '#f39c12',
+                    borderRadius: 5,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            borderDash: [2, 4],
+                            color: '#f0f0f0'
+                        },
+                        ticks: {
+                            stepSize: 1,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 10
+                            },
+                            align: 'start',
+                            crossAlign: 'far'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                // Usar as descrições completas armazenadas
+                                const labelsCompletos = <?php echo json_encode($labels_nc_completos); ?>;
+                                return labelsCompletos[context[0].dataIndex];
+                            },
+                            label: function(context) {
+                                return 'Ocorrências: ' + context.parsed.x;
+                            }
+                        },
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: {
+                            size: 12,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 11
+                        },
+                        padding: 12,
+                        displayColors: false,
+                        maxWidth: 400
                     }
                 },
                 layout: {
