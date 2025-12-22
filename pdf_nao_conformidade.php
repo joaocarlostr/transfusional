@@ -39,9 +39,10 @@
         // Cabeçalho da tabela
         $pdf->Cell(10, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'N°'), 1, 0, 'C', true);
         $pdf->Cell(20, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Prontuário'), 1, 0, 'C', true);
-        $pdf->Cell(70, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Paciente'), 1, 0, 'C', true);
-        $pdf->Cell(28, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Bolsa'), 1, 0, 'C', true);
-        $pdf->Cell(150, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Não Conformidade'), 1, 1, 'C', true);
+        $pdf->Cell(60, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Paciente'), 1, 0, 'C', true);
+        $pdf->Cell(25, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Dt Não Conform.'), 1, 0, 'C', true);
+        $pdf->Cell(25, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Bolsa'), 1, 0, 'C', true);
+        $pdf->Cell(138, 10, iconv('utf-8', 'iso-8859-1//IGNORE', 'Não Conformidade'), 1, 1, 'C', true);
     
         // Processar os resultados
         $cont = 0;
@@ -51,17 +52,20 @@
 
             // se tiver nome social preenchido uso o social, se nao, uso o do documento
             $nome_paciente = !empty($row['nome_social']) ? $row['nome_social'] : $row['nome_completo'];
-            $nome_paciente = (strlen($nome_paciente) > 40) ? substr($nome_paciente, 0, 40) . "..." : $nome_paciente;
+            $nome_paciente = (strlen($nome_paciente) > 35) ? substr($nome_paciente, 0, 35) . "..." : $nome_paciente;
 
             $nao_conformidade = $row['tipo'] . ' - ' . $row['nao_conformidade'];
-            $nao_conformidade = (strlen($nao_conformidade) > 85) ? substr($nao_conformidade, 0, 85) . "..." : $nao_conformidade;
+            $nao_conformidade = (strlen($nao_conformidade) > 78) ? substr($nao_conformidade, 0, 78) . "..." : $nao_conformidade;
             
+            // Formata a data da não conformidade
+            $data_nao_conf = !empty($row['data_nao_conformidade']) ? date('d/m/Y', strtotime($row['data_nao_conformidade'])) : '-';
 
             $pdf->Cell(10, 8, str_pad($cont, 3, '0', STR_PAD_LEFT), 1, 0, 'C');
             $pdf->Cell(20, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $row['prontuario']), 1, 0, 'C');
-            $pdf->Cell(70, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $nome_paciente), 1, 0, 'L');
-            $pdf->Cell(28, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $row['num_bolsa']), 1, 0, 'L');
-            $pdf->Cell(150, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $nao_conformidade), 1, 1, 'L');
+            $pdf->Cell(60, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $nome_paciente), 1, 0, 'L');
+            $pdf->Cell(25, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $data_nao_conf), 1, 0, 'C');
+            $pdf->Cell(25, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $row['num_bolsa']), 1, 0, 'L');
+            $pdf->Cell(138, 8, iconv('utf-8', 'iso-8859-1//IGNORE', $nao_conformidade), 1, 1, 'L');
         }
     }   
 
@@ -81,6 +85,7 @@
                 nc.nao_conformidade,
                 cb.data_transfusao,
                 cb.horario_inicio,
+                cb.data_transfusao as data_nao_conformidade,
                 CASE WHEN dp.nome_social IS NULL OR dp.nome_social = '' THEN dp.nome_completo ELSE dp.nome_social END AS nome
               FROM sth_controle_nao_conformidade cnc
               INNER JOIN sth_nao_conformidade nc ON nc.id_nao_conformidade = cnc.id_nao_conformidade

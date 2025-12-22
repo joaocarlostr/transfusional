@@ -934,6 +934,7 @@ switch ($tipo) {
                 nc.nao_conformidade,
                 cb.data_transfusao,
                 cb.horario_inicio,
+                cb.data_transfusao as data_nao_conformidade,
                 CASE WHEN dp.nome_social IS NULL OR dp.nome_social = '' THEN dp.nome_completo ELSE dp.nome_social END AS nome
               FROM sth_controle_nao_conformidade cnc
               INNER JOIN sth_nao_conformidade nc ON nc.id_nao_conformidade = cnc.id_nao_conformidade
@@ -961,14 +962,14 @@ switch ($tipo) {
             break; 
         }
 
-        // Colunas: N°(10), Prontuário(20), Paciente(70), Bolsa(28), Não Conformidade(150). Total: 278
-        $w = array(10, 20, 70, 28, 150);
+        // Colunas: N°(10), Prontuário(20), Paciente(60), Dt Não Conform.(25), Bolsa(25), Não Conformidade(138). Total: 278
+        $w = array(10, 20, 60, 25, 25, 138);
         $margem_esquerda = (297 - array_sum($w)) / 2;
         $pdf->SetX($margem_esquerda);
 
         $pdf->SetFont('Arial', 'B', 9);
         $pdf->SetFillColor(200, 200, 200);
-        $header = array('Nº', 'Prontuário', 'Paciente', 'Bolsa', 'Não Conformidade');
+        $header = array('Nº', 'Prontuário', 'Paciente', 'Dt Não Conform.', 'Bolsa', 'Não Conformidade');
         foreach($header as $i => $h) $pdf->Cell($w[$i], 10, iconv_safe($h), 1, 0, 'C', true);
         $pdf->Ln();
 
@@ -979,19 +980,23 @@ switch ($tipo) {
             $count++;
             $pdf->SetX($margem_esquerda);
             
-            $nome_paciente = (strlen($row['nome']) > 40) ? substr($row['nome'], 0, 40) . "..." : $row['nome'];
+            $nome_paciente = (strlen($row['nome']) > 35) ? substr($row['nome'], 0, 35) . "..." : $row['nome'];
             $nao_conformidade = $row['tipo'] . ' - ' . $row['nao_conformidade'];
-            $nao_conformidade = (strlen($nao_conformidade) > 85) ? substr($nao_conformidade, 0, 85) . "..." : $nao_conformidade;
+            $nao_conformidade = (strlen($nao_conformidade) > 78) ? substr($nao_conformidade, 0, 78) . "..." : $nao_conformidade;
+            
+            // Formata a data da não conformidade
+            $data_nao_conf = !empty($row['data_nao_conformidade']) ? date('d/m/Y', strtotime($row['data_nao_conformidade'])) : '-';
 
             $pdf->Cell($w[0], 8, str_pad($count, 3, '0', STR_PAD_LEFT), 1, 0, 'C');
             $pdf->Cell($w[1], 8, $row['prontuario'], 1, 0, 'C');
             $pdf->Cell($w[2], 8, iconv_safe($nome_paciente), 1, 0, 'L');
-            $pdf->Cell($w[3], 8, $row['num_bolsa'], 1, 0, 'L');
-            $pdf->Cell($w[4], 8, iconv_safe($nao_conformidade), 1, 1, 'L');
+            $pdf->Cell($w[3], 8, iconv_safe($data_nao_conf), 1, 0, 'C');
+            $pdf->Cell($w[4], 8, $row['num_bolsa'], 1, 0, 'L');
+            $pdf->Cell($w[5], 8, iconv_safe($nao_conformidade), 1, 1, 'L');
         }
         
         // TOTALIZADOR
-        $pdf->addTotalizador($margem_esquerda, $w, 'TOTAL DE NÃO CONFORMIDADES:', $count, 4);
+        $pdf->addTotalizador($margem_esquerda, $w, 'TOTAL DE NÃO CONFORMIDADES:', $count, 5);
         
         break;
 
